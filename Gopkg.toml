@@ -1,0 +1,60 @@
+#
+# Revel Gopkg.toml
+#
+# If you want to use a specific version of Revel change the branches below
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+#
+# required = ["github.com/user/thing/cmd/thing"]
+# ignored = ["github.com/user/project/pkgX", "bitbucket.org/user/project/pkgA/pkgY"]
+#
+# [[constraint]]
+#   name = "github.com/user/project"
+#   version = "1.0.0"
+#
+# [[constraint]]
+#   name = "github.com/user/project2"
+#   branch = "dev"
+#   source = "github.com/myfork/project2"
+#
+# [[override]]
+#  name = "github.com/x/y"
+#  version = "2.4.0"
+required = ["github.com/revel/revel", "github.com/revel/modules"]
+
+# Note to use a specific version changes this to
+#
+# [[override]]
+#   version = "0.20.1"
+#   name = "github.com/revel/modules"
+
+[[override]]
+  branch = "master"
+  name = "github.com/revel/modules"
+
+# Note to use a specific version changes this to
+#
+# [[override]]
+#   version = "0.20.0"
+#   name = "github.com/revel/revel"
+[[override]]
+  branch = "master"
+  name = "github.com/revel/revel"
+
+[[override]]
+  branch = "master"
+  name = "github.com/revel/log15"
+
+[[override]]
+  branch = "master"
+  name = "github.com/revel/cron"
+
+[[override]]
+  branch = "master"
+  name = "github.com/xeonx/timeago"
+
+
+[[override]]
+  name = "github.com/satori/go.uuid"
+  version = "1.2.0"
