@@ -1,18 +1,21 @@
 package controllers
 
 import (
-	"github.com/twinj/uuid"
-	"github.com/bencagri/sozluk/app/models"
+	M "sozluk/app/models"
 )
 
-type Auth struct {
-	App
+type AuthC struct {
+	AppC
 }
 
-func (this Auth) handle() {
+func (this AuthC) handle() {
 	// do authentication here
 }
 
-func (this Auth) currentUser() {
-	u :=  User{uuid.UUID, "John", "HiJohn", "john@doe.com"}
+func (this AuthC) CurrentUser() M.UserM {
+	//sample user instance
+	m := M.NewUser("John", "HiJohn", "john@doe.com", "12345")
+	// m := models.UserM{uuid.NewV4(), "John", "HiJohn", "john@doe.com"}
+	return m
+	// u := User{uuid.UUID, "John", "HiJohn", "john@doe.com"}
 }

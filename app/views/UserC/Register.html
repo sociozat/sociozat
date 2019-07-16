@@ -1,0 +1,45 @@
+{{set . "title" .title}}
+{{template "header.html" .}}
+
+<h1>Register:</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+<form action="{{url "UserC.SaveUser"}}" method="POST">
+  {{with $field := field "user.Username" .}}
+    <p class="{{$field.ErrorClass}}">
+      <strong>Username:</strong>
+      <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
+      <span class="error">{{$field.Error}}</span>
+    </p>
+  {{end}}
+  {{with $field := field "user.Name" .}}
+    <p class="{{$field.ErrorClass}}">
+      <strong>Real name:</strong> <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
+      <span class="error">{{$field.Error}}</span>
+    </p>
+  {{end}}
+  {{with $field := field "user.Password" .}}
+    <p class="{{$field.ErrorClass}}">
+      <strong>Password:</strong> <input type="password" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
+      <span class="error">{{$field.Error}}</span>
+    </p>
+  {{end}}
+  {{with $field := field "verifyPassword" .}}
+    <p class="{{$field.ErrorClass}}">
+      <strong>Verify password:</strong> <input type="password" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
+      <span class="error">{{$field.Error}}</span>
+    </p>
+  {{end}}
+  <p class="buttons">
+    <input type="submit" value="Register"> <a href="{{url "AppC.Index"}}">Cancel</a>
+  </p>
+</form>
+
+{{template "footer.html" .}}

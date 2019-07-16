@@ -1,18 +1,66 @@
 package models
 
 import (
-	"github.com/twinj/uuid"
+	"fmt"
+	"regexp"
+
 	"github.com/revel/revel"
+	"github.com/twinj/uuid"
+	"golang.org/x/crypto/bcrypt"
 )
 
-type User struct {
-	ID uuid.UUID
-	Name string
-	Username string
-	Email string
+type UserM struct {
+	ID             uuid.UUID
+	Name           string
+	Username       string
+	Email          string
+	Password       string
+	HashedPassword []byte
 }
 
-func (u User) String() string {
-	return fmt.Sprintf("User(%s)", u.Name)
+func (u UserM) String() string {
+	user := "test"
+	return fmt.Sprintf("User(%s) %s", u.Name, user)
 }
 
+var userRegex = regexp.MustCompile("^\\w*$")
+
+func (user *UserM) Validate(v *revel.Validation) {
+	v.Check(user.Username,
+		revel.Required{},
+		revel.MaxSize{15},
+		revel.MinSize{4},
+		revel.Match{userRegex},
+	)
+
+	ValidatePassword(v, user.Password).
+		Key("user.Password")
+
+	v.Check(user.Name,
+		revel.Required{},
+		revel.MaxSize{100},
+	)
+}
+
+func ValidatePassword(v *revel.Validation, password string) *revel.ValidationResult {
+	return v.Check(password,
+		revel.Required{},
+		revel.MaxSize{15},
+		revel.MinSize{5},
+	)
+}
+
+func NewUser(Username string, Name string, Email string, Password string) UserM {
+
+	var hashedPassword, _ = bcrypt.GenerateFromPassword(
+		[]byte(Password), bcrypt.DefaultCost)
+
+	return UserM{
+		uuid.NewV4(),
+		Name,
+		Username,
+		Email,
+		Password,
+		hashedPassword,
+	}
+}
