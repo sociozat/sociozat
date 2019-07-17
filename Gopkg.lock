@@ -2,12 +2,39 @@
 
 
 [[projects]]
+  digest = "1:e692d16fdfbddb94e9e4886aaf6c08bdbae5cb4ac80651445de9181b371c6e46"
+  name = "github.com/go-sql-driver/mysql"
+  packages = ["."]
+  pruneopts = ""
+  revision = "72cd26f257d44c1114970e19afddcd812016007e"
+  version = "v1.4.1"
+
+[[projects]]
   digest = "1:a4fcebba8c1b8ae25dd31f1cfa6c6ed5b1e5719ab2e9e1c18e8c98969ebde215"
   name = "github.com/inconshreveable/log15"
   packages = ["term"]
   pruneopts = ""
   revision = "67afb5ed74ec82fd7ac8f49d27c509ac6f991970"
   version = "v2.14"
+
+[[projects]]
+  digest = "1:3755c1a3de6404d58d7767562d00a84ee4a507df69a1490c9cebb931d7b11b96"
+  name = "github.com/jinzhu/gorm"
+  packages = [
+    ".",
+    "dialects/mysql",
+  ]
+  pruneopts = ""
+  revision = "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4"
+  version = "v1.9.10"
+
+[[projects]]
+  digest = "1:a7b97371fb9af808b6a4fcc6693276ef7869bb1f282c3c87038c6c7e74ef4ae6"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  pruneopts = ""
+  revision = "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:d260ca4db8ced0871a1c06440b1e5835e2d982ed660ca529957d67f28cf24592"
@@ -45,7 +72,13 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = ["."]
+  packages = [
+    ".",
+    "static/app/controllers",
+    "static/app/model",
+    "testrunner/app",
+    "testrunner/app/controllers",
+  ]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -73,6 +106,14 @@
   revision = "a3d7a7c23ca885cc5036d3641ede49ce4a14ee2e"
 
 [[projects]]
+  digest = "1:7f569d906bdd20d906b606415b7d794f798f91a62fcfb6a4daa6d50690fb7a3f"
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  pruneopts = ""
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
+
+[[projects]]
   digest = "1:c27b9d796a0011b90661dc71cb6627d844372327c9e1f306d0713ed679139ebf"
   name = "github.com/twinj/uuid"
   packages = ["."]
@@ -90,6 +131,17 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:086760278d762dbb0e9a26e09b57f04c89178c86467d8d94fae47d64c222f328"
+  name = "golang.org/x/crypto"
+  packages = [
+    "bcrypt",
+    "blowfish",
+  ]
+  pruneopts = ""
+  revision = "4def268fd1a49955bfb3dda92fe3db4f924f2285"
+
+[[projects]]
+  branch = "master"
   digest = "1:31cd6e3c114e17c5f0c9e8b0bcaa3025ab3c221ce36323c7ce1acaa753d0d0aa"
   name = "golang.org/x/net"
   packages = ["websocket"]
@@ -103,6 +155,14 @@
   packages = ["unix"]
   pruneopts = ""
   revision = "fae7ac547cb717d141c433a2a173315e216b64c4"
+
+[[projects]]
+  digest = "1:47f391ee443f578f01168347818cb234ed819521e49e4d2c8dd2fb80d48ee41a"
+  name = "google.golang.org/appengine"
+  packages = ["cloudsql"]
+  pruneopts = ""
+  revision = "b2f4a3cf3c67576a2ee09e1fe62656a5086ce880"
+  version = "v1.6.1"
 
 [[projects]]
   digest = "1:eb53021a8aa3f599d29c7102e65026242bdedce998a54837dc67f14b6a97c5fd"
@@ -132,11 +192,17 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/bencagri/sozluk/app/models",
+    "github.com/jinzhu/gorm",
+    "github.com/jinzhu/gorm/dialects/mysql",
     "github.com/revel/modules",
+    "github.com/revel/modules/static/app/controllers",
+    "github.com/revel/modules/testrunner/app",
+    "github.com/revel/modules/testrunner/app/controllers",
     "github.com/revel/revel",
     "github.com/revel/revel/testing",
+    "github.com/satori/go.uuid",
     "github.com/twinj/uuid",
+    "golang.org/x/crypto/bcrypt",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

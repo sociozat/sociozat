@@ -19,9 +19,9 @@
       <span class="error">{{$field.Error}}</span>
     </p>
   {{end}}
-  {{with $field := field "user.Name" .}}
+  {{with $field := field "user.Email" .}}
     <p class="{{$field.ErrorClass}}">
-      <strong>Real name:</strong> <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
+      <strong>Email:</strong> <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
       <span class="error">{{$field.Error}}</span>
     </p>
   {{end}}

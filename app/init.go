@@ -1,7 +1,11 @@
 package app
 
 import (
+	"fmt"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/revel/revel"
+	"sozluk/app/models"
 )
 
 var (
@@ -11,6 +15,19 @@ var (
 	// BuildTime revel app build-time (ldflags)
 	BuildTime string
 )
+
+var DB *gorm.DB
+
+func InitDB() {
+	connstring := fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True", "root", "root", "sozluk")
+	var err error
+	DB, err = gorm.Open("mysql", connstring)
+	if err != nil {
+		revel.AppLog.Info("DB Error", err)
+	}
+	revel.AppLog.Info("DB Connected")
+	DB.AutoMigrate(&models.UserM{})
+}
 
 func init() {
 	// Filters is the default set of global filters.
@@ -41,6 +58,8 @@ func init() {
 	revel.TemplateFuncs["config"] = func(a string, b string) string {
 		return revel.Config.StringDefault(a, b)
 	}
+
+	revel.OnAppStart(InitDB)
 }
 
 // HeaderFilter adds common security headers

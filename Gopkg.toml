@@ -58,3 +58,7 @@ required = ["github.com/revel/revel", "github.com/revel/modules"]
 [[override]]
   name = "github.com/satori/go.uuid"
   version = "1.2.0"
+
+[[constraint]]
+  name = "github.com/jinzhu/gorm"
+  version = "1.9.10"

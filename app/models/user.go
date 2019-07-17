@@ -2,10 +2,11 @@ package models
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
+	"github.com/satori/go.uuid"
 	"regexp"
 
 	"github.com/revel/revel"
-	"github.com/twinj/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -18,12 +19,13 @@ var (
 )
 
 type UserM struct {
-	ID             uuid.UUID
+	gorm.Model
+	UserID         string `gorm:"type:char(36);primary_key"`
 	Name           string
-	Username       string
-	Email          string
-	Password       string
-	HashedPassword []byte
+	Username       string `gorm:"unique;not null"`
+	Email          string `gorm:"unique;not null"`
+	Password       string `gorm:"-"`
+	HashedPassword string `gorm:"type:varchar(255)"`
 	Type           int
 }
 
@@ -45,10 +47,6 @@ func (user *UserM) Validate(v *revel.Validation) {
 	ValidatePassword(v, user.Password).
 		Key("user.Password")
 
-	v.Check(user.Name,
-		revel.Required{},
-		revel.MaxSize{100},
-	)
 }
 
 func ValidatePassword(v *revel.Validation, password string) *revel.ValidationResult {
@@ -63,14 +61,16 @@ func NewUser(Username string, Name string, Email string, Password string) UserM 
 
 	var hashedPassword, _ = bcrypt.GenerateFromPassword(
 		[]byte(Password), bcrypt.DefaultCost)
-
-	return UserM{
-		uuid.NewV4(),
-		Name,
-		Username,
-		Email,
-		Password,
-		hashedPassword,
-		USER_NEWBIE,
+	u4 := uuid.NewV4()
+	user := UserM{
+		UserID:         u4.String(),
+		Name:           Name,
+		Username:       Username,
+		Email:          Email,
+		Password:       Password,
+		HashedPassword: string(hashedPassword),
+		Type:           USER_NEWBIE,
 	}
+
+	return user
 }
