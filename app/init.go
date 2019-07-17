@@ -36,6 +36,11 @@ func init() {
 	// revel.OnAppStart(ExampleStartupScript)
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
+
+	//read config function for templates
+	revel.TemplateFuncs["config"] = func(a string, b string) string {
+		return revel.Config.StringDefault(a, b)
+	}
 }
 
 // HeaderFilter adds common security headers

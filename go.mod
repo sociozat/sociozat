@@ -6,6 +6,7 @@ require (
 	github.com/mattn/go-isatty v0.0.8
 	github.com/myesui/uuid v1.0.0 // indirect
 	github.com/revel/config v0.21.0
+	github.com/revel/cron v0.21.0 // indirect
 	github.com/revel/log15 v2.11.20+incompatible
 	github.com/revel/modules v0.0.0-20190502182740-2737bfdaa8c4
 	github.com/revel/pathtree v0.0.0-20140121041023-41257a1839e9

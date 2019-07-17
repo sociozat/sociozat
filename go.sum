@@ -12,6 +12,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/revel/config v0.21.0 h1:Bw4iXLGAuD/Di2HEhPSOyDywrTlFIXUMbds91lXTtTU=
 github.com/revel/config v0.21.0/go.mod h1:GT4a9px5kDGRqLizcw/md0QFErrhen76toz4qS3oIoI=
+github.com/revel/cron v0.21.0 h1:qtQF7OrMsUWEZg6VNyEnE+NxH+q9QOXOqffyxo86p30=
+github.com/revel/cron v0.21.0/go.mod h1:WrSp8p1H1IfOGumbbDGrGf8dZLjNSnGSnwxTj3nG80I=
 github.com/revel/log15 v2.11.20+incompatible h1:JkA4tbwIo/UGEMumY50zndKq816RQW3LQ0wIpRc+32U=
 github.com/revel/log15 v2.11.20+incompatible/go.mod h1:l0WmLRs+IM1hBl4noJiBc2tZQiOgZyXzS1mdmFt+5Gc=
 github.com/revel/modules v0.0.0-20190502182740-2737bfdaa8c4 h1:UnuP6lTsZ4Ze/kUjnQ0jFzW3hsH8/NGarWgfznADWPs=
