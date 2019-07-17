@@ -9,6 +9,14 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+var (
+	USER_NEWBIE  = 0
+	USER_AUTHOR  = 1
+	USER_DOOMED  = 2
+	USER_DELETED = 3
+	USER_MOD     = 4
+)
+
 type UserM struct {
 	ID             uuid.UUID
 	Name           string
@@ -16,6 +24,7 @@ type UserM struct {
 	Email          string
 	Password       string
 	HashedPassword []byte
+	Type           int
 }
 
 func (u UserM) String() string {
@@ -62,5 +71,6 @@ func NewUser(Username string, Name string, Email string, Password string) UserM 
 		Email,
 		Password,
 		hashedPassword,
+		USER_NEWBIE,
 	}
 }
