@@ -7,11 +7,11 @@ module:testrunner
 # module:jobs
 
 
-GET     /                            AppC.Index
-GET     /register                    UserC.Register
-POST    /register                    UserC.SaveUser
-GET     /u/:id                       UserC.GetUser
-GET     /p/:id                       PostC.Index
+GET     /                            App.Index
+GET     /register                    User.Register
+POST    /register                    User.SaveUser
+GET     /u/:id                       User.GetUser
+GET     /p/:id                       Post.Index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

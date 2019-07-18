@@ -6,9 +6,9 @@ import (
 	"sozluk/app/models"
 )
 
-type UserR struct{}
+type UserRepository struct{}
 
-func (this UserR) Create(u models.UserM) (*models.UserM, error) {
+func (this UserRepository) Create(u models.UserModel) (*models.UserModel, error) {
 
 	var err error
 

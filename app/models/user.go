@@ -18,7 +18,7 @@ var (
 	USER_MOD     = 4
 )
 
-type UserM struct {
+type UserModel struct {
 	gorm.Model
 	UserID         string `gorm:"type:char(36);primary_key"`
 	Name           string
@@ -29,14 +29,14 @@ type UserM struct {
 	Type           int
 }
 
-func (u UserM) String() string {
+func (u UserModel) String() string {
 	user := "test"
 	return fmt.Sprintf("User(%s) %s", u.Name, user)
 }
 
 var userRegex = regexp.MustCompile("^\\w*$")
 
-func (user *UserM) Validate(v *revel.Validation) {
+func (user *UserModel) Validate(v *revel.Validation) {
 	v.Check(user.Username,
 		revel.Required{},
 		revel.MaxSize{15},
@@ -57,12 +57,12 @@ func ValidatePassword(v *revel.Validation, password string) *revel.ValidationRes
 	)
 }
 
-func NewUser(Username string, Name string, Email string, Password string) UserM {
+func NewUser(Username string, Name string, Email string, Password string) UserModel {
 
 	var hashedPassword, _ = bcrypt.GenerateFromPassword(
 		[]byte(Password), bcrypt.DefaultCost)
 	u4 := uuid.NewV4()
-	user := UserM{
+	user := UserModel{
 		UserID:         u4.String(),
 		Name:           Name,
 		Username:       Username,

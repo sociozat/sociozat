@@ -4,15 +4,15 @@ import (
 	"github.com/revel/revel"
 )
 
-type AppC struct {
+type App struct {
 	*revel.Controller
 }
 
-func (this AppC) Index() revel.Result {
+func (this App) Index() revel.Result {
 	title := "Naber"
 	return this.Render(title)
 }
 
-func (this AppC) testFunc(test string) string {
+func (this App) testFunc(test string) string {
 	return test
 }

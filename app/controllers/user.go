@@ -6,42 +6,42 @@ import (
 	"sozluk/app/repositories"
 )
 
-type UserC struct {
-	AuthC
-	UserR repositories.UserR
+type User struct {
+	Auth
+	UserRepository repositories.UserRepository
 }
 
-func (this UserC) GetUser(id int) revel.Result {
+func (this User) GetUser(id int) revel.Result {
 	u := this.CurrentUser()
 	return this.RenderJSON(u)
 }
 
-func (this UserC) Register() revel.Result {
+func (this User) Register() revel.Result {
 	title := "Register"
 	return this.Render(title)
 }
 
-func (this UserC) SaveUser(user models.UserM) revel.Result {
+func (this User) SaveUser(user models.UserModel) revel.Result {
 	//validate post data
 	user.Validate(this.Validation)
 
 	if this.Validation.HasErrors() {
 		this.Validation.Keep()
 		this.FlashParams()
-		return this.Redirect(UserC.Register)
+		return this.Redirect(User.Register)
 	}
 
 	newUser := models.NewUser(user.Username, user.Username, user.Email, user.Password)
 
 	//save to db
-	u, err := this.UserR.Create(newUser)
+	u, err := this.UserRepository.Create(newUser)
 
 	if err != nil {
 		this.Flash.Error(err.Error())
-		return this.Redirect(UserC.Register)
+		return this.Redirect(User.Register)
 	}
 
 	//set success flash
 	this.Flash.Success("Welcome," + u.Name)
-	return this.Redirect(AppC.Index)
+	return this.Redirect(App.Index)
 }

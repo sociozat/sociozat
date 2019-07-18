@@ -7,8 +7,8 @@ import (
 	"github.com/revel/revel"
 )
 
-type PostC struct {
-	AppC
+type Post struct {
+	App
 }
 
 type Topic struct {
@@ -17,7 +17,7 @@ type Topic struct {
 	Content string `json:"content"`
 }
 
-func (this PostC) Index() revel.Result {
+func (this Post) Index() revel.Result {
 	text := this.Params.Query.Get("text")
 	title := "Post Content"
 	id := rand.Intn(100)

@@ -26,7 +26,7 @@ func InitDB() {
 		revel.AppLog.Info("DB Error", err)
 	}
 	revel.AppLog.Info("DB Connected")
-	DB.AutoMigrate(&models.UserM{})
+	DB.AutoMigrate(&models.UserModel{})
 }
 
 func init() {

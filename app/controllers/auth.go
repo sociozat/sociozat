@@ -4,15 +4,15 @@ import (
 	M "sozluk/app/models"
 )
 
-type AuthC struct {
-	AppC
+type Auth struct {
+	App
 }
 
-func (this AuthC) handle() {
+func (this Auth) handle() {
 	// do authentication here
 }
 
-func (this AuthC) CurrentUser() M.UserM {
+func (this Auth) CurrentUser() M.UserModel {
 	//sample user instance
 	m := M.NewUser("John", "HiJohn", "john@doe.com", "12345")
 	// m := models.UserM{uuid.NewV4(), "John", "HiJohn", "john@doe.com"}
