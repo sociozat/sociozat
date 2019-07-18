@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<form action="{{url "UserC.SaveUser"}}" method="POST">
+<form action="{{url "User.SaveUser"}}" method="POST">
   {{with $field := field "user.Username" .}}
     <p class="{{$field.ErrorClass}}">
       <strong>Username:</strong>
@@ -38,7 +38,7 @@
     </p>
   {{end}}
   <p class="buttons">
-    <input type="submit" value="Register"> <a href="{{url "AppC.Index"}}">Cancel</a>
+    <input type="submit" value="Register"> <a href="{{url "App.Index"}}">Cancel</a>
   </p>
 </form>
 
