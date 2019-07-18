@@ -3,7 +3,6 @@ package controllers
 import (
 	"sozluk/app"
 	"sozluk/app/models"
-	"sozluk/app/repositories"
 	"sozluk/app/routes"
 	"sozluk/app/services"
 
@@ -14,8 +13,7 @@ import (
 //User struct
 type User struct {
 	Auth
-	UserService    services.UserService
-	UserRepository repositories.UserRepository
+	UserService services.UserService
 }
 
 //Register renderss register route
