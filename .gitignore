@@ -4,3 +4,4 @@ routes/
 .idea
 .netrc
 vendor
+conf/app.conf

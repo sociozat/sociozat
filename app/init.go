@@ -2,10 +2,11 @@ package app
 
 import (
 	"fmt"
+	"sozluk/app/models"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/revel/revel"
-	"sozluk/app/models"
 )
 
 var (
@@ -19,9 +20,25 @@ var (
 var DB *gorm.DB
 
 func InitDB() {
-	connstring := fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True", "root", "root", "sozluk")
+
+	dbDriver := revel.Config.StringDefault("db.driver", "mysql")
+	dbName := revel.Config.StringDefault("db.name", "sozluk")
+	dbUser := revel.Config.StringDefault("db.user", "root")
+	dbPassword := revel.Config.StringDefault("db.password", "root")
+	dbAddress := revel.Config.StringDefault("db.address", "127.0.0.1")
+	dbPort := revel.Config.StringDefault("db.port", "3306")
+
+	var connstring string
+	if dbDriver == "mysql" {
+		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
+	} else if dbDriver == "postgres" {
+		connstring = fmt.Sprintf("host=myhost port=myport user=gorm dbname=gorm password=mypassword")
+	} else if dbDriver == "sqllite3" {
+		connstring = dbAddress
+	}
+
 	var err error
-	DB, err = gorm.Open("mysql", connstring)
+	DB, err = gorm.Open(dbDriver, connstring)
 	if err != nil {
 		revel.AppLog.Info("DB Error", err)
 	}

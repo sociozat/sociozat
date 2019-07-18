@@ -56,16 +56,11 @@ http.timeout.read = 90
 http.timeout.write = 60
 
 # Database
-# db.connection sample  
-# file::memory:?mode=memory&cache=shared 
-# user:password@/dbname?charset=utf8&parseTime=True&loc=Local
-# host=myhost port=myport user=gorm dbname=gorm password=mypassword
 
 db.autoinit   = true
 db.import     = github.com/mattn/go-sqlite3
 db.driver     = mysql  # mysql, postgres or sqlite3
-db.address    = 127.0.0.1
-db.port       = 8002
+db.port       = 3306
 db.user       = root
 db.password   = root
 db.name       = sozluk
@@ -143,10 +138,10 @@ module.static = github.com/revel/modules/static
 # Footer links
 
 footer.tos.name = TOS
-footer.tos.url = ${FOOTER_TOS_URL}
+footer.tos.url = http://#
 
-footer.faq.name = FQ
-footer.faq.url = ${FOOTER_FAQ_URL}
+footer.faq.name = FAQ
+footer.faq.url = http://#
 
 footer.fb.url = http://facebook.com
 footer.tw.url = http://twitter.com

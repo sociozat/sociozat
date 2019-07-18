@@ -7,6 +7,7 @@ require (
 	github.com/luci/go-render v0.0.0-20160219211803-9a04cc21af0f
 	github.com/mattn/go-colorable v0.1.2
 	github.com/mattn/go-isatty v0.0.8
+	github.com/mattn/go-sqlite3 v1.11.0 // indirect
 	github.com/myesui/uuid v1.0.0 // indirect
 	github.com/revel/config v0.21.0
 	github.com/revel/cron v0.21.0 // indirect

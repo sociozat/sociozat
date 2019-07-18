@@ -72,13 +72,7 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = [
-    ".",
-    "static/app/controllers",
-    "static/app/model",
-    "testrunner/app",
-    "testrunner/app/controllers",
-  ]
+  packages = ["."]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -195,9 +189,6 @@
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
     "github.com/revel/modules",
-    "github.com/revel/modules/static/app/controllers",
-    "github.com/revel/modules/testrunner/app",
-    "github.com/revel/modules/testrunner/app/controllers",
     "github.com/revel/revel",
     "github.com/revel/revel/testing",
     "github.com/satori/go.uuid",
