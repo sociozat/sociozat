@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/revel/revel"
+	// "github.com/revel/revel"
 	"sozluk/app"
 	"sozluk/app/models"
 )
@@ -13,7 +13,7 @@ func (this UserRepository) Create(u models.UserModel) (*models.UserModel, error)
 	var err error
 
 	if err := app.DB.Create(&u).Error; err != nil {
-		revel.AppLog.Crit(err.Error())
+		return &u, err
 	}
 
 	return &u, err

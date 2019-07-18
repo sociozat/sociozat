@@ -3,10 +3,9 @@ package models
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/satori/go.uuid"
-	"regexp"
-
 	"github.com/revel/revel"
+	"github.com/satori/go.uuid"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -21,6 +20,7 @@ var (
 type UserModel struct {
 	gorm.Model
 	UserID         string `gorm:"type:char(36);primary_key"`
+	Slug           string `gorm:"index:user_slug"`
 	Name           string
 	Username       string `gorm:"unique;not null"`
 	Email          string `gorm:"unique;not null"`
@@ -29,32 +29,13 @@ type UserModel struct {
 	Type           int
 }
 
+func (u UserModel) TableName() string {
+	return "users"
+}
+
 func (u UserModel) String() string {
 	user := "test"
 	return fmt.Sprintf("User(%s) %s", u.Name, user)
-}
-
-var userRegex = regexp.MustCompile("^\\w*$")
-
-func (user *UserModel) Validate(v *revel.Validation) {
-	v.Check(user.Username,
-		revel.Required{},
-		revel.MaxSize{15},
-		revel.MinSize{4},
-		revel.Match{userRegex},
-	)
-
-	ValidatePassword(v, user.Password).
-		Key("user.Password")
-
-}
-
-func ValidatePassword(v *revel.Validation, password string) *revel.ValidationResult {
-	return v.Check(password,
-		revel.Required{},
-		revel.MaxSize{15},
-		revel.MinSize{5},
-	)
 }
 
 func NewUser(Username string, Name string, Email string, Password string) UserModel {
@@ -65,6 +46,7 @@ func NewUser(Username string, Name string, Email string, Password string) UserMo
 	user := UserModel{
 		UserID:         u4.String(),
 		Name:           Name,
+		Slug:           revel.Slug(Username),
 		Username:       Username,
 		Email:          Email,
 		Password:       Password,

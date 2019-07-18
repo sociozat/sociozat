@@ -3,12 +3,12 @@ package services
 import (
 	"github.com/revel/revel"
 	"regexp"
+	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/repositories"
 )
 
 type UserService struct {
-	Validation     *revel.Validation
 	UserRepository repositories.UserRepository
 }
 
@@ -19,12 +19,21 @@ func (this UserService) Create(m models.UserModel, rv *revel.Validation) (*model
 	v := this.Validate(m, rv)
 
 	var err error
-	newUser := models.NewUser(m.Username, m.Username, m.Email, m.Password)
 
 	//save to db
-	u, err := this.UserRepository.Create(newUser)
+	if v == nil {
+		newUser := models.NewUser(m.Username, m.Username, m.Email, m.Password)
 
-	return u, v, err
+		u, err := this.UserRepository.Create(newUser)
+
+		if err != nil {
+			return &m, v, err
+		}
+
+		return u, v, err
+	}
+
+	return &m, v, err
 }
 
 func (this UserService) Validate(m models.UserModel, rv *revel.Validation) map[string]*revel.ValidationError {
@@ -33,13 +42,13 @@ func (this UserService) Validate(m models.UserModel, rv *revel.Validation) map[s
 		revel.MaxSize{15},
 		revel.MinSize{4},
 		revel.Match{userRegex},
-	)
+	).Message(app.Trans("user.create.validation.username"))
 
 	rv.Check(m.Password,
 		revel.Required{},
 		revel.MaxSize{15},
 		revel.MinSize{5},
-	)
+	).Message(app.Trans("user.create.validation.password"))
 
 	if rv.HasErrors() {
 		rv.Keep()

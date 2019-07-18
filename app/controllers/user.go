@@ -41,24 +41,4 @@ func (this User) SaveUser(user models.UserModel) revel.Result {
 	//set success flash
 	this.Flash.Success("Welcome," + u.Name)
 	return this.Redirect(App.Index)
-
-	// //validate post data
-	// user.Validate(this.Validation)
-
-	// if this.Validation.HasErrors() {
-	// 	this.Validation.Keep()
-	// 	this.FlashParams()
-	// 	return this.Redirect(User.Register)
-	// }
-
-	// newUser := models.NewUser(user.Username, user.Username, user.Email, user.Password)
-
-	// //save to db
-	// u, err := this.UserRepository.Create(newUser)
-
-	// if err != nil {
-	// 	this.Flash.Error(err.Error())
-	// 	return this.Redirect(User.Register)
-	// }
-
 }

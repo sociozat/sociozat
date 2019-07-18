@@ -1,2 +1,4 @@
 user.create.error= We cant create this account at the moment!
+user.create.validation.username= username should be 4-15 chars
+user.create.validation.password= password should be 5-15 chars
  

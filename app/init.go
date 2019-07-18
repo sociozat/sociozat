@@ -29,6 +29,17 @@ func InitDB() {
 	DB.AutoMigrate(&models.UserModel{})
 }
 
+var DefaultLocale string
+var GetDefaultLocaleFilter = func(c *revel.Controller, fc []revel.Filter) {
+	DefaultLocale = c.Request.Locale
+	fc[0](c, fc[1:]) // Execute the next filter stage.
+}
+
+//for using outside of controller
+func Trans(msg string) string {
+	return revel.Message(DefaultLocale, msg)
+}
+
 func init() {
 	// Filters is the default set of global filters.
 	revel.Filters = []revel.Filter{
@@ -40,6 +51,7 @@ func init() {
 		revel.FlashFilter,             // Restore and write the flash cookie.
 		revel.ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 		revel.I18nFilter,              // Resolve the requested language
+		GetDefaultLocaleFilter,        // Get Default Locale
 		HeaderFilter,                  // Add some security based headers
 		revel.InterceptorFilter,       // Run interceptors around the action.
 		revel.CompressFilter,          // Compress the result.
