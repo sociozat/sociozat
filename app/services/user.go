@@ -1,29 +1,32 @@
 package services
 
 import (
-	"github.com/revel/revel"
 	"regexp"
 	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/repositories"
+
+	"github.com/revel/revel"
 )
 
+//UserService struct
 type UserService struct {
 	UserRepository repositories.UserRepository
 }
 
 var userRegex = regexp.MustCompile("^\\w*$")
 
-func (this UserService) Create(m models.UserModel, rv *revel.Validation) (models.UserModel, map[string]*revel.ValidationError, error) {
+//Create create new user or returns validation error
+func (c UserService) Create(m models.UserModel, rv *revel.Validation) (models.UserModel, map[string]*revel.ValidationError, error) {
 
-	v := this.Validate(m, rv)
+	v := c.Validate(m, rv)
 
 	var err error
 
 	//save to db
 	if v == nil {
 		newUser := models.NewUser(m.Username, m.Username, m.Email, m.Password)
-		u, err := this.UserRepository.Create(newUser)
+		u, err := c.UserRepository.Create(newUser)
 		if err != nil {
 			return m, v, err
 		}
@@ -32,7 +35,13 @@ func (this UserService) Create(m models.UserModel, rv *revel.Validation) (models
 	return m, v, err
 }
 
-func (this UserService) Validate(m models.UserModel, rv *revel.Validation) map[string]*revel.ValidationError {
+//GetBySlug returns err or user instance from database
+func (c UserService) GetBySlug(Slug string) (u *models.UserModel, err error) {
+	return c.UserRepository.GetUserBySlug(Slug)
+}
+
+//Validate validates user model form
+func (c UserService) Validate(m models.UserModel, rv *revel.Validation) map[string]*revel.ValidationError {
 	rv.Check(m.Username,
 		revel.Required{},
 		revel.MaxSize{15},

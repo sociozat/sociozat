@@ -1,15 +1,14 @@
 package models
 
 import (
-	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/revel/revel"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 
 	"golang.org/x/crypto/bcrypt"
 )
 
-var (
+const (
 	USER_NEWBIE  = 0
 	USER_AUTHOR  = 1
 	USER_DOOMED  = 2
@@ -17,6 +16,7 @@ var (
 	USER_MOD     = 4
 )
 
+//UserModel struct
 type UserModel struct {
 	gorm.Model
 	UserID         string `gorm:"type:char(36);primary_key"`
@@ -29,15 +29,12 @@ type UserModel struct {
 	Type           int
 }
 
+//TableName sets table name on db
 func (u UserModel) TableName() string {
 	return "users"
 }
 
-func (u UserModel) String() string {
-	user := "test"
-	return fmt.Sprintf("User(%s) %s", u.Name, user)
-}
-
+//NewUser returns new user instance
 func NewUser(Username string, Name string, Email string, Password string) UserModel {
 
 	var hashedPassword, _ = bcrypt.GenerateFromPassword(

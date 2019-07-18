@@ -1,0 +1,30 @@
+{{set . "title" .title}}
+{{template "header.html" .}}
+
+<h1>Login:</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+<form action="{{url "User.LoginPost"}}" method="POST">
+
+      <p class="">
+        <strong>Username:</strong>
+        <input type="text" name="username" size="19" value="{{.flash.username}}" />
+      </p>
+
+      <p class="">
+        <strong>Password:</strong> <input type="password" name="password" size="19"/> *
+      </p>
+
+    <p class="buttons">
+      <input type="submit" value="Register"> <a href="{{url "App.Index"}}">Cancel</a>
+    </p>
+  </form>
+  
+  {{template "footer.html" .}}

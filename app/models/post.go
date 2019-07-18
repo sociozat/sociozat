@@ -4,7 +4,7 @@ import (
 	"github.com/twinj/uuid"
 )
 
-type PostM struct {
+type PostModel struct {
 	ID          uuid.UUID
 	Title       string
 	Description string

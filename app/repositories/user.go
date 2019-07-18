@@ -2,13 +2,16 @@ package repositories
 
 import (
 	// "github.com/revel/revel"
+	"errors"
 	"sozluk/app"
 	"sozluk/app/models"
 )
 
+//UserRepository struct
 type UserRepository struct{}
 
-func (this UserRepository) Create(u models.UserModel) (models.UserModel, error) {
+//Create add new user to db
+func (c UserRepository) Create(u models.UserModel) (models.UserModel, error) {
 
 	var err error
 
@@ -17,4 +20,14 @@ func (this UserRepository) Create(u models.UserModel) (models.UserModel, error) 
 	}
 
 	return u, err
+}
+
+//GetUserBySlug get user from database
+func (c UserRepository) GetUserBySlug(slug interface{}) (u *models.UserModel, err error) {
+	user := &models.UserModel{}
+	record := app.DB.Where("slug=?", slug).Find(&user)
+	if record.RecordNotFound() {
+		err = errors.New("user not found")
+	}
+	return user, err
 }

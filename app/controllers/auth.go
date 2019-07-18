@@ -1,21 +1,40 @@
 package controllers
 
 import (
-	M "sozluk/app/models"
+	"sozluk/app/models"
+
+	"github.com/revel/revel"
 )
 
+// Auth struct
 type Auth struct {
 	App
 }
 
-func (this Auth) handle() {
+func (c Auth) handle() {
 	// do authentication here
 }
 
-func (this Auth) CurrentUser() M.UserModel {
-	//sample user instance
-	m := M.NewUser("John", "HiJohn", "john@doe.com", "12345")
-	// m := models.UserM{uuid.NewV4(), "John", "HiJohn", "john@doe.com"}
-	return m
-	// u := User{uuid.UUID, "John", "HiJohn", "john@doe.com"}
+func (c Auth) connected() *models.UserModel {
+	if c.ViewArgs["user"] != nil {
+		return c.ViewArgs["user"].(*models.UserModel)
+	}
+	if username, ok := c.Session["user"]; ok {
+		return c.GetUser(username.(string))
+	}
+
+	return nil
+}
+
+//GetUser gets user by username
+func (c Auth) GetUser(username string) *models.UserModel {
+
+	slug := revel.Slug(username)
+	user, err := c.UserService.GetBySlug(slug)
+
+	if err == nil {
+		return user
+	}
+
+	return nil
 }

@@ -1,30 +1,6 @@
 package controllers
 
-import (
-	"fmt"
-	"math/rand"
-
-	"github.com/revel/revel"
-)
-
+//Post struct
 type Post struct {
 	App
-}
-
-type Topic struct {
-	ID      int32  `json:"id"`
-	Title   string `json:"title"`
-	Content string `json:"content"`
-}
-
-func (this Post) Index() revel.Result {
-	text := this.Params.Query.Get("text")
-	title := "Post Content"
-	id := rand.Intn(100)
-	response := Topic{int32(id), title, text}
-	fmt.Println(response)
-
-	return this.RenderJSON(response)
-	// return this.Render(text, title)
-
 }
