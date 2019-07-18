@@ -8,13 +8,13 @@ import (
 
 type UserRepository struct{}
 
-func (this UserRepository) Create(u models.UserModel) (*models.UserModel, error) {
+func (this UserRepository) Create(u models.UserModel) (models.UserModel, error) {
 
 	var err error
 
 	if err := app.DB.Create(&u).Error; err != nil {
-		return &u, err
+		return u, err
 	}
 
-	return &u, err
+	return u, err
 }

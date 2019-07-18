@@ -37,7 +37,7 @@ func (this User) SaveUser(user models.UserModel) revel.Result {
 		this.Flash.Error(err.Error())
 		return this.Redirect(User.Register)
 	}
-
+	revel.AppLog.Debug(u.UserID)
 	//set success flash
 	this.Flash.Success("Welcome," + u.Name)
 	return this.Redirect(App.Index)
