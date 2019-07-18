@@ -12,6 +12,7 @@ GET     /register                    User.Register
 POST    /register                    User.SaveUser
 GET     /login                       User.Login
 POST    /login                       User.LoginPost
+GET     /logout                      User.Logout
 
 #GET     /u/:id                       User.GetUser
 
