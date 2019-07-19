@@ -1,0 +1,19 @@
+<div class="ui segment">
+    <form class="ui form" action="{{url "User.LoginPost"}}" method="POST">
+        <div class="field">
+        <label>{{msg . "user.form.username"}}</label>
+        <input type="text" name="username" size="19" value="{{.flash.username}}" />
+        </div>
+        <div class="field">
+        <label>{{msg . "user.form.password"}}</label>
+        <input type="password" name="password" placeholder="{{msg . "user.form.password"}}">
+        </div>
+
+        <button class="ui button" type="submit">{{msg . "user.form.login"}}</button>
+        <a class="ui button" href="{{url "User.Register"}}">{{msg . "user.form.register"}}</a>
+        <div class="ui toggle checkbox">
+            <input type="checkbox" name="remember">
+            <label>{{msg . "user.form.remember"}}</label>
+        </div>
+    </form>
+</div>
