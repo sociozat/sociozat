@@ -44,6 +44,9 @@ func InitDB() {
 	}
 	revel.AppLog.Info("DB Connected")
 	DB.AutoMigrate(&models.UserModel{})
+	DB.AutoMigrate(&models.PostModel{})
+	DB.AutoMigrate(&models.TopicModel{})
+	DB.AutoMigrate(&models.ChannelModel{})
 }
 
 var DefaultLocale string
