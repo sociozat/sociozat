@@ -1,18 +1,17 @@
 package controllers
 
 import (
-	"sozluk/app"
-	"sozluk/app/models"
-	"sozluk/app/routes"
-	"sozluk/app/services"
-
+	"encoding/json"
 	"github.com/revel/revel"
 	"golang.org/x/crypto/bcrypt"
+	"sozluk/app"
+	"sozluk/app/models"
+	"sozluk/app/services"
 )
 
 //User struct
 type User struct {
-	Auth
+	App
 	UserService services.UserService
 }
 
@@ -51,11 +50,13 @@ func (c User) Login() revel.Result {
 //LoginPost via username and password
 func (c User) LoginPost(username string, password string, remember bool) revel.Result {
 	user := c.GetUser(username)
+
 	if user != nil {
-		revel.AppLog.Debug(user.HashedPassword)
 		err := bcrypt.CompareHashAndPassword([]byte(user.HashedPassword), []byte(password))
 		if err == nil {
-			c.Session["user"] = user.UserID
+			sessData, _ := json.Marshal(user)
+			c.Session["user"] = string(sessData)
+
 			if remember {
 				c.Session.SetDefaultExpiration()
 			} else {
@@ -75,5 +76,5 @@ func (c User) Logout() revel.Result {
 	for k := range c.Session {
 		delete(c.Session, k)
 	}
-	return c.Redirect(routes.App.Index())
+	return c.Redirect(App.Index)
 }

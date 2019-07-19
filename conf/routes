@@ -14,7 +14,11 @@ GET     /login                       User.Login
 POST    /login                       User.LoginPost
 GET     /logout                      User.Logout
 
-#GET     /u/:id                       User.GetUser
+GET     /new                         Post.New
+POST    /new                         Post.Create
+GET     /p/:id                       Post.View
+
+#GET     /u/:id                      User.GetUser
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

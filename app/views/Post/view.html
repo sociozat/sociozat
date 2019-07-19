@@ -1,0 +1,12 @@
+{{set . "title" .title}}
+{{template "header.html" .}}
+
+<h1>Post Id: {{ .id }}</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>

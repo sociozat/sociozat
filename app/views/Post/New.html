@@ -1,0 +1,30 @@
+{{set . "title" .title}}
+{{template "header.html" .}}
+
+<h1>Create new post:</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+<form action="{{url "Post.Create"}}" method="POST">
+
+      <p class="">
+        <strong>Title:</strong>
+        <input type="text" name="name" size="19" value="{{.flash.name}}" />
+      </p>
+
+      <p class="">
+        <strong>Content:</strong> <textarea type="text" name="content" size="19"/>  </textarea>*
+      </p>
+
+    <p class="buttons">
+      <input type="submit" value="Register"> <a href="{{url "App.Index"}}">Cancel</a>
+    </p>
+  </form>
+  
+  {{template "footer.html" .}}
