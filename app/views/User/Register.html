@@ -1,45 +1,32 @@
 {{set . "title" .title}}
 {{template "header.html" .}}
 
-<h1>Register:</h1>
+<div class="ui segment">
+    <form class="ui form" action="{{url "User.SaveUser"}}" method="POST">
+      {{with $field := field "user.Username" .}}
+      <div class="field">
+        <label>{{msg $ "user.form.username"}}</label>
+        <input type="text" name="{{$field.Name}}" size="19" value="{{$field.Flash}}">
+        <span class="error">{{$field.Error}}</span>
+      </div>  
+      {{end}}
+      {{with $field := field "user.Email" .}}
+      <div class="field">
+        <label>{{msg $ "user.form.email"}}</label>
+        <input type="text" name="{{$field.Name}}" size="19" value="{{$field.Flash}}">
+        <span class="error">{{$field.Error}}</span>
+      </div>
+      {{end}}
+      {{with $field := field "user.Password" .}}
+      <div class="field">
+          <label>{{msg $ "user.form.password"}}</label>
+          <input type="password" name="{{$field.Name}}"size="19" value="{{$field.Flash}}">
+          <span class="error">{{$field.Error}}</span>
+      </div>
+      {{end}}
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-    </div>
-  </div>
+      <button class="ui button" type="submit">{{msg . "user.form.register"}}</button>
+      <a href="{{url "App.Index"}}">{{msg . "global.cancel"}}</a>
+    </form>
 </div>
-
-<form action="{{url "User.SaveUser"}}" method="POST">
-  {{with $field := field "user.Username" .}}
-    <p class="{{$field.ErrorClass}}">
-      <strong>Username:</strong>
-      <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
-      <span class="error">{{$field.Error}}</span>
-    </p>
-  {{end}}
-  {{with $field := field "user.Email" .}}
-    <p class="{{$field.ErrorClass}}">
-      <strong>Email:</strong> <input type="text" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
-      <span class="error">{{$field.Error}}</span>
-    </p>
-  {{end}}
-  {{with $field := field "user.Password" .}}
-    <p class="{{$field.ErrorClass}}">
-      <strong>Password:</strong> <input type="password" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
-      <span class="error">{{$field.Error}}</span>
-    </p>
-  {{end}}
-  {{with $field := field "verifyPassword" .}}
-    <p class="{{$field.ErrorClass}}">
-      <strong>Verify password:</strong> <input type="password" name="{{$field.Name}}" size="16" value="{{$field.Flash}}"> *
-      <span class="error">{{$field.Error}}</span>
-    </p>
-  {{end}}
-  <p class="buttons">
-    <input type="submit" value="Register"> <a href="{{url "App.Index"}}">Cancel</a>
-  </p>
-</form>
-
 {{template "footer.html" .}}

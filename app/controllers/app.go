@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"encoding/json"
-	"github.com/revel/revel"
 	"sozluk/app/models"
 	"sozluk/app/services"
+
+	"github.com/gosimple/slug"
+	"github.com/revel/revel"
 )
 
 //App struct
@@ -23,14 +24,8 @@ func (c App) connected() *models.UserModel {
 	if c.ViewArgs["user"] != nil {
 		return c.ViewArgs["user"].(*models.UserModel)
 	}
-
-	u := models.UserModel{}
-
-	if c.Session["user"] == nil {
-		return nil
-	}
-	if err := json.Unmarshal([]byte(c.Session["user"].(string)), &u); err == nil {
-		return &u
+	if username, ok := c.Session["user"]; ok {
+		return c.GetUser(username.(string))
 	}
 
 	return nil
@@ -39,7 +34,7 @@ func (c App) connected() *models.UserModel {
 //GetUser gets user by username
 func (c App) GetUser(username string) *models.UserModel {
 
-	slug := revel.Slug(username)
+	slug := slug.Make(username)
 	user, err := c.UserService.GetBySlug(slug)
 
 	if err == nil {

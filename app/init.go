@@ -1,6 +1,7 @@
 package app
 
 import (
+	"encoding/json"
 	"fmt"
 	"sozluk/app/models"
 
@@ -33,7 +34,7 @@ func InitDB() {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
 		connstring = fmt.Sprintf("host=myhost port=myport user=gorm dbname=gorm password=mypassword")
-	} else if dbDriver == "sqllite3" {
+	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}
 
@@ -58,6 +59,18 @@ var GetDefaultLocaleFilter = func(c *revel.Controller, fc []revel.Filter) {
 //for using outside of controller
 func Trans(msg string) string {
 	return revel.Message(DefaultLocale, msg)
+}
+
+var CurrentUser *models.UserModel
+var GetCurrenUser = func(c *revel.Controller, fc []revel.Filter) {
+
+	u := models.UserModel{}
+
+	if err := json.Unmarshal([]byte(c.Session["user"].(string)), &u); err == nil {
+		CurrentUser = &u
+	}
+
+	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
 
 func init() {
@@ -89,6 +102,10 @@ func init() {
 	//read config function for templates
 	revel.TemplateFuncs["config"] = func(a string, b string) string {
 		return revel.Config.StringDefault(a, b)
+	}
+
+	revel.TemplateFuncs["user"] = func() string {
+		return CurrentUser.Username
 	}
 
 	revel.OnAppStart(InitDB)

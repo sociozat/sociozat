@@ -1,6 +1,7 @@
 module sozluk
 
 require (
+	github.com/gosimple/slug v1.5.0
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kr/pretty v0.1.0 // indirect
@@ -9,6 +10,7 @@ require (
 	github.com/mattn/go-isatty v0.0.8
 	github.com/mattn/go-sqlite3 v1.11.0
 	github.com/myesui/uuid v1.0.0 // indirect
+	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be // indirect
 	github.com/revel/config v0.21.0
 	github.com/revel/cron v0.21.0 // indirect
 	github.com/revel/log15 v2.11.20+incompatible

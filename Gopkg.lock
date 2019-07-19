@@ -10,6 +10,14 @@
   version = "v1.4.1"
 
 [[projects]]
+  digest = "1:b66d2c25d2868598177882eaa9bc4294b4db91063a4373027e632391bd5868c0"
+  name = "github.com/gosimple/slug"
+  packages = ["."]
+  pruneopts = ""
+  revision = "e78d39397ba41d2c33d9615044ef93eca8a309d8"
+  version = "v1.5.0"
+
+[[projects]]
   digest = "1:a4fcebba8c1b8ae25dd31f1cfa6c6ed5b1e5719ab2e9e1c18e8c98969ebde215"
   name = "github.com/inconshreveable/log15"
   packages = ["term"]
@@ -53,6 +61,22 @@
   version = "v0.0.8"
 
 [[projects]]
+  digest = "1:cd4379452cc81f79acc16c477a1d1d7c2bf5807697f6cf3aafe221c4fbfed4ce"
+  name = "github.com/mattn/go-sqlite3"
+  packages = ["."]
+  pruneopts = ""
+  revision = "b612a2feea6aa87c6d052d9086572551df06497e"
+  version = "v1.11.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:dbf4e16c65ac05df91dd12f5bb52ac7a0530e570a76f4855d157997850ebb1fa"
+  name = "github.com/rainycape/unidecode"
+  packages = ["."]
+  pruneopts = ""
+  revision = "cb7f23ec59bec0d61b19c56cd88cee3d0cc1870c"
+
+[[projects]]
   digest = "1:17c45c7e1dd9a5225559e9e50936c2916e57bb79d21e9f5064acb16ec11e449a"
   name = "github.com/revel/config"
   packages = ["."]
@@ -72,7 +96,13 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = ["."]
+  packages = [
+    ".",
+    "static/app/controllers",
+    "static/app/model",
+    "testrunner/app",
+    "testrunner/app/controllers",
+  ]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -186,13 +216,17 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/gosimple/slug",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
+    "github.com/mattn/go-sqlite3",
     "github.com/revel/modules",
+    "github.com/revel/modules/static/app/controllers",
+    "github.com/revel/modules/testrunner/app",
+    "github.com/revel/modules/testrunner/app/controllers",
     "github.com/revel/revel",
     "github.com/revel/revel/testing",
     "github.com/satori/go.uuid",
-    "github.com/twinj/uuid",
     "golang.org/x/crypto/bcrypt",
   ]
   solver-name = "gps-cdcl"

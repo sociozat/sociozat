@@ -1,10 +1,9 @@
 package models
 
 import (
+	"github.com/gosimple/slug"
 	"github.com/jinzhu/gorm"
-	"github.com/revel/revel"
 	uuid "github.com/satori/go.uuid"
-
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -43,7 +42,7 @@ func NewUser(Username string, Name string, Email string, Password string) UserMo
 	user := UserModel{
 		UserID:         u4.String(),
 		Name:           Name,
-		Slug:           revel.Slug(Username),
+		Slug:           slug.Make(Username),
 		Username:       Username,
 		Email:          Email,
 		Password:       Password,

@@ -44,14 +44,13 @@ func (c UserService) GetBySlug(Slug string) (u *models.UserModel, err error) {
 func (c UserService) Validate(m models.UserModel, rv *revel.Validation) map[string]*revel.ValidationError {
 	rv.Check(m.Username,
 		revel.Required{},
-		revel.MaxSize{15},
+		revel.MaxSize{25},
 		revel.MinSize{4},
-		revel.Match{userRegex},
 	).Message(app.Trans("user.create.validation.username"))
 
 	rv.Check(m.Password,
 		revel.Required{},
-		revel.MaxSize{15},
+		revel.MaxSize{50},
 		revel.MinSize{5},
 	).Message(app.Trans("user.create.validation.password"))
 

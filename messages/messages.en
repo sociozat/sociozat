@@ -1,3 +1,17 @@
-user.login.title = Login
+global.cancel  = Cancel
+global.success = Success
+global.error   = Error
+global.ok      = Ok
 
+user.login.title = Login
 post.new.title = New Post
+
+user.form.login = Login
+user.form.register = Register
+user.form.username = Username
+user.form.email = Email
+user.form.password = Password
+user.form.remember = Remember
+user.form.lost.passwor = Lost Password
+
+similar.topics = Similar Topics

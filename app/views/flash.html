@@ -1,13 +1,18 @@
 {{if .flash.success}}
-<div class="alert alert-success">
-	{{.flash.success}}
+<div class="ui success message">
+	<i class="close icon"></i>
+	<div class="header">
+			{{.flash.success}}
+	</div>
 </div>
 {{end}}
 
 {{if or .errors .flash.error}}
-<div class="alert alert-danger">
+<div class="ui error message">
 	{{if .flash.error}}
-		{{.flash.error}}
+	<div class="header">
+			{{.flash.error}}
+	</div>
 	{{end}}
 	<ul style="margin-top:10px;">
 		{{range .errors}}

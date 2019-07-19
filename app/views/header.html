@@ -1,19 +1,85 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <title>{{.title}}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-3.3.6.min.css">
-    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-    <script src="/public/js/jquery-2.2.4.min.js"></script>
-    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
-    {{range .moreStyles}}
-      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-    {{end}}
-    {{range .moreScripts}}
-      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-    {{end}}
-  </head>
-  <body>
+<head>
+	<title>{{.title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+  <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+  <script src="/public/js/jquery-2.2.4.min.js"></script>
+  <script src="/public/js/semantic.min.js"></script>
+  <script src="/public/js/custom.js"></script>
+  {{range .moreStyles}}
+    <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+  {{end}}
+  {{range .moreScripts}}
+    <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+  {{end}}
+</head>
+<body>
+<div class="ui grid fixed">
+	<div class="computer only row">
+		<div class="column">
+			<div class="ui menu fixed">
+				<div class="ui mini image middle aligned ">
+					<img src="https://semantic-ui.com/images/logo.png">
+				</div>
+				<a class="item">Today</a>
+				<a class="item">Trending</a>
+				<a class="item">Football</a>
+				<a class="item">Politics</a>
+				<a class="item">Fashion</a>
+				<a class="item">Health</a>
+
+				<div class="right menu">
+				    <div class="ui right aligned category search item">
+				      <div class="ui transparent icon input">
+				        <input class="prompt" type="text" placeholder="Ara ...">
+				        <i class="search link icon"></i>
+				      </div>
+				      <div class="results"></div>
+				    </div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+	 <div class="tablet mobile only row">
+		<div class="column">
+			<div class="ui menu fixed">
+					<a id="mobile_item" class="item left"><i class="bars icon"></i></a>
+					<div class="ui mini image">
+						<img src="https://semantic-ui.com/images/logo.png">
+					</div>
+					<a id="user_item" class="item right"><i class="user icon"></i></a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="ui pushable segment">
+		<div class="ui left sidebar vertical visible list divided selection">
+        {{template "_partials/left.html" .}}
+		</div>
+
+		<div class="ui right sidebar vertical menu">
+      {{if (session "user" .)  }}
+			<a class="item">Profil</a>
+			<a class="item">mesjlar</a>
+			<a class="item">ayar</a>
+      <a class="item">çıkış</a>
+      {{end}}
+		</div>
+
+		<div class="pusher">
+			<div id="content">
+          <div class="ui grid stackable">
+            <!-- Content Starts -->
+						<div class="nine wide column">
+                <!-- Error Messages Start -->
+                {{template "flash.html" .}}
