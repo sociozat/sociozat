@@ -86,8 +86,11 @@
 }
 
 .segment {
-  top: 40px;
+  top: 20px;
   background: #f7f6f6 !important;
+}
+.sidebar.vertical{
+  top:20px;
 }
 .menu {
   background: #f7f6f6 !important;
