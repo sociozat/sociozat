@@ -1,12 +1,14 @@
 package services
 
 import (
-	"github.com/revel/revel"
 	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/repositories"
+
+	"github.com/revel/revel"
 )
 
+//PostService struct
 type PostService struct {
 	UserRepository repositories.UserRepository
 	PostRepository repositories.PostRepository
@@ -40,21 +42,21 @@ func (p PostService) CreateNewPost(name string, content string, user *models.Use
 }
 
 //Validate validates user model form
-func (c PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
-	c.Validation.Check(m.Topic.Name,
+func (p PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
+	p.Validation.Check(m.Topic.Name,
 		revel.Required{},
 		revel.MaxSize{90},
 		revel.MinSize{4},
 	).Message(app.Trans("post.create.validation.name"))
 
-	c.Validation.Check(m.Content,
+	p.Validation.Check(m.Content,
 		revel.Required{},
 		revel.MinSize{5},
 	).Message(app.Trans("post.create.validation.content"))
 
-	if c.Validation.HasErrors() {
-		c.Validation.Keep()
-		return c.Validation.ErrorMap()
+	if p.Validation.HasErrors() {
+		p.Validation.Keep()
+		return p.Validation.ErrorMap()
 	}
 
 	return nil

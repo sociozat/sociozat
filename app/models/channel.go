@@ -1,10 +1,12 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
+//ChannelModel struct
 type ChannelModel struct {
 	gorm.Model
 	Name      string
@@ -14,6 +16,7 @@ type ChannelModel struct {
 	DeletedAt *time.Time `gorm:"-"`
 }
 
+//TableName sets table name on db
 func (c ChannelModel) TableName() string {
 	return "channels"
 }

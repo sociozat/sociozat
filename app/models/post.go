@@ -10,6 +10,7 @@ type TopicModel struct {
 	Name     string
 	Slug     string          `gorm:"index:topic_slug"`
 	Channels []*ChannelModel `gorm:"many2many:topic_channels;"`
+	IsLocked bool            `gorm:"default:'0'"`
 }
 
 func (t TopicModel) TableName() string {
@@ -34,7 +35,7 @@ func (p PostModel) TableName() string {
 //CreateNewPost creates a post instance with relations
 func CreateNewPost(name string, content string, user *UserModel) *PostModel {
 
-	t := TopicModel{Name: name, Slug: revel.Slug(name)}
+	t := TopicModel{Name: name, Slug: revel.Slug(name), IsLocked: false}
 
 	revel.AppLog.Debugf("t", t)
 	p := PostModel{

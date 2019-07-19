@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
 	"sozluk/app"
 	"sozluk/app/services"
+
+	"github.com/revel/revel"
 )
 
 //Post struct
