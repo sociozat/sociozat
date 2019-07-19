@@ -1,30 +1,48 @@
 {{set . "title" .title}}
 {{template "header.html" .}}
 
-<h1>Create new post:</h1>
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-    </div>
-  </div>
+<div class="ui segment">
+    <form class="ui form" action="{{url "Post.Create"}}" method="POST">
+        <div class="field">
+          <label>{{msg . "post.new.name"}}</label>
+          <input type="text" name="name" size="19" placeholder="{{msg . "post.new.name.placeholder"}}" value="{{.flash.username}}" />
+        </div>
+        <div class="field">
+          <label>{{msg . "post.new.content"}}</label>
+          <textarea name="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+        </div>
+
+        <div class="field">
+            <label>{{msg . "post.new.channels"}}</label>
+            <div class="ui fluid multiple search selection dropdown">
+                <input name="tags" type="hidden">
+                <i class="dropdown icon"></i>
+                <div class="default text">Channels</div>
+                <div class="menu">
+                  <div class="item" data-value="angular">Angular</div>
+                  <div class="item" data-value="css">CSS</div>
+                  <div class="item" data-value="design">Graphic Design</div>
+                  <div class="item" data-value="ember">Ember</div>
+                  <div class="item" data-value="html">HTML</div>
+                  <div class="item" data-value="ia">Information Architecture</div>
+                  <div class="item" data-value="javascript">Javascript</div>
+                  <div class="item" data-value="mech">Mechanical Engineering</div>
+                  <div class="item" data-value="meteor">Meteor</div>
+                  <div class="item" data-value="node">NodeJS</div>
+                  <div class="item" data-value="plumbing">Plumbing</div>
+                  <div class="item" data-value="python">Python</div>
+                  <div class="item" data-value="rails">Rails</div>
+                  <div class="item" data-value="react">React</div>
+                  <div class="item" data-value="repair">Kitchen Repair</div>
+                  <div class="item" data-value="ruby">Ruby</div>
+                  <div class="item" data-value="ui">UI Design</div>
+                  <div class="item" data-value="ux">User Experience</div>
+                </div>
+            </div>
+        </div>
+        <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
+       
+    </form>
 </div>
-
-<form action="{{url "Post.Create"}}" method="POST">
-
-      <p class="">
-        <strong>Title:</strong>
-        <input type="text" name="name" size="19" value="{{.flash.name}}" />
-      </p>
-
-      <p class="">
-        <strong>Content:</strong> <textarea type="text" name="content" size="19"/>  </textarea>*
-      </p>
-
-    <p class="buttons">
-      <input type="submit" value="Register"> <a href="{{url "App.Index"}}">Cancel</a>
-    </p>
-  </form>
-  
-  {{template "footer.html" .}}
+{{template "footer.html" .}}

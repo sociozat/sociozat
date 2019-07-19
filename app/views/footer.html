@@ -1,5 +1,33 @@
 
-          </div> <!-- Content ends-->
+              <!-- Footer -->
+              <div class="ui vertical footer segment">
+                  <div class="ui section divider"></div>
+                  <div class="ui horizontal small divided link list"  style="float:left">
+                    <div class="item">
+                        © copyright 2019 {{config "app.name" ""}}
+                    </div>
+                  </div>
+
+                  <div class="ui horizontal small divided link list"  style="float:right">
+                    <a class="right item" href="{{config "footer.about.url" "#"}}" target="_blank">
+                        {{config "footer.about.name" "about"}}
+                    </a>
+
+                    <a class="item right" href="{{config "footer.tos.url" "#"}}" target="_blank">
+                        {{config "footer.tos.name" "tos"}}
+                    </a>
+
+                    <a class="item right" href="{{config "footer.faq.url" "#"}}" target="_blank">
+                        {{config "footer.faq.name" "faq"}}
+                    </a>
+
+                    <a class="item right" href="#" target="_blank">
+                        We <i class="icon heart grey"></i> Open Source
+                    </a>
+                  </div>
+              </div>	
+          </div>
+          <!-- Content Ends -->
           {{template "_partials/right.html" .}}
               
           </div> <!-- Ui Grid -->

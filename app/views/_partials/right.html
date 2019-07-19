@@ -1,7 +1,8 @@
 <!-- Right Sidebar Large Screen -->
 <div class="four wide column large screen only">
+        <!-- Error Messages Start -->
+        {{template "flash.html" .}}
         <!-- User View -->
-
         {{if (session "user" .)  }}
         <div class="ui segment">
             <div class="five ui buttons menu">

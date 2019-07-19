@@ -18,9 +18,17 @@ $(document).ready(function(){
 	  .on('click', function() {
 	    $(this)
 	      .closest('.message')
-	      .transition('fade')
+		  .transition('fade')
+		  .remove()
 	    ;
 	  })
+	;
+
+	$('.ui.dropdown')
+		.dropdown({
+			allowAdditions: true,
+			maxSelections: 3
+		})
 	;
 
 	function jqUpdateSize(){

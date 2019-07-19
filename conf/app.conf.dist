@@ -137,10 +137,13 @@ module.static = github.com/revel/modules/static
 ###############################################################################
 # Footer links
 
-footer.tos.name = TOS
+footer.about.name = about
+footer.about.url = http://#
+
+footer.tos.name = tos
 footer.tos.url = http://#
 
-footer.faq.name = FAQ
+footer.faq.name = faq
 footer.faq.url = http://#
 
 footer.fb.url = http://facebook.com

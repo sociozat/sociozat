@@ -4,8 +4,6 @@ global.error   = Error
 global.ok      = Ok
 
 user.login.title = Login
-post.new.title = New Post
-
 user.form.login = Login
 user.form.register = Register
 user.form.username = Username
@@ -15,3 +13,10 @@ user.form.remember = Remember
 user.form.lost.passwor = Lost Password
 
 similar.topics = Similar Topics
+
+post.new.title = New Post
+post.new.name = Topic name
+post.new.name.placeholder = Max 90 chars
+post.new.content = Post Content
+post.new.channels = Channels
+post.new.send   = Send
