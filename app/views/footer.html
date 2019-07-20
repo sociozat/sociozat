@@ -35,5 +35,10 @@
   </div> <!-- Pusher -->
 </div> <!-- Pushable -->
 
+
+{{if .DevMode}}
+{{template "debug.html" .}}
+{{end}}
+
 </body>
 </html>

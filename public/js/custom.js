@@ -31,6 +31,12 @@ $(document).ready(function(){
 		})
 	;
 
+	$('.ui.sticky')
+		.sticky({
+			context: '#context'
+		})
+	;
+
 	function jqUpdateSize(){
 	    var width = $(window).width();
 	    autoHideSidebar(width);
