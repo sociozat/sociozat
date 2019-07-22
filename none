@@ -1,0 +1,4 @@
+INFO  2019/07/22 10:52:16    app  revel.go:222: app.conf: No mode found: dev             section=system 
+INFO  2019/07/22 10:52:19    app  revel.go:222: app.conf: No mode found: dev             section=system 
+INFO  2019/07/22 10:52:30    app  revel.go:222: app.conf: No mode found: dev             section=system 
+INFO  2019/07/22 10:52:36    app  revel.go:222: app.conf: No mode found: dev             section=system 
