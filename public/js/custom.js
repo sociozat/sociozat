@@ -24,10 +24,14 @@ $(document).ready(function(){
 	  })
 	;
 
-	$('.ui.dropdown')
+	$('.ui.channels.dropdown')
 		.dropdown({
 			allowAdditions: true,
-			maxSelections: 3
+			maxSelections: 3,
+			apiSettings: {
+				// this url parses query server side and returns filtered results
+				url: '/c/json/?s={query}'
+			},
 		})
 	;
 
@@ -36,6 +40,7 @@ $(document).ready(function(){
 			context: '#context'
 		})
 	;
+
 
 	function jqUpdateSize(){
 	    var width = $(window).width();

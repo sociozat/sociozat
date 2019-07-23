@@ -1,19 +1,18 @@
 package repositories
 
 import (
-	"errors"
 	"sozluk/app"
 	"sozluk/app/models"
 )
 
 type ChannelRepository struct{}
 
-func (c ChannelRepository) List(model *models.ChannelModel) (*models.ChannelModel, error) {
-
+//Find finds channels by search query
+func (c ChannelRepository) Find(search string) ([]models.ChannelModel, error) {
+	var channels []models.ChannelModel
 	var err error
-	channels := app.DB.Where(model).ScanRows()
-	if channels.RecordNotFound() {
-		err = errors.New("user not found")
+	if err := app.DB.Where("name LIKE ?", "%"+search+"%").Find(&channels).Error; err != nil {
+		return channels, err
 	}
 
 	return channels, err

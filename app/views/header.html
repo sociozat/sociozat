@@ -18,6 +18,9 @@
   {{range .moreScripts}}
     <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
   {{end}}
+  <script>
+	var BASE_URL = "{{url "App.Index"}}";
+  </script>
 </head>
 <body>
 <div class="ui grid fixed">

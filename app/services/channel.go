@@ -9,9 +9,7 @@ type ChannelService struct {
 	ChannelRepository repositories.ChannelRepository
 }
 
-func (s ChannelService) List(language string) []models.ChannelModel {
-
-	model := models.ChannelModel{Language: language}
-
-	return s.ChannelRepository.List(&model)
+//List gets a channel list by searhc query
+func (s ChannelService) List(search string) ([]models.ChannelModel, error) {
+	return s.ChannelRepository.Find(search)
 }

@@ -13,6 +13,7 @@ type Post struct {
 	PostService services.PostService
 }
 
+//New renders new post template
 func (c Post) New() revel.Result {
 	u := c.connected()
 	if u == nil {
@@ -48,6 +49,7 @@ func (c Post) Create(name string, content string, tags string) revel.Result {
 	return c.Redirect(Post.View, post.ID)
 }
 
+//View renders post by id
 func (c Post) View(id uint) revel.Result {
 	return c.Render(id)
 }
