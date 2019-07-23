@@ -3,7 +3,6 @@ package models
 import (
 	"github.com/gosimple/slug"
 	"github.com/jinzhu/gorm"
-	"github.com/revel/revel"
 )
 
 type TopicModel struct {
@@ -39,7 +38,6 @@ func CreateNewPost(name string, content string, user *UserModel) *PostModel {
 
 	t := TopicModel{Name: name, Slug: slug.Make(name), IsLocked: false}
 
-	revel.AppLog.Debugf("t", t)
 	p := PostModel{
 		Content: content,
 		User:    user,

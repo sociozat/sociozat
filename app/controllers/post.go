@@ -14,7 +14,8 @@ type Post struct {
 }
 
 func (c Post) New() revel.Result {
-	if user := c.connected(); user == nil {
+	u := c.connected()
+	if u == nil {
 		c.Flash.Error(app.Trans("auth.login.required"))
 		return c.Redirect(App.Index)
 	}
@@ -24,12 +25,13 @@ func (c Post) New() revel.Result {
 }
 
 //Create handles POST request to create new post with topic
-func (c Post) Create(name string, content string) revel.Result {
+func (c Post) Create(name string, content string, tags string) revel.Result {
 	u := c.connected()
 	if u == nil {
 		c.Flash.Error(app.Trans("auth.login.required"))
 		return c.Redirect(Post.New)
 	}
+
 	c.PostService.Validation = c.Validation //this should come from controller, cuz of pointed
 	post, v, err := c.PostService.CreateNewPost(name, content, u)
 
