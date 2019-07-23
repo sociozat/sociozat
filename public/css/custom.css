@@ -111,6 +111,7 @@ html {
     overflow: scroll;
     overflow-x: hidden;
 }
+html, body {height:100%;}
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */

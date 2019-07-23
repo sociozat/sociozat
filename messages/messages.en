@@ -1,7 +1,10 @@
-global.cancel  = Cancel
-global.success = Success
-global.error   = Error
-global.ok      = Ok
+global.cancel = Cancel
+global.success= Success
+global.error= Error
+global.ok= Ok
+global.new= New
+global.smth= Smth
+global.try= Try
 
 user.login.title = Login
 user.form.login = Login

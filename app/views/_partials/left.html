@@ -1,7 +1,7 @@
 <div class="three ui buttons">
-        <button class="ui button">Try</button>
-        <button class="ui button">Smth</button>
-        <button class="ui button">New</button>
+        <button class="ui button">{{msg . "global.try"}}</button>
+        <button class="ui button">{{msg . "global.smth"}}</button>
+        <a class="ui button" href="{{url "Post.New"}}">{{msg . "global.new"}}</a>
       </div>
         <a class="item">
             <div class="ui label mini horizontal">

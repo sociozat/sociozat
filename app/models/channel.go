@@ -10,7 +10,8 @@ import (
 type ChannelModel struct {
 	gorm.Model
 	Name      string
-	Slug      string     `gorm:"index:channel_slug"`
+	Slug      string `gorm:"index:channel_slug"`
+	Language  string
 	CreatedAt *time.Time `gorm:"-"`
 	UpdatedAt *time.Time `gorm:"-"`
 	DeletedAt *time.Time `gorm:"-"`
