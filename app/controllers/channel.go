@@ -8,7 +8,7 @@ import (
 
 type ChannelResponse struct {
 	Name  string `json:"name"`
-	Value string `json:"value"`
+	Value uint   `json:"value"`
 }
 
 type Message struct {
@@ -35,7 +35,7 @@ func (c Channel) Json() revel.Result {
 		//map channels as name-value
 		response := []ChannelResponse{}
 		for _, v := range channels {
-			response = append(response, ChannelResponse{Name: v.Name, Value: v.Slug})
+			response = append(response, ChannelResponse{Name: v.Name, Value: v.ID})
 		}
 
 		return c.RenderJSON(Message{Success: true, Results: response})

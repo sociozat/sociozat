@@ -4,34 +4,65 @@ import (
 	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/repositories"
+	"strconv"
+	"strings"
 
 	"github.com/revel/revel"
 )
 
 //PostService struct
 type PostService struct {
-	UserRepository repositories.UserRepository
-	PostRepository repositories.PostRepository
-	Validation     *revel.Validation
+	UserRepository    repositories.UserRepository
+	PostRepository    repositories.PostRepository
+	ChannelRepository repositories.ChannelRepository
+	Validation        *revel.Validation
 }
 
 //CreateNewPost validates post model and sends to repository
-func (p PostService) CreateNewPost(name string, content string, user *models.UserModel) (*models.PostModel, map[string]*revel.ValidationError, error) {
+func (p PostService) CreateNewPost(name string, content string, channels string, user *models.UserModel) (*models.PostModel, map[string]*revel.ValidationError, error) {
 	var err error
-	model := models.CreateNewPost(name, content, user)
+
+	var topicChannels = p.GenerateChannels(channels)
+
+	post := models.CreateNewPost(name, content, user)
+	post.Topic.Channels = topicChannels
+
 	//validate
-	v := p.Validate(model)
+	v := p.Validate(post)
 
 	//insert db
 	if v == nil {
-		m, err := p.PostRepository.Create(model)
+		m, err := p.PostRepository.Create(post)
 		if err != nil {
-			return model, v, err
+			return post, v, err
 		}
 		return m, v, err
 	}
-	return model, v, err
+	return post, v, err
 
+}
+
+func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
+	c := []models.ChannelModel{}
+
+	var tags = strings.Split(channels, ",")
+
+	for _, v := range tags {
+		//check if its not an id create new channel
+		j, err := strconv.Atoi(string(v))
+		if err != nil {
+			//create new channel by name
+			channel := models.NewChannel(string(v))
+			dbChannel, _ := p.ChannelRepository.Create(channel)
+			c = append(c, *dbChannel)
+		} else {
+			//add channel by id
+			dbChannel, _ := p.ChannelRepository.FirstByID(j)
+			c = append(c, *dbChannel)
+		}
+	}
+
+	return c
 }
 
 //Validate validates user model form

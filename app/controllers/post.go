@@ -34,7 +34,7 @@ func (c Post) Create(name string, content string, tags string) revel.Result {
 	}
 
 	c.PostService.Validation = c.Validation //this should come from controller, cuz of pointed
-	post, v, err := c.PostService.CreateNewPost(name, content, u)
+	post, v, err := c.PostService.CreateNewPost(name, content, tags, u)
 
 	if err != nil {
 		c.FlashParams()
