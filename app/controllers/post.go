@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"sozluk/app"
 	"sozluk/app/services"
 
 	"github.com/revel/revel"
@@ -17,11 +16,11 @@ type Post struct {
 func (c Post) New() revel.Result {
 	u := c.connected()
 	if u == nil {
-		c.Flash.Error(app.Trans("auth.login.required"))
+		c.Flash.Error(c.Message("auth.login.required"))
 		return c.Redirect(App.Index)
 	}
 
-	title := app.Trans("post.new.title")
+	title := c.Message("post.new.title")
 	return c.Render(title)
 }
 
@@ -29,7 +28,7 @@ func (c Post) New() revel.Result {
 func (c Post) Create(name string, content string, tags string) revel.Result {
 	u := c.connected()
 	if u == nil {
-		c.Flash.Error(app.Trans("auth.login.required"))
+		c.Flash.Error(c.Message("auth.login.required"))
 		return c.Redirect(Post.New)
 	}
 

@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"sozluk/app/models"
-
+	"sozluk/app/helpers"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/revel/revel"
+	"html/template"
+	"strings"
 )
 
 var (
@@ -106,6 +108,10 @@ func init() {
 
 	revel.TemplateFuncs["user"] = func() string {
 		return CurrentUser.Username
+	}
+
+	revel.TemplateFuncs["format"] = func(str string) template.HTML {
+		return template.HTML(strings.Replace(helpers.FormatContent(str), "\n", "<br>", -1))
 	}
 
 	revel.OnAppStart(InitDB)

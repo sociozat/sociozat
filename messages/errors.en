@@ -5,5 +5,6 @@ user.create.validation.username= username should be 4-25 chars
 user.create.validation.password= password should be 5-50 chars
  
 post.create.validation.name = Title should be between 4-90 charss
+post.create.validation.content = Seems content is not enough. 
 
 user.login.error = Wrong Credentials!
