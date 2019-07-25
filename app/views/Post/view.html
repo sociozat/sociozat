@@ -1,12 +1,24 @@
-{{set . "title" .title}}
 {{template "header.html" .}}
 
-<h1>Post Id: {{ .id }}</h1>
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
+<div class="ui segment">
+  <h3>{{.post.Topic.Name}}</h3>
+</div>
+        
+<div class="segments">
+  <!-- entries start -->
+  <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
+    <p>{{.post.Content}}</p>
+    <div class="ui bottom attached label">
+      <a class="left aligned "><i class="icon facebook"></i></a>
+      <a class="left aligned " style="margin-left:10px"><i class="icon twitter"></i></a>
+      <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.post.Likes}}</a>
+      <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.post.Dislikes}}</a>
+
+      <a class="right aligned" style="margin-left:10px">{{.post.User.Username}}</a>
+      <a class="right aligned">{{datetime .post.CreatedAt}}</a>
     </div>
   </div>
 </div>
+
+{{template "footer.html" .}}

@@ -50,6 +50,14 @@ func (c Post) Create(name string, content string, tags string) revel.Result {
 }
 
 //View renders post by id
-func (c Post) View(id uint) revel.Result {
-	return c.Render(id)
+func (c Post) View(id int) revel.Result {
+	post, err := c.PostService.FirstByID(id)
+
+	if err != nil {
+		c.FlashParams()
+		return c.Redirect(App.Index)
+	}
+
+	var title = c.Message("post.single.title", post.User.Username, post.Topic.Name)
+	return c.Render(title, post)
 }

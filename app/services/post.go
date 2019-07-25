@@ -65,6 +65,10 @@ func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 	return c
 }
 
+func (p PostService) FirstByID(id int) (*models.PostModel, error) {
+	return p.PostRepository.FirstByID(id)
+}
+
 //Validate validates user model form
 func (p PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
 	p.Validation.Check(m.Topic.Name,

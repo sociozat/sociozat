@@ -57,8 +57,8 @@ var GetDefaultLocaleFilter = func(c *revel.Controller, fc []revel.Filter) {
 }
 
 //for using outside of controller
-func Trans(msg string) string {
-	return revel.Message(DefaultLocale, msg)
+func Trans(msg string, args ...interface{}) string {
+	return revel.Message(DefaultLocale, msg, args)
 }
 
 var CurrentUser *models.UserModel
