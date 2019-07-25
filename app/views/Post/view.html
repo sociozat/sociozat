@@ -8,7 +8,11 @@
 <div class="segments">
   <!-- entries start -->
   <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
-    <p>{{.post.Content}}</p>
+    <p>{{.post.Content}}</p> {{.post.Topic.ID}}
+    {{if gt .post.TopicID 0}}
+    naber
+        {{.post.TopicID}}
+    {{end}}
     <div class="ui bottom attached label">
       <a class="left aligned "><i class="icon facebook"></i></a>
       <a class="left aligned " style="margin-left:10px"><i class="icon twitter"></i></a>
@@ -20,5 +24,6 @@
     </div>
   </div>
 </div>
+
 
 {{template "footer.html" .}}

@@ -57,7 +57,7 @@ func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 			c = append(c, *dbChannel)
 		} else {
 			//add channel by id
-			dbChannel, _ := p.ChannelRepository.FirstByID(j)
+			dbChannel, _ := p.ChannelRepository.FindByID(j)
 			c = append(c, *dbChannel)
 		}
 	}
@@ -65,8 +65,8 @@ func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 	return c
 }
 
-func (p PostService) FirstByID(id int) (*models.PostModel, error) {
-	return p.PostRepository.FirstByID(id)
+func (p PostService) FindByID(id int) (*models.PostModel, error) {
+	return p.PostRepository.FindByID(id)
 }
 
 //Validate validates user model form

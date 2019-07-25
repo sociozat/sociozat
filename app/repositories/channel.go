@@ -19,7 +19,7 @@ func (c ChannelRepository) Find(search string) ([]models.ChannelModel, error) {
 }
 
 //First gets the channel by ID
-func (c ChannelRepository) FirstByID(cid int) (*models.ChannelModel, error) {
+func (c ChannelRepository) FindByID(cid int) (*models.ChannelModel, error) {
 
 	channel := models.ChannelModel{}
 

@@ -51,7 +51,7 @@ func (c Post) Create(name string, content string, tags string) revel.Result {
 
 //View renders post by id
 func (c Post) View(id int) revel.Result {
-	post, err := c.PostService.FirstByID(id)
+	post, err := c.PostService.FindByID(id)
 
 	if err != nil {
 		c.FlashParams()
