@@ -29,18 +29,18 @@
     {{template "_partials/login.html" .}}
     {{end}}
 
+    {{if and .topic .topic.Channels}}
     <div class="ui segment">
         <div class="header">{{msg . "topic.channels"}}</div>
         <div class="ui vertical visible list divided selection">
-          {{if and .topic .topic.Channels}}
             {{ range .topic.Channels}}
                 <a class="item" href="{{url "Channel.View" .Slug}}">
                   {{.Name}}
                 </a>
             {{end}}
-          {{end}}
         </div>
     </div>
+    {{end}}
 
     <div class="ui segment">
         <div class="header">{{msg . "similar.topics"}}</div>
