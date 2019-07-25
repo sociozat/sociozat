@@ -24,3 +24,5 @@ post.new.content = Post Content
 post.new.channels = Channels
 post.new.send   = Send
 post.single.title = %s commmented on %s
+
+topic.channels = Channels

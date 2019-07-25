@@ -59,5 +59,6 @@ func (c Post) View(id int) revel.Result {
 	}
 
 	var title = c.Message("post.single.title", post.User.Username, post.Topic.Name)
-	return c.Render(title, post)
+	var topic = post.Topic
+	return c.Render(title, post, topic)
 }

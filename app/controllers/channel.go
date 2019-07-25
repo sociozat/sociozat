@@ -43,3 +43,7 @@ func (c Channel) Json() revel.Result {
 	return c.RenderJSON(Message{Success: false, Message: "Nothing Found"})
 
 }
+
+func (c Channel) View(slug string) revel.Result {
+	return c.Render()
+}

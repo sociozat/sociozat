@@ -21,6 +21,7 @@ GET     /p/:id                       Post.View
 #GET     /u/:id                      User.GetUser
 
 GET     /c/json/                     Channel.Json
+GET     /c/:slug                     Channel.View
 
 # Ignore favicon requests
 GET     /favicon.ico                  404

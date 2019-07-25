@@ -1,13 +1,16 @@
 {{if .flash.success}}
+<div class="ui segment">
 <div class="ui success message">
 	<i class="close icon"></i>
 	<div class="header">
 			{{.flash.success}}
 	</div>
 </div>
+</div>
 {{end}}
 
 {{if or .errors .flash.error}}
+<div class="ui segment">
 <div class="ui error message">
 	{{if .flash.error}}
 	<div class="header">
@@ -19,5 +22,6 @@
 			<li>{{.}}</li>
 		{{end}}
 	</ul>
+</div>
 </div>
 {{end}}

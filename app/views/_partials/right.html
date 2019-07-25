@@ -1,47 +1,58 @@
 <!-- Right Sidebar Large Screen -->
 <div class="four wide column large screen only">
-        <!-- Error Messages Start -->
-        {{template "flash.html" .}}
-        <!-- User View -->
-        {{if (session "user" .)  }}
-        <div class="ui segment">
-            <div class="five ui buttons menu">
-                <a class="icon item button tiny">
-                  <i class="user icon"></i>
-                </a>
-                <a class="icon item button">
-                  <i class="cog icon"></i>
-                </a>
-                <a class="icon item button">
-                  <i class="envelope icon"></i>
-                </a>
-                <a class="icon item button active">
-                  <i class="moon icon"></i>
-                </a>
-                <a class="icon item button" href="{{url "User.Logout"}}">
-                  <i class="sign out alternate icon"></i>
-                </a>
-               
-            </div>
+    <!-- Error Messages Start -->
+    {{template "flash.html" .}}
+    <!-- User View -->
+    {{if (session "user" .)  }}
+    <div class="ui segment">
+        <div class="five ui buttons menu">
+            <a class="icon item button tiny">
+              <i class="user icon"></i>
+            </a>
+            <a class="icon item button">
+              <i class="cog icon"></i>
+            </a>
+            <a class="icon item button">
+              <i class="envelope icon"></i>
+            </a>
+            <a class="icon item button active">
+              <i class="moon icon"></i>
+            </a>
+            <a class="icon item button" href="{{url "User.Logout"}}">
+              <i class="sign out alternate icon"></i>
+            </a>
+            
         </div>
-        {{else}}
-        <!-- Guest View -->
-        {{template "_partials/login.html" .}}
-        {{end}}
+    </div>
+    {{else}}
+    <!-- Guest View -->
+    {{template "_partials/login.html" .}}
+    {{end}}
 
-        <div class="ui segment">
-            <div class="header">{{msg . "similar.topics"}}</div>
-            <div class="ui vertical visible list divided selection">
+    <div class="ui segment">
+        <div class="header">{{msg . "topic.channels"}}</div>
+        <div class="ui vertical visible list divided selection">
+          {{if and .topic .topic.Channels}}
+            {{ range .topic.Channels}}
+                <a class="item" href="{{url "Channel.View" .Slug}}">
+                  {{.Name}}
+                </a>
+            {{end}}
+          {{end}}
+        </div>
+    </div>
+
+    <div class="ui segment">
+        <div class="header">{{msg . "similar.topics"}}</div>
+        <div class="ui vertical visible list divided selection">
+            <a class="item">
+                Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+              </a>
                 <a class="item">
                     Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                 </a>
-                    <a class="item">
-                        Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                    </a>
-                </div>
-            </div>
-          </div>
+                </a>
         </div>
-
-    </div>
-    <!-- Right Sidebar Large Screen End-->
+    </div>      
+      
+</div>
+<!-- Right Sidebar Large Screen End-->
