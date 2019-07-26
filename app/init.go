@@ -3,12 +3,12 @@ package app
 import (
 	"encoding/json"
 	"fmt"
-	"sozluk/app/models"
-	"sozluk/app/helpers"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/revel/revel"
 	"html/template"
+	"sozluk/app/helpers"
+	"sozluk/app/models"
 	"strings"
 )
 

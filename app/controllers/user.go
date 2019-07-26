@@ -73,6 +73,11 @@ func (c User) LoginPost(username string, password string, remember bool) revel.R
 	return c.Redirect(App.Index)
 }
 
+func (c User) Settings() revel.Result {
+
+	return c.Render()
+}
+
 //Logout user
 func (c User) Logout() revel.Result {
 	for k := range c.Session {
