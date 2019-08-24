@@ -7,7 +7,7 @@ this project uses revel. so you also need to install [revel cmd](https://github.
 
 #### Clone and require dependencies
 ```
-git clone https://bencagri.com/sozluk
+git clone https://github.com/bencagri/sozluk
 cd sozluk
 cp conf/app.conf.dist conf/app.conf
 dep ensure
