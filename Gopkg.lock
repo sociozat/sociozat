@@ -61,14 +61,6 @@
   version = "v0.0.8"
 
 [[projects]]
-  digest = "1:cd4379452cc81f79acc16c477a1d1d7c2bf5807697f6cf3aafe221c4fbfed4ce"
-  name = "github.com/mattn/go-sqlite3"
-  packages = ["."]
-  pruneopts = ""
-  revision = "b612a2feea6aa87c6d052d9086572551df06497e"
-  version = "v1.11.0"
-
-[[projects]]
   branch = "master"
   digest = "1:dbf4e16c65ac05df91dd12f5bb52ac7a0530e570a76f4855d157997850ebb1fa"
   name = "github.com/rainycape/unidecode"
@@ -96,13 +88,7 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = [
-    ".",
-    "static/app/controllers",
-    "static/app/model",
-    "testrunner/app",
-    "testrunner/app/controllers",
-  ]
+  packages = ["."]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -136,14 +122,6 @@
   pruneopts = ""
   revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
   version = "v1.2.0"
-
-[[projects]]
-  digest = "1:42a59e0ee70c485f96de4a30f86f88266d50b50f918053dec798f0cb2b4b7a88"
-  name = "github.com/shurcooL/sanitized_anchor_name"
-  packages = ["."]
-  pruneopts = ""
-  revision = "7bfe4c7ecddb3666a94b053b422cdd8f5aaa3615"
-  version = "v1.0.0"
 
 [[projects]]
   digest = "1:c27b9d796a0011b90661dc71cb6627d844372327c9e1f306d0713ed679139ebf"
@@ -213,14 +191,6 @@
   version = "v2.1"
 
 [[projects]]
-  digest = "1:87dffed114a34c714199c74e15c04ecb1c332c669f63f722220a5e4e6eb2ef52"
-  name = "gopkg.in/russross/blackfriday.v2"
-  packages = ["."]
-  pruneopts = ""
-  revision = "d3b5b032dc8e8927d31a5071b56e14c89f045135"
-  version = "v2.0.1"
-
-[[projects]]
   branch = "v0"
   digest = "1:6aec919ba0088e4eb5affc6598fa9fcd9ec71d4127a19841176570a55b908384"
   name = "gopkg.in/stack.v0"
@@ -235,16 +205,11 @@
     "github.com/gosimple/slug",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
-    "github.com/mattn/go-sqlite3",
     "github.com/revel/modules",
-    "github.com/revel/modules/static/app/controllers",
-    "github.com/revel/modules/testrunner/app",
-    "github.com/revel/modules/testrunner/app/controllers",
     "github.com/revel/revel",
     "github.com/revel/revel/testing",
     "github.com/satori/go.uuid",
     "golang.org/x/crypto/bcrypt",
-    "gopkg.in/russross/blackfriday.v2",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

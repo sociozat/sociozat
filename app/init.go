@@ -35,7 +35,7 @@ func InitDB() {
 	if dbDriver == "mysql" {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
-		connstring = fmt.Sprintf("host=myhost port=myport user=gorm dbname=gorm password=mypassword")
+		connstring = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", dbAddress, dbPort, dbUser, dbName, dbPassword)
 	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}

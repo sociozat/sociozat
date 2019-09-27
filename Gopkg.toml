@@ -59,14 +59,14 @@ required = ["github.com/revel/revel", "github.com/revel/modules"]
   name = "github.com/satori/go.uuid"
   version = "1.2.0"
 
-[[constraint]]
+[[override]]
   name = "github.com/jinzhu/gorm"
   version = "1.9.10"
 
-[[constraint]]
+[[override]]
   name = "github.com/gosimple/slug"
   version = "1.5.0"
 
-[[constraint]]
-  name = "gopkg.in/russross/blackfriday.v2"
-  version = "2.0.1"
+[[override]]
+  name = "github.com/biezhi/gorm-paginator"
+  version = "0.0.2"

@@ -26,6 +26,8 @@ post.new.send   = Send
 post.single.title = %s commmented on %s
 
 topic.channels = Channels
+topic.title = %s
+topic.title.with.page = %s Page: %d
 
 [GB]
 greeting.user = Welcome %s

@@ -1,6 +1,7 @@
 module sozluk
 
 require (
+	github.com/biezhi/gorm-paginator/pagination v0.0.0-20190124091837-7a5c8ed20334
 	github.com/fsamin/go-dump v1.0.9 // indirect
 	github.com/gosimple/slug v1.5.0
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec

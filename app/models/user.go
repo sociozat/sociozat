@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	USER_NEWBIE  = 0
-	USER_AUTHOR  = 1
-	USER_DOOMED  = 2
-	USER_DELETED = 3
-	USER_MOD     = 4
+	UserNewbie  = 1
+	UserAuthot  = 2
+	UserDoomed  = 3
+	UserDeleted = 4
+	UserMod     = 5
 )
 
 //UserModel struct
@@ -47,7 +47,7 @@ func NewUser(Username string, Name string, Email string, Password string) UserMo
 		Email:          Email,
 		Password:       Password,
 		HashedPassword: string(hashedPassword),
-		Type:           USER_NEWBIE,
+		Type:           UserNewbie,
 	}
 
 	return user
