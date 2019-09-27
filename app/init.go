@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/revel/revel"
 	"html/template"
 	"sozluk/app/helpers"
@@ -35,7 +36,8 @@ func InitDB() {
 	if dbDriver == "mysql" {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
-		connstring = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", dbAddress, dbPort, dbUser, dbName, dbPassword)
+		connstring = fmt.Sprintf("postgres://%s:%s@%s/%s", dbUser, dbPassword, dbAddress, dbName)
+		// connstring = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s", dbAddress, dbPort, dbUser, dbName, dbPassword)
 	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}
