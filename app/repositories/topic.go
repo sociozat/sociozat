@@ -41,3 +41,14 @@ func (t TopicRepository) Find(params TopicSearchParams) (models.TopicModel, *pag
 
 	return topic, paginator, err
 }
+
+//FindBySlug get topic info by slug
+func (t TopicRepository) FindBySlug(slug string) (models.TopicModel, error) {
+	var err error
+	var topic = models.TopicModel{}
+	if err := app.DB.Where("slug = ?", slug).Preload("User").First(&topic).Error; err != nil {
+		return topic, err
+	}
+
+	return topic, err
+}

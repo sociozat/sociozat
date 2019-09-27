@@ -37,3 +37,30 @@ func (c Topic) View(slug string) revel.Result {
 
 	return c.Render(title, topic, posts)
 }
+
+//Reply topic with POST method
+func (c Topic) Reply(slug string) revel.Result {
+	u := c.connected()
+
+	t, err := c.TopicService.GetTopicbySlug(slug)
+
+	if u == nil {
+		c.Flash.Error(c.Message("auth.login.required"))
+		return c.Redirect(Topic.View, t.ID)
+	}
+
+	if err != nil {
+		c.Flash.Error(err.Error())
+		return c.Redirect(Topic.View, t.ID)
+	}
+
+	content := c.Params.Form.Get("content")
+	post, err := c.TopicService.Reply(t, u, content)
+
+	if err != nil {
+		c.Flash.Error(err.Error())
+		return c.Redirect(Topic.View, t.ID)
+	}
+
+	return c.Redirect(Post.View, post.ID)
+}

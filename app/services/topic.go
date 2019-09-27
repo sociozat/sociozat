@@ -10,6 +10,7 @@ import (
 type TopicService struct {
 	TopicRepository   repositories.TopicRepository
 	TopicSearchParams repositories.TopicSearchParams
+	PostRepository    repositories.PostRepository
 }
 
 //FindBySlug find topic with posts by slug
@@ -30,4 +31,23 @@ func (t TopicService) FindBySlug(slug string, page int, limit int, date string) 
 	}
 
 	return topic, posts, err
+}
+
+func (t TopicService) GetTopicbySlug(slug string) (models.TopicModel, error) {
+	topic, err := t.TopicRepository.FindBySlug(slug)
+
+	return topic, err
+}
+
+func (t TopicService) Reply(topic models.TopicModel, user *models.UserModel, content string) (*models.PostModel, error) {
+
+	p := models.PostModel{
+		Content: content,
+		User:    user,
+		Topic:   topic,
+	}
+
+	post, err := t.PostRepository.Create(&p)
+
+	return post, err
 }

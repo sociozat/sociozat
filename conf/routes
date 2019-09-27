@@ -23,7 +23,8 @@ GET     /p/:id                       Post.View
 GET     /c/json/                     Channel.Json
 GET     /c/:slug                     Channel.View
 
-GET     /t/:slug                    Topic.View
+GET     /t/:slug                     Topic.View
+POST    /t/:slug                     Topic.Reply
 
 # Ignore favicon requests
 GET     /favicon.ico                  404

@@ -23,5 +23,16 @@
   {{ end }}
 </div>
 
+<div class="ui segment">
+    <form class="ui form" action="{{url "Topic.Reply" .topic.Slug}}" method="POST">
+        <div class="field">
+          <label>{{msg . "post.new.content"}}</label>
+          <textarea name="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+        </div>
+        <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
+       
+    </form>
+</div>
+
 
 {{template "footer.html" .}}
