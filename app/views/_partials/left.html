@@ -1,14 +1,21 @@
 <div class="three ui buttons">
-        <button class="ui button">{{msg . "global.try"}}</button>
-        <button class="ui button">{{msg . "global.smth"}}</button>
-        <a class="ui button" href="{{url "Post.New"}}">{{msg . "global.new"}}</a>
+  <button class="ui button">{{msg . "global.try"}}</button>
+  <button class="ui button">{{msg . "global.smth"}}</button>
+  <a class="ui button" href="{{url "Post.New"}}">{{msg . "global.new"}}</a>
+</div>
+{{ if todays }}
+  {{ range $row := todays }}
+    <a class="item" href="/t/{{$row.Slug}}">
+        <div class="ui label mini horizontal">
+        {{ $row.PostCount }}
       </div>
+      {{ $row.Name }}
+    </a>
+  {{ end }}
 
-      {{ range $row := todays }}
-        <a class="item" href="/t/{{$row.Slug}}">
-            <div class="ui label mini horizontal">
-            {{ $row.PostCount }}
-          </div>
-          {{ $row.Name }}
-        </a>
-      {{ end }}
+{{ else }}
+
+{{msg . "global.no.posts.found"}}
+
+{{ end}}
+  

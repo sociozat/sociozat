@@ -8,3 +8,5 @@ post.create.validation.name = Title should be between 4-90 charss
 post.create.validation.content = Seems content is not enough. 
 
 user.login.error = Wrong Credentials!
+
+global.no.posts.found = No Posts Found
