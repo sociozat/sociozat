@@ -7,10 +7,11 @@ import (
 
 type TopicModel struct {
 	gorm.Model
-	Name     string
-	Slug     string         `gorm:"index:topic_slug"`
-	Channels []ChannelModel `gorm:"many2many:topic_channels;"`
-	IsLocked bool           `gorm:"default:'0'"`
+	Name      string
+	Slug      string         `gorm:"index:topic_slug"`
+	Channels  []ChannelModel `gorm:"many2many:topic_channels;"`
+	IsLocked  bool           `gorm:"default:'0'"`
+	PostCount int
 }
 
 func (t TopicModel) TableName() string {

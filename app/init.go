@@ -115,6 +115,10 @@ func init() {
 		return CurrentUser.Username
 	}
 
+	revel.TemplateFuncs["todays"] = func() []models.TopicModel {
+		return helpers.TodaysTopics(DB)
+	}
+
 	revel.TemplateFuncs["format"] = func(str string) template.HTML {
 		return template.HTML(strings.Replace(helpers.FormatContent(str), "\n", "<br>", -1))
 	}
