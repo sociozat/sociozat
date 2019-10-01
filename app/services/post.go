@@ -44,6 +44,9 @@ func (p PostService) CreateNewPost(name string, content string, channels string,
 
 func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 	c := []models.ChannelModel{}
+	if channels == "" {
+		return c
+	}
 
 	var tags = strings.Split(channels, ",")
 
