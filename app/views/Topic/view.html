@@ -6,6 +6,19 @@
 </div>
         
 <div class="segments">
+
+  <div class="ui segment">
+    <div class="ui right floated">
+      <select class="ui compact dropdown topic-pages">
+      {{ range $key, $val := .pagination}}
+        <option value="{{ $val }}" {{if eq $key $.posts.Page}} selected="selected"{{end}} >{{ $key }}</option>
+      {{ end }}
+      </select>
+      /
+      <a class="mini ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a> 
+    </div>
+  </div>
+
   <!-- entries start -->
   {{ range .posts.Records}}
   <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
@@ -21,18 +34,29 @@
     </div>
   </div>
   {{ end }}
-</div>
 
-<div class="ui segment">
-    <form class="ui form" action="{{url "Topic.Reply" .topic.Slug}}" method="POST">
-        <div class="field">
-          <label>{{msg . "post.new.content"}}</label>
-          <textarea name="content" placeholder="{{msg . "post.new.content"}}"></textarea>
-        </div>
-        <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
-       
-    </form>
-</div>
+  <div class="ui segment">
+    <div class="ui right floated">
+      <select class="ui compact dropdown topic-pages">
+      {{ range $key, $val := .pagination}}
+        <option value="{{ $val }}" {{if eq $key $.posts.Page}} selected="selected"{{end}} >{{ $key }}</option>
+      {{ end }}
+      </select>
+      /
+      <a class="mini ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a> 
+    </div>
+  </div>
 
+  <div class="ui segment">
+      <form class="ui form" action="{{url "Topic.Reply" .topic.Slug}}" method="POST">
+          <div class="field">
+            <label>{{msg . "post.new.content"}}</label>
+            <textarea name="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+          </div>
+          <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
+        
+      </form>
+  </div>
+</div>
 
 {{template "footer.html" .}}

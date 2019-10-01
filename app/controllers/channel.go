@@ -25,7 +25,6 @@ type Channel struct {
 //Json returns a json responce with channel collection
 func (c Channel) Json() revel.Result {
 	search := c.Params.Query.Get("s")
-	revel.AppLog.Debug(search)
 	if search == "" {
 		return c.RenderJSON(Message{Success: false, Message: "Type Something"})
 	}

@@ -49,8 +49,6 @@ $(document).ready(function(){
 	};
 
 	function autoHideSidebar(width){
-	    console.log(width);
-
 		var sidebar = $('.ui.left.sidebar');
 		    if (width <= 768) {
 				sidebar.removeClass('visible');
@@ -63,4 +61,11 @@ $(document).ready(function(){
 	autoHideSidebar($(window).width());
 	$(window).resize(jqUpdateSize);
 
+	$('.ui.dropdown').dropdown();
+
+	$('.topic-pages').dropdown({
+		onChange: function(val) {
+			window.location.href = val;
+		}
+	   });
 });

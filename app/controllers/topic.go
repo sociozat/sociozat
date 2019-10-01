@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/revel/revel"
 	"sozluk/app/services"
 	"strconv"
@@ -35,7 +36,17 @@ func (c Topic) View(slug string) revel.Result {
 		title = c.Message("topic.title.with.page", topic.Name, page)
 	}
 
-	return c.Render(title, topic, posts)
+	//set pages
+	c.Params.Query = c.Request.URL.Query()
+
+	var pagination = make(map[int]string)
+	for i := 1; i <= posts.TotalPage; i++ {
+		c.Params.Query.Set("page", strconv.Itoa(i))
+		pageValue := fmt.Sprintf("/t/%s?%s", c.Params.Route.Get("slug"), c.Params.Query.Encode())
+		pagination[i] = pageValue
+	}
+
+	return c.Render(title, topic, posts, pagination)
 }
 
 //Reply topic with POST method
