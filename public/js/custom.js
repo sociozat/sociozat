@@ -61,8 +61,6 @@ $(document).ready(function(){
 	autoHideSidebar($(window).width());
 	$(window).resize(jqUpdateSize);
 
-	$('.ui.dropdown').dropdown();
-
 	$('.topic-pages').dropdown({
 		onChange: function(val) {
 			window.location.href = val;
