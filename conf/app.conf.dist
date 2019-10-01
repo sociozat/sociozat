@@ -18,6 +18,8 @@ package.folders = conf, public, app/views, docs
 #
 ################################################################################
 
+# Full App Url that will be used in templates
+app.url = http://localhost:9000
 
 # Sets `revel.AppName` for use in-app.
 # Example:

@@ -24,13 +24,25 @@
   <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
   <p>{{format .Content}}</p> 
     <div class="ui bottom attached label">
-      <a class="left aligned "><i class="icon facebook"></i></a>
-      <a class="left aligned " style="margin-left:10px"><i class="icon twitter"></i></a>
+      <a  class="left aligned "
+          href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
+          onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+          target="_blank" title="Share on Facebook">
+      <i class="icon facebook"></i>
+      </a>
+
+      <a class="left aligned " 
+          href="https://twitter.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
+          onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+          target="_blank" title="Share on Twitter"
+          style="margin-left:10px">
+      <i class="icon twitter"></i>
+      </a>
       <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
       <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
 
       <a class="right aligned" style="margin-left:10px">{{.User.Username}}</a>
-      <a class="right aligned">{{datetime .CreatedAt}}</a>
+      <a class="right aligned" href="{{url "Post.View" .ID}}">{{datetime .CreatedAt}}</a>
     </div>
   </div>
   {{ end }}
