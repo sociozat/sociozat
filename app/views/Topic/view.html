@@ -29,7 +29,7 @@
       <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
       <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
 
-      <a class="right aligned" style="margin-left:10px">{{.User.Username}}</a>
+      <a class="right aligned"  href="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
       <a class="right aligned" href="{{url "Post.View" .ID}}">{{datetime .CreatedAt}}</a>
     </div>
   </div>
