@@ -6,7 +6,7 @@
     {{if (session "user" .)  }}
     <div class="ui segment">
         <div class="five ui buttons menu">
-            <a class="icon item button tiny"  href="{{url "User.Profile" (session "user" .)}}">
+            <a class="icon item button tiny"  href="{{url "User.Profile" (session "fulluser" .).Slug}}">
               <i class="user icon"></i>
             </a>
             <a class="icon item button">

@@ -23,7 +23,7 @@ func (c UserRepository) Create(u models.UserModel) (models.UserModel, error) {
 	return u, err
 }
 
-//GetUserBySlug get user from database
+//GetUserById get user from database
 func (c UserRepository) GetUserById(Id uint) (u *models.UserModel, err error) {
 	user := &models.UserModel{}
 	record := app.DB.Where("id=?", Id).Find(&user)
@@ -43,6 +43,7 @@ func (c UserRepository) GetUserBySlug(slug interface{}) (u *models.UserModel, er
 	return user, err
 }
 
+//GetUserInfo returns user and paginated posts belongs to given user
 func (c UserRepository) GetUserInfo(params models.SearchParams) (models.UserModel, *pagination.Paginator, error) {
 
 	user := models.UserModel{}
@@ -56,6 +57,7 @@ func (c UserRepository) GetUserInfo(params models.SearchParams) (models.UserMode
 
 	rows := app.DB.Table("posts").
 		Where("posts.user_id = ?", user.ID).
+		Order("posts.id DESC").
 		Preload("Topic")
 
 	paginator := pagination.Paging(&pagination.Param{
