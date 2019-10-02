@@ -7,18 +7,6 @@
         
 <div class="segments">
 
-  <div class="ui segment">
-    <div class="ui right floated">
-      <select class="ui compact dropdown topic-pages">
-      {{ range $key, $val := .pagination}}
-        <option value="{{ $val }}" {{if eq $key $.posts.Page}} selected="selected"{{end}} >{{ $key }}</option>
-      {{ end }}
-      </select>
-      /
-      <a class="mini ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a> 
-    </div>
-  </div>
-
   <!-- entries start -->
   {{ range .posts.Records}}
   <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
@@ -47,17 +35,7 @@
   </div>
   {{ end }}
 
-  <div class="ui segment">
-    <div class="ui right floated">
-      <select class="ui compact dropdown topic-pages">
-      {{ range $key, $val := .pagination}}
-        <option value="{{ $val }}" {{if eq $key $.posts.Page}} selected="selected"{{end}} >{{ $key }}</option>
-      {{ end }}
-      </select>
-      /
-      <a class="mini ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a> 
-    </div>
-  </div>
+  {{template "_partials/pagination.html" .}}
 
   <div class="ui segment">
       <form class="ui form" action="{{url "Topic.Reply" .topic.Slug}}" method="POST">
