@@ -1,0 +1,22 @@
+  {{if .pagination}}
+  <div class="ui clearing segment">
+    <div class="ui right floated">
+
+        {{if gt .posts.Page 1 }}
+        <a class="ui button" href="{{index .pagination .posts.PrevPage }}">&laquo;</a> 
+        {{end}}
+
+        <select class="ui compact dropdown topic-pages">
+        {{ range $key, $val := .pagination}}
+            <option value="{{ $val }}" {{if eq $key $.posts.Page}} selected="selected"{{end}} >{{ $key }}</option>
+        {{ end }}
+        </select>
+        /
+        <a class="ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a> 
+
+        {{if lt .posts.Page .posts.TotalPage }}
+        <a class="ui button" href="{{index .pagination .posts.NextPage }}">&raquo;</a> 
+        {{end}}
+    </div>
+  </div>
+  {{end}}

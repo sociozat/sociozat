@@ -26,10 +26,6 @@ func (t TopicService) FindBySlug(slug string, page int, limit int, date string) 
 
 	topic, posts, err := t.TopicRepository.Find(params)
 
-	if err != nil {
-		return topic, posts, err
-	}
-
 	return topic, posts, err
 }
 

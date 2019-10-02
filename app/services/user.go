@@ -1,6 +1,7 @@
 package services
 
 import (
+	"github.com/biezhi/gorm-paginator/pagination"
 	"regexp"
 	"sozluk/app"
 	"sozluk/app/models"
@@ -60,4 +61,12 @@ func (c UserService) Validate(m models.UserModel, rv *revel.Validation) map[stri
 	}
 
 	return nil
+}
+
+//GetUserInfo gives user details and posts
+func (c UserService) GetUserInfo(params models.SearchParams) (*models.UserModel, *pagination.Paginator, error) {
+
+	user, posts, err := c.UserRepository.GetUserInfo(params)
+
+	return &user, posts, err
 }

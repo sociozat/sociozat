@@ -14,11 +14,10 @@ GET     /login                       User.Login
 POST    /login                       User.LoginPost
 GET     /logout                      User.Logout
 GET     /settings                    User.Settings
+GET     /u/:username                 User.Profile
 GET     /new                         Post.New
 POST    /new                         Post.Create
 GET     /p/:id                       Post.View
-
-#GET     /u/:id                      User.GetUser
 
 GET     /c/json/                     Channel.Json
 GET     /c/:slug                     Channel.View

@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"github.com/biezhi/gorm-paginator/pagination"
 	// "github.com/revel/revel"
 	"errors"
 	"sozluk/app"
@@ -40,4 +41,28 @@ func (c UserRepository) GetUserBySlug(slug interface{}) (u *models.UserModel, er
 		err = errors.New("user not found")
 	}
 	return user, err
+}
+
+func (c UserRepository) GetUserInfo(params models.SearchParams) (models.UserModel, *pagination.Paginator, error) {
+
+	user := models.UserModel{}
+	posts := []models.PostModel{}
+
+	var err error
+
+	if err := app.DB.Where("users.slug = ?", params.Slug).Find(&user).Error; err != nil {
+		return user, &pagination.Paginator{}, err
+	}
+
+	rows := app.DB.Table("posts").
+		Where("posts.user_id = ?", user.ID).
+		Preload("Topic")
+
+	paginator := pagination.Paging(&pagination.Param{
+		DB:    rows,
+		Page:  params.Page,
+		Limit: params.Limit,
+	}, &posts)
+
+	return user, paginator, err
 }

@@ -9,4 +9,6 @@ post.create.validation.content = Seems content is not enough.
 
 user.login.error = Wrong Credentials!
 
+user.not.found = User not found!
+
 global.no.posts.found = No Posts Found

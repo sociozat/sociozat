@@ -1,12 +1,15 @@
 package controllers
 
 import (
+	"github.com/gosimple/slug"
 	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/services"
 
+	"fmt"
 	"github.com/revel/revel"
 	"golang.org/x/crypto/bcrypt"
+	"strconv"
 )
 
 //User struct
@@ -82,4 +85,35 @@ func (c User) Logout() revel.Result {
 		delete(c.Session, k)
 	}
 	return c.Redirect(App.Index)
+}
+
+//UserProfile see user profile with posts
+func (c User) Profile(username string) revel.Result {
+	page, _ := strconv.Atoi(c.Params.Query.Get("page"))
+	limit, _ := strconv.Atoi(c.Params.Query.Get("limit"))
+	slug := slug.Make(username)
+
+	params := models.SearchParams{
+		Page:  page,
+		Limit: limit,
+		Slug:  slug,
+	}
+	user, posts, err := c.UserService.GetUserInfo(params)
+
+	//set pages
+	c.Params.Query = c.Request.URL.Query()
+
+	var pagination = make(map[int]string)
+	for i := 1; i <= posts.TotalPage; i++ {
+		c.Params.Query.Set("page", strconv.Itoa(i))
+		pageValue := fmt.Sprintf("/u/%s?%s", c.Params.Route.Get("username"), c.Params.Query.Encode())
+		pagination[i] = pageValue
+	}
+
+	if err != nil {
+		c.Flash.Error(app.Trans("user.not.found"))
+		return c.Redirect(App.Index)
+	}
+
+	return c.Render(user, posts, pagination)
 }
