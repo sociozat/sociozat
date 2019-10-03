@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:daedb3a454356a36f6d533e1fd59c1ceffcc29cf68717d70234976339276c349"
+  name = "github.com/biezhi/gorm-paginator"
+  packages = ["pagination"]
+  pruneopts = ""
+  revision = "7a5c8ed20334610e9560e561a21ee4f3fc66bef4"
+  version = "v0.0.2"
+
+[[projects]]
   digest = "1:e692d16fdfbddb94e9e4886aaf6c08bdbae5cb4ac80651445de9181b371c6e46"
   name = "github.com/go-sql-driver/mysql"
   packages = ["."]
@@ -31,6 +39,7 @@
   packages = [
     ".",
     "dialects/mysql",
+    "dialects/postgres",
   ]
   pruneopts = ""
   revision = "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4"
@@ -43,6 +52,19 @@
   pruneopts = ""
   revision = "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
   version = "v1.0.0"
+
+[[projects]]
+  digest = "1:f4216047c24ab66fb757045febd7dac4edc6f4ad9f6c0063d0755d654d04f25e"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "hstore",
+    "oid",
+    "scram",
+  ]
+  pruneopts = ""
+  revision = "3427c32cb71afc948325f299f040e53c1dd78979"
+  version = "v1.2.0"
 
 [[projects]]
   digest = "1:d260ca4db8ced0871a1c06440b1e5835e2d982ed660ca529957d67f28cf24592"
@@ -59,6 +81,14 @@
   pruneopts = ""
   revision = "1311e847b0cb909da63b5fecfb5370aa66236465"
   version = "v0.0.8"
+
+[[projects]]
+  digest = "1:cd4379452cc81f79acc16c477a1d1d7c2bf5807697f6cf3aafe221c4fbfed4ce"
+  name = "github.com/mattn/go-sqlite3"
+  packages = ["."]
+  pruneopts = ""
+  revision = "b612a2feea6aa87c6d052d9086572551df06497e"
+  version = "v1.11.0"
 
 [[projects]]
   branch = "master"
@@ -88,7 +118,13 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = ["."]
+  packages = [
+    ".",
+    "static/app/controllers",
+    "static/app/model",
+    "testrunner/app",
+    "testrunner/app/controllers",
+  ]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -202,10 +238,16 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/biezhi/gorm-paginator/pagination",
     "github.com/gosimple/slug",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
+    "github.com/jinzhu/gorm/dialects/postgres",
+    "github.com/mattn/go-sqlite3",
     "github.com/revel/modules",
+    "github.com/revel/modules/static/app/controllers",
+    "github.com/revel/modules/testrunner/app",
+    "github.com/revel/modules/testrunner/app/controllers",
     "github.com/revel/revel",
     "github.com/revel/revel/testing",
     "github.com/satori/go.uuid",

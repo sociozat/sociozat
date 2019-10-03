@@ -1,20 +1,27 @@
 # Installation
 
-you need go v1.11+
-also `dep` package manager
+
+### Using Docker Compose
+``` 
+git clone https://github.com/bencagri/sozluk
+cd sozluk
+docker-compose -p sozluk-app up
+```
+
+
+#### For Manual Installation
 
 this project uses revel. so you also need to install [revel cmd](https://github.com/revel/cmd)
 
-#### Clone and require dependencies
+
+you need go v1.11+
+also `dep` package manager
+
 ```
 git clone https://github.com/bencagri/sozluk
 cd sozluk
 cp conf/app.conf.dist conf/app.conf
 dep ensure
-```
-
-#### To start development server
-```
 revel run
 ```
 then point your browser to 127.0.0.1:9000

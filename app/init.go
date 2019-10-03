@@ -31,12 +31,13 @@ func InitDB() {
 	dbPassword := revel.Config.StringDefault("db.password", "root")
 	dbAddress := revel.Config.StringDefault("db.address", "127.0.0.1")
 	dbPort := revel.Config.StringDefault("db.port", "3306")
+	dbSslMode := revel.Config.StringDefault("db.sslmode", "disable")
 
 	var connstring string
 	if dbDriver == "mysql" {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
-		connstring = fmt.Sprintf("postgres://%s:%s@%s/%s", dbUser, dbPassword, dbAddress, dbName)
+		connstring = fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=%s", dbUser, dbPassword, dbAddress, dbName, dbSslMode)
 	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}

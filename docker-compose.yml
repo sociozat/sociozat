@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+    app:
+      container_name: sozluk-app
+      build: 
+        context: . # Use an image built from the specified dockerfile in the current directory.
+        dockerfile: Dockerfile
+      volumes:
+        - ./:/go/src/sozluk
+      ports:
+        - "9000:9000"
+      depends_on:
+        - postgres-db
+      network_mode: "host"
+
+    postgres-db:
+      container_name: sozluk-postgres
+      image: postgres:latest
+      restart: always
+
+      environment:
+        POSTGRES_PASSWORD: "postgres"
+        POSTGRES_DB: "postgres"
+        POSTGRES_USER: "postgres"
+        POSTGRES_HOST: "0.0.0.0"
+        POSTGRES_PORT: 5432
+        PGDATA: /var/lib/postgresql/data/pg_data
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./.docker/database.sql:/docker-entrypoint-initdb.d/1-database.sql

@@ -58,17 +58,17 @@ http.timeout.read = 90
 http.timeout.write = 60
 
 # Database
-
+db.address    = 0.0.0.0
 db.autoinit   = true
 db.import     = github.com/mattn/go-sqlite3
-db.driver     = mysql  # mysql, postgres or sqlite3
-db.port       = 3306
-db.user       = root
-db.password   = root
+db.driver     = postgres  # mysql, postgres or sqlite3
+db.port       = 5432
+db.user       = postgres
+db.password   = postgres
 db.name       = sozluk
 db.charset    = utf8
 db.parse.time = True
-
+db.sslmode    = false
 
 
 # For any cookies set by Revel (Session,Flash,Error) these properties will set

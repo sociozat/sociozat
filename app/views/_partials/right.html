@@ -3,7 +3,7 @@
     <!-- Error Messages Start -->
     {{template "flash.html" .}}
     <!-- User View -->
-    {{if (session "user" .)  }}
+    {{if (session "fulluser" .)  }}
     <div class="ui segment">
         <div class="five ui buttons menu">
             <a class="icon item button tiny"  href="{{url "User.Profile" (session "fulluser" .).Slug}}">
