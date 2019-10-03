@@ -68,7 +68,7 @@ db.password   = postgres
 db.name       = sozluk
 db.charset    = utf8
 db.parse.time = True
-db.sslmode    = false
+db.sslmode    = disable
 
 
 # For any cookies set by Revel (Session,Flash,Error) these properties will set

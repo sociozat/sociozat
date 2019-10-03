@@ -1,22 +1,20 @@
 # Installation
+this project uses revel. so you also need to install [revel cmd](https://github.com/revel/cmd)
 
+you need go v1.11+
+also `dep` package manager
 
 ### Using Docker Compose
 ``` 
 git clone https://github.com/bencagri/sozluk
 cd sozluk
-docker-compose -p sozluk-app up
+cp conf/app.conf.dist conf/app.conf
+dep ensure
+docker-compose up
 ```
-point your browser to `0.0.0.0:9000`
+point your browser to `127.0.0.1:9000`
 
 #### For Manual Installation
-
-this project uses revel. so you also need to install [revel cmd](https://github.com/revel/cmd)
-
-
-you need go v1.11+
-also `dep` package manager
-
 ```
 git clone https://github.com/bencagri/sozluk
 cd sozluk
@@ -24,10 +22,11 @@ cp conf/app.conf.dist conf/app.conf
 dep ensure
 revel run
 ```
-then point your browser to 127.0.0.1:9000
+Configure your database in app.conf file then point your browser to 127.0.0.1:9000
 
+> `postgresql` is default database with docker, you can also set mysql or sqlite 
 
-#### To build
+#### To build for production
 ```
 revel build -a sozluk/ -t sozluk-app/ -m prod
 ```
@@ -36,7 +35,6 @@ Go will build the app inside sozluk-app. you can run `run.sh` to start web serve
 
 
 ## Folder Structure Design
-
 
     conf/             Configuration directory
         app.conf      Main app configuration file
