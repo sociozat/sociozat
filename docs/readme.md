@@ -7,7 +7,7 @@ git clone https://github.com/bencagri/sozluk
 cd sozluk
 docker-compose -p sozluk-app up
 ```
-
+point your browser to `0.0.0.0:9000`
 
 #### For Manual Installation
 
