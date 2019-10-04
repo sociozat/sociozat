@@ -36,14 +36,13 @@ $(document).ready(function(){
 		})
 	;
 
-	$('.ui.dropdown').dropdown();
+	$('.ui.post-config').dropdown();
 
 	$('.ui.sticky')
 		.sticky({
 			context: '#context'
 		})
 	;
-
 
 	function jqUpdateSize(){
 	    var width = $(window).width();
