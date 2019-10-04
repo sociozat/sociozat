@@ -45,6 +45,7 @@ func (c Post) Create(name string, content string, tags string) revel.Result {
 		return c.Redirect(Post.New)
 	}
 
+	c.Flash.Success(c.Message("topic.create.success.message"))
 	return c.Redirect(Post.View, post.ID)
 }
 
