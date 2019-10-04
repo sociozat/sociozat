@@ -65,5 +65,7 @@ $(document).ready(function(){
 		onChange: function(val) {
 			window.location.href = val;
 		}
-	   });
+	});
+
+	$('.popup').popup();
 });

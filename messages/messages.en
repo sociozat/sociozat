@@ -5,8 +5,11 @@ global.ok= Ok
 global.new= New
 global.smth= Smth
 global.try= Try
+global.new.topic = New Topic
+global.reply.topic= Reply
 
 user.login.title = Login
+user.form.logout = Logout
 user.form.login = Login
 user.form.register = Register
 user.form.username = Username
@@ -14,6 +17,9 @@ user.form.email = Email
 user.form.password = Password
 user.form.remember = Remember
 user.form.lost.passwor = Lost Password
+user.settings = Settings
+
+user.setting.night.mode = Night Mode
 
 similar.topics = Similar Topics
 

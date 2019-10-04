@@ -1,8 +1,3 @@
-<div class="three ui buttons">
-  <button class="ui button">{{msg . "global.try"}}</button>
-  <button class="ui button">{{msg . "global.smth"}}</button>
-  <a class="ui button" href="{{url "Post.New"}}">{{msg . "global.new"}}</a>
-</div>
 {{ if todays }}
   {{ range $row := todays }}
     <a class="item" href="/t/{{$row.Slug}}">

@@ -1,7 +1,7 @@
 <!-- Right Sidebar Large Screen -->
 <div class="four wide column large screen only">
     <!-- Error Messages Start -->
-    {{template "flash.html" .}}
+   
     <!-- User View -->
     {{if (session "fulluser" .)  }}
     <div class="ui segment">
@@ -9,16 +9,16 @@
             <a class="icon item button tiny"  href="{{url "User.Profile" (session "fulluser" .).Slug}}">
               <i class="user icon"></i>
             </a>
-            <a class="icon item button">
+            <a class="icon item button popup" href="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
+              <i class="add icon"></i>
+            </a>
+            <a class="icon item button popup" href="{{url "User.Settings"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
               <i class="cog icon"></i>
             </a>
-            <a class="icon item button">
-              <i class="envelope icon"></i>
-            </a>
-            <a class="icon item button active">
+            <a class="icon item button active popup" data-content="{{msg . "user.setting.night.mode"}}" data-position="bottom center">
               <i class="moon icon"></i>
             </a>
-            <a class="icon item button" href="{{url "User.Logout"}}">
+            <a class="icon item button popup" href="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
               <i class="sign out alternate icon"></i>
             </a>
             
