@@ -30,6 +30,8 @@ post.new.content = Post Content
 post.new.channels = Channels
 post.new.send   = Send
 post.single.title = %s commmented on %s
+post.edit = edit
+post.report = report
 
 topic.channels = Channels
 topic.title = %s
