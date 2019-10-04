@@ -73,5 +73,6 @@ func (c Topic) Reply(slug string) revel.Result {
 		return c.Redirect(Topic.View, t.ID)
 	}
 
+	c.Flash.Success(c.Message("topic.create.success.message"))
 	return c.Redirect(Post.View, post.ID)
 }
