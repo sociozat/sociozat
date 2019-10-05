@@ -13,7 +13,8 @@ POST    /register                    User.SaveUser
 GET     /login                       User.Login
 POST    /login                       User.LoginPost
 GET     /logout                      User.Logout
-GET     /settings                    User.Settings
+GET     /settings                    Settings.View
+POST    /settings                    Settings.SettingsPost
 GET     /u/:username                 User.Profile
 GET     /new                         Post.New
 POST    /new                         Post.Create

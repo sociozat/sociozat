@@ -69,4 +69,41 @@ $(document).ready(function(){
 	});
 
 	$('.popup').popup();
+
+	//
+	// SETTINGS
+	//
+
+	$('.header-channels.dropdown')
+		.dropdown({
+			allowAdditions: false,
+			maxSelections: 10,
+			apiSettings: {
+				// this url parses query server side and returns filtered results
+				url: '/c/json/?s={query}'
+			},
+		})
+	;
+
+	$('.todays-posts-channels.dropdown')
+		.dropdown({
+			allowAdditions: false,
+			maxSelections: 5,
+			apiSettings: {
+				// this url parses query server side and returns filtered results
+				url: '/c/json/?s={query}'
+			},
+		})
+	;
+
+	$('.customized-todays-select').checkbox({
+		onChecked: function() {
+		   $(".customized-todays-posts").removeClass("transition hidden");
+		},
+		onUnchecked: function() {
+			$('.todays-posts-channels.dropdown').dropdown("clear");
+			$(".customized-todays-posts").addClass("transition hidden");
+		}}
+	);
+
 });

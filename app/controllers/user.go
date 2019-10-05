@@ -1,15 +1,18 @@
 package controllers
 
 import (
-	"github.com/gosimple/slug"
+	"encoding/json"
 	"sozluk/app"
 	"sozluk/app/models"
 	"sozluk/app/services"
 
+	"github.com/gosimple/slug"
+
 	"fmt"
+	"strconv"
+
 	"github.com/revel/revel"
 	"golang.org/x/crypto/bcrypt"
-	"strconv"
 )
 
 //User struct
@@ -57,8 +60,13 @@ func (c User) LoginPost(username string, password string, remember bool) revel.R
 	if user != nil {
 		err := bcrypt.CompareHashAndPassword([]byte(user.HashedPassword), []byte(password))
 		if err == nil {
+			settings := models.SettingsModel{}
+			json.Unmarshal([]byte(user.Settings), &settings)
+			user.Settings = ""
+
 			c.Session["user"] = string(username)
 			c.Session["fulluser"] = user
+			c.Session["settings"] = settings
 
 			if remember {
 				c.Session.SetDefaultExpiration()
@@ -72,11 +80,6 @@ func (c User) LoginPost(username string, password string, remember bool) revel.R
 	c.Flash.Out["username"] = username
 	c.Flash.Error(app.Trans("user.login.error"))
 	return c.Redirect(App.Index)
-}
-
-func (c User) Settings() revel.Result {
-
-	return c.Render()
 }
 
 //Logout user

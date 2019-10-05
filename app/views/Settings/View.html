@@ -1,0 +1,72 @@
+{{set . "title" .title}}
+{{template "header.html" .}}
+
+<div class="ui segment">
+    <div class="ui menu">
+        <a class="item active">Settings</a>
+        <a class="item">Change Password</a>
+    </div>
+
+    <div class="ui form">
+        <form class="ui form" action="{{url "Settings.SettingsPost"}}" method="POST">
+            <div class="field">
+                <label>My Unique User Id</label>
+                <div class="ui fluid multiple">
+                    <input type="text" disabled value="2131-32kf-1sd13-cser41">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Header Channel List (max 10)</label>
+                <div class="ui fluid multiple search selection header-channels dropdown">
+                    <input name="header-channels" type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">{{msg . "post.new.channels"}}</div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Customized Today's Posts</label>
+                <div class="ui toggle checkbox customized-todays-select">
+                    <input type="checkbox" tabindex="0" class="hidden" value="on">
+                </div>
+            </div>
+
+            <div class="field customized-todays-posts transition hidden">
+                <label>Select up to 5 channel</label>
+                <div class="ui fluid multiple search selection todays-posts-channels dropdown">
+                    <input name="todays-posts-channels" type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">{{msg . "post.new.channels"}}</div>
+                </div>
+            </div>
+
+
+            <div class="inline fields">
+                <label>Posts Per Page</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="post-per-page" checked="checked" value="1">
+                        <label>5</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="post-per-page" value="2">
+                        <label>10</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="post-per-page" value="3">
+                        <label>25</label>
+                    </div>
+                </div>
+            </div>
+            <button class="ui button" type="submit">Save</button>
+
+        </form>
+    </div>
+
+</div>
+
+{{template "footer.html" .}}

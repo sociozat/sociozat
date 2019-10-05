@@ -2,50 +2,51 @@
 	#sidebar {
 		position: absolute;
 		right: 0px;
-		top:69px;
+		top: 69px;
 		max-width: 75%;
 		z-index: 1000;
 		background-color: #fee;
 		border: thin solid grey;
 		padding: 10px;
 	}
+
 	#toggleSidebar {
 		position: absolute;
 		right: 0px;
 		bottom: 10px;
 		background-color: #fee;
+		z-index: 9999;
 	}
-
 </style>
 <div id="sidebar" style="display:none;">
 	<h4>Available pipelines</h4>
 	<dl>
-	{{ range $index, $value := .}}
+		{{ range $index, $value := .}}
 		<dt>{{$index}}</dt>
 		<dd>{{$value}}</dd>
-	{{end}}
+		{{end}}
 	</dl>
 	<h4>Flash</h4>
 	<dl>
-	{{ range $index, $value := .flash}}
+		{{ range $index, $value := .flash}}
 		<dt>{{$index}}</dt>
 		<dd>{{$value}}</dd>
-	{{end}}
+		{{end}}
 	</dl>
 
 	<h4>Errors</h4>
 	<dl>
-	{{ range $index, $value := .errors}}
+		{{ range $index, $value := .errors}}
 		<dt>{{$index}}</dt>
 		<dd>{{$value}}</dd>
-	{{end}}
+		{{end}}
 	</dl>
 </div>
 <a id="toggleSidebar" href="#" class="toggles"><i class="icon random"></i></a>
 
 <script>
 	$sidebar = 0;
-	$('#toggleSidebar').click(function() {
+	$('#toggleSidebar').click(function () {
 		if ($sidebar === 1) {
 			$('#sidebar').hide();
 			$('#toggleSidebar i').addClass('glyphicon-chevron-left');
@@ -59,6 +60,6 @@
 			$sidebar = 1;
 		}
 
-    return false;
+		return false;
 	});
 </script>

@@ -68,3 +68,12 @@ func (c UserRepository) GetUserInfo(params models.SearchParams) (models.UserMode
 
 	return user, paginator, err
 }
+
+func (c UserRepository) UpdateUserColumn(user *models.UserModel, column string, value string) (*models.UserModel, error) {
+
+	if err := app.DB.Model(&user).Update(column, value).Error; err != nil {
+		return user, err
+	}
+	var err error
+	return user, err
+}

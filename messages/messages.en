@@ -38,6 +38,8 @@ topic.title = %s
 topic.title.with.page = %s Page: %d
 topic.create.success.message = Thanks for contributing. You are awesome!
 
+settings.updated.sucessfully = Settings Updated Successfully
+settings.updated.error = Something went wrong, no worries we logged this. You should try later.
 
 [GB]
 greeting.user = Welcome %s

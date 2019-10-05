@@ -1,6 +1,8 @@
 package models
 
 import (
+	"encoding/json"
+
 	"github.com/gosimple/slug"
 	"github.com/jinzhu/gorm"
 	uuid "github.com/satori/go.uuid"
@@ -9,7 +11,7 @@ import (
 
 const (
 	UserNewbie  = 1
-	UserAuthot  = 2
+	UserAuthor  = 2
 	UserDoomed  = 3
 	UserDeleted = 4
 	UserMod     = 5
@@ -25,6 +27,7 @@ type UserModel struct {
 	Email          string `gorm:"unique;not null"`
 	Password       string `gorm:"-"`
 	HashedPassword string `gorm:"type:varchar(255)"`
+	Settings       string `gorm:"type:text`
 	Type           int
 }
 
@@ -39,6 +42,8 @@ func NewUser(Username string, Name string, Email string, Password string) UserMo
 	var hashedPassword, _ = bcrypt.GenerateFromPassword(
 		[]byte(Password), bcrypt.DefaultCost)
 	u4 := uuid.NewV4()
+
+	settings, _ := json.Marshal(&SettingsModel{})
 	user := UserModel{
 		UserID:         u4.String(),
 		Name:           Name,
@@ -47,6 +52,7 @@ func NewUser(Username string, Name string, Email string, Password string) UserMo
 		Email:          Email,
 		Password:       Password,
 		HashedPassword: string(hashedPassword),
+		Settings:       string(settings),
 		Type:           UserNewbie,
 	}
 
