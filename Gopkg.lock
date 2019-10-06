@@ -91,6 +91,14 @@
   version = "v1.11.0"
 
 [[projects]]
+  digest = "1:bcc46a0fbd9e933087bef394871256b5c60269575bb661935874729c65bbbf60"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  pruneopts = ""
+  revision = "3536a929edddb9a5b34bd6861dc4a9647cb459fe"
+  version = "v1.1.2"
+
+[[projects]]
   branch = "master"
   digest = "1:dbf4e16c65ac05df91dd12f5bb52ac7a0530e570a76f4855d157997850ebb1fa"
   name = "github.com/rainycape/unidecode"
@@ -244,6 +252,7 @@
     "github.com/jinzhu/gorm/dialects/mysql",
     "github.com/jinzhu/gorm/dialects/postgres",
     "github.com/mattn/go-sqlite3",
+    "github.com/mitchellh/mapstructure",
     "github.com/revel/modules",
     "github.com/revel/modules/static/app/controllers",
     "github.com/revel/modules/testrunner/app",

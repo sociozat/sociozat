@@ -12,6 +12,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/mitchellh/mapstructure"
 	"github.com/revel/revel"
 )
 
@@ -59,6 +60,13 @@ func InitDB() {
 var DefaultLocale string
 var GetDefaultLocaleFilter = func(c *revel.Controller, fc []revel.Filter) {
 	DefaultLocale = c.Request.Locale
+
+	//set default settings
+	settings := models.SettingsModel{}
+	if sess, _ := c.Session.Get("settings"); sess == nil {
+		c.Session.Set("settings", settings)
+	}
+
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
 
@@ -114,12 +122,20 @@ func init() {
 		return revel.Config.StringDefault(a, b)
 	}
 
-	revel.TemplateFuncs["user"] = func() string {
-		return CurrentUser.Username
+	revel.TemplateFuncs["user"] = func() *models.UserModel {
+		return CurrentUser
 	}
 
-	revel.TemplateFuncs["todays"] = func() []models.TopicModel {
-		return helpers.TodaysTopics(DB)
+	revel.TemplateFuncs["todays"] = func(sets map[string]interface{}) []models.TopicModel {
+
+		var ids []uint
+		settings := models.SettingsModel{}
+		mapstructure.Decode(sets, &settings)
+		for _, channel := range settings.TodaysChannels {
+			ids = append(ids, channel.ID)
+		}
+
+		return helpers.TodaysTopics(DB, ids)
 	}
 
 	revel.TemplateFuncs["format"] = func(str string) template.HTML {
@@ -128,8 +144,7 @@ func init() {
 
 	revel.TemplateFuncs["marshal"] = func(v interface{}) string {
 		a, _ := JSONMarshal(v)
-		s := strings.Replace(string(a), `\x22`, `"`, -1)
-		return string(s)
+		return string(a)
 	}
 
 	revel.OnAppStart(InitDB)

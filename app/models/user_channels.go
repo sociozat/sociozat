@@ -3,7 +3,7 @@ package models
 import "time"
 
 type UserTodaysChannels struct {
-	ID   uint   `json:"value"`
+	ID   uint   `json:"id"`
 	Name string `json:"name"`
 	Slug string `json:"slug"`
 }

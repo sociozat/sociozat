@@ -66,6 +66,7 @@
                 todayChannels = JSON.parse(todayChannelsValues);
                 Object.keys(todayChannels).map(function (key, index) {
                     todayChannels[key].selected = true;
+                    todayChannels[key].value = todayChannels[key].id
                     delete todayChannels[key].lastRead
                     delete todayChannels[key].slug
                 });

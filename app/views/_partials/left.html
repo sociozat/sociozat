@@ -1,16 +1,15 @@
-{{ if todays }}
-  {{ range $row := todays }}
-    <a class="item" href="/t/{{$row.Slug}}">
-        <div class="ui label mini horizontal">
-        {{ $row.PostCount }}
-      </div>
-      {{ $row.Name }}
-    </a>
-  {{ end }}
+{{ if $rows := todays (session "settings" .) }}
+{{ range $row := $rows }}
+<a class="item" href="/t/{{$row.Slug}}">
+  <div class="ui label mini horizontal">
+    {{ $row.PostCount }}
+  </div>
+  {{ $row.Name }}
+</a>
+{{ end }}
 
 {{ else }}
 
 {{msg . "global.no.posts.found"}}
 
 {{ end}}
-  

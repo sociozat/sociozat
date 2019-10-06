@@ -11,6 +11,7 @@ require (
 	github.com/mattn/go-colorable v0.1.2
 	github.com/mattn/go-isatty v0.0.8
 	github.com/mattn/go-sqlite3 v1.11.0
+	github.com/mitchellh/mapstructure v1.1.2
 	github.com/myesui/uuid v1.0.0 // indirect
 	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be // indirect
 	github.com/revel/config v0.21.0
