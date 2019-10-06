@@ -40,6 +40,7 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 			headerChannels = append(headerChannels, headerChannel)
 		}
 	}
+	revel.AppLog.Debug("%v", headerChannels)
 
 	//todays channels
 	todaysChannels := []models.UserTodaysChannels{}

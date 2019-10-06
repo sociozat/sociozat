@@ -12,10 +12,11 @@
             <div class="field">
                 <label>My Unique User Id</label>
                 <div class="ui fluid multiple">
-                    <input type="text" disabled value="2131-32kf-1sd13-cser41">
+                    <input type="text" disabled value="{{ .uuid}}">
                 </div>
             </div>
 
+            {{ $length := len .settings.headerChannels }}
             <div class="field">
                 <label>Header Channel List (max 10)</label>
                 <div class="ui fluid multiple search selection header-channels dropdown">
@@ -24,40 +25,79 @@
                     <div class="default text">{{msg . "post.new.channels"}}</div>
                 </div>
             </div>
-            <div class="field">
+            {{if gt $length  0}}
+            <script>
+                var headerChannelsValues = {{ marshal .settings.headerChannels }};
+
+                headerChannels = JSON.parse(headerChannelsValues);
+                Object.keys(headerChannels).map(function (key, index) {
+                    headerChannels[key].selected = true;
+                    delete headerChannels[key].lastRead
+                    delete headerChannels[key].slug
+                });
+                $('.header-channels.dropdown')
+                    .dropdown({
+                        values: headerChannels
+                    });
+            </script>
+            {{end}}
+
+
+            {{ $length := len .settings.todaysChannels }}
+            <div class=" field">
                 <label>Customized Today's Posts</label>
                 <div class="ui toggle checkbox customized-todays-select">
-                    <input type="checkbox" tabindex="0" class="hidden" value="on">
+                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $length 0}} checked="checked" {{end}}>
                 </div>
             </div>
 
-            <div class="field customized-todays-posts transition hidden">
+            <div class="field customized-todays-posts {{if lt $length 1}}transition hidden{{end}}">
                 <label>Select up to 5 channel</label>
                 <div class="ui fluid multiple search selection todays-posts-channels dropdown">
-                    <input name="todays-posts-channels" type="hidden">
+                    <input name="todays-posts-channels" multiple=true type="hidden" />
                     <i class="dropdown icon"></i>
                     <div class="default text">{{msg . "post.new.channels"}}</div>
                 </div>
             </div>
+            {{if gt $length  0}}
+            <script>
+                var todayChannelsValues = {{ marshal .settings.todaysChannels }};
+
+                todayChannels = JSON.parse(todayChannelsValues);
+                Object.keys(todayChannels).map(function (key, index) {
+                    todayChannels[key].selected = true;
+                    delete todayChannels[key].lastRead
+                    delete todayChannels[key].slug
+                });
+                $('.todays-posts-channels.dropdown')
+                    .dropdown({
+                        values: todayChannels
+                    });
+            </script>
+            {{end}}
+
 
 
             <div class="inline fields">
                 <label>Posts Per Page</label>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="post-per-page" checked="checked" value="1">
+                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 5.0}} checked="checked"
+                            {{end}} value="1">
                         <label>5</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="post-per-page" value="2">
+                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 10.0}} checked="checked"
+                            {{end}} value="2">
                         <label>10</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="post-per-page" value="3">
+                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 25.0}} checked="checked"
+                            {{end}} value="3">
                         <label>25</label>
                     </div>
                 </div>

@@ -1,16 +1,18 @@
 package app
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/revel/revel"
 	"html/template"
 	"sozluk/app/helpers"
 	"sozluk/app/models"
 	"strings"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/revel/revel"
 )
 
 var (
@@ -124,6 +126,12 @@ func init() {
 		return template.HTML(strings.Replace(helpers.FormatContent(str), "\n", "<br>", -1))
 	}
 
+	revel.TemplateFuncs["marshal"] = func(v interface{}) string {
+		a, _ := JSONMarshal(v)
+		s := strings.Replace(string(a), `\x22`, `"`, -1)
+		return string(s)
+	}
+
 	revel.OnAppStart(InitDB)
 }
 
@@ -137,6 +145,14 @@ var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 	c.Response.Out.Header().Add("Referrer-Policy", "strict-origin-when-cross-origin")
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
+}
+
+func JSONMarshal(t interface{}) ([]byte, error) {
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(true)
+	err := encoder.Encode(t)
+	return buffer.Bytes(), err
 }
 
 //func ExampleStartupScript() {

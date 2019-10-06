@@ -19,9 +19,9 @@ func (c Settings) View() revel.Result {
 		c.Redirect(User.Login)
 	}
 
-	settings := u.Settings
-
-	return c.Render(settings)
+	settings, _ := c.Session.Get("settings")
+	uuid := u.UserID
+	return c.Render(settings, uuid)
 }
 
 func (c Settings) SettingsPost() revel.Result {
@@ -32,11 +32,11 @@ func (c Settings) SettingsPost() revel.Result {
 	//save
 	_, err := c.SettingsService.Save(u, settings)
 	if err != nil {
-		//override session values
-		c.Session["settings"] = settings
+		c.Log.Error("%v", err)
 		c.Flash.Error(c.Message("settings.updated.error"))
 	} else {
-		c.Log.Error("%v", err)
+		//override session values
+		c.Session.Set("settings", settings)
 		c.Flash.Success(c.Message("settings.updated.sucessfully"))
 	}
 
