@@ -26,6 +26,16 @@ Configure your database in app.conf file then point your browser to 127.0.0.1:90
 
 > `postgresql` is default database with docker, you can also set mysql or sqlite 
 
+### PgAdmin Access
+With docker, pgadmin4 comes by default. To connect `0.0.0.0:5050` 
+```
+Credentials
+pgadmin4@pgadmin.org
+admin
+```
+
+
+
 #### To build for production
 ```
 revel build -a sozluk/ -t sozluk-app/ -m prod
