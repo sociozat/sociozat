@@ -60,13 +60,6 @@ func InitDB() {
 var DefaultLocale string
 var GetDefaultLocaleFilter = func(c *revel.Controller, fc []revel.Filter) {
 	DefaultLocale = c.Request.Locale
-
-	//set default settings
-	settings := models.SettingsModel{}
-	if sess, _ := c.Session.Get("settings"); sess == nil {
-		c.Session.Set("settings", settings)
-	}
-
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
 
@@ -91,6 +84,15 @@ var GetCurrenUser = func(c *revel.Controller, fc []revel.Filter) {
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
 
+func SetDefaultSettings(c *revel.Controller) revel.Result {
+	//set default settings
+	settings := models.SettingsModel{}
+	if sess, _ := c.Session.Get("settings"); sess == nil {
+		c.Session.Set("settings", settings)
+	}
+	return nil
+}
+
 func init() {
 	// Filters is the default set of global filters.
 	revel.Filters = []revel.Filter{
@@ -109,6 +111,8 @@ func init() {
 		revel.BeforeAfterFilter,       // Call the before and after filter functions
 		revel.ActionInvoker,           // Invoke the action.
 	}
+
+	revel.InterceptMethod(SetDefaultSettings, revel.BEFORE)
 
 	// Register startup functions with OnAppStart
 	// revel.DevMode and revel.RunMode only work inside of OnAppStart. See Example Startup Script

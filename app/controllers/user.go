@@ -87,6 +87,11 @@ func (c User) Logout() revel.Result {
 	for k := range c.Session {
 		delete(c.Session, k)
 	}
+
+	//we need defalt settings
+	settings := models.SettingsModel{}
+	c.Session.Set("settings", settings)
+
 	return c.Redirect(App.Index)
 }
 
