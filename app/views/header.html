@@ -30,12 +30,14 @@
 				<div class="ui mini image middle aligned ">
 					<img src="https://semantic-ui.com/images/logo.png">
 				</div>
-				<a class="item">Today</a>
-				<a class="item">Trending</a>
-				<a class="item">Football</a>
-				<a class="item">Politics</a>
-				<a class="item">Fashion</a>
-				<a class="item">Health</a>
+				
+				<a class="item" href="{{url "App.Index"}}">Today</a>
+				{{ $settings := (session "settings" .)}}
+				{{if $settings.headerChannels}}
+					{{ range $channel := $settings.headerChannels }}
+					<a class="item" href="{{url "Channel.View" $channel.slug}}">{{$channel.name}}</a>
+					{{end}}
+				{{end}}
 
 				<div class="right menu">
 				    <div class="ui right aligned category search item">

@@ -7,6 +7,7 @@ require (
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec
 	github.com/jinzhu/gorm v1.9.10
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/lib/pq v1.1.1
 	github.com/luci/go-render v0.0.0-20160219211803-9a04cc21af0f
 	github.com/mattn/go-colorable v0.1.2
 	github.com/mattn/go-isatty v0.0.8
