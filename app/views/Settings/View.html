@@ -17,7 +17,7 @@
             </div>
             {{ $headerChannelsLength := 0}}
             {{if .settings.headerChannels}}
-            {{ $headerChannelsLength := len .settings.headerChannels }}
+            {{ $headerChannelsLength = len .settings.headerChannels }}
             {{end}}
             <div class="field">
                 <label>Header Channel List (max 10)</label>
@@ -46,7 +46,7 @@
 
             {{ $todaysChannelsLength := 0}}
             {{if .settings.todaysChannels}}
-            {{ $todaysChannelsLength := len .settings.todaysChannels }}
+            {{ $todaysChannelsLength = len .settings.todaysChannels }}
             {{end}}
             <div class=" field">
                 <label>Customized Today's Posts</label>
