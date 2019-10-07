@@ -15,8 +15,10 @@
                     <input type="text" disabled value="{{ .uuid}}">
                 </div>
             </div>
-
-            {{ $length := len .settings.headerChannels }}
+            {{ $headerChannelsLength := 0}}
+            {{if .settings.headerChannels}}
+            {{ $headerChannelsLength := len .settings.headerChannels }}
+            {{end}}
             <div class="field">
                 <label>Header Channel List (max 10)</label>
                 <div class="ui fluid multiple search selection header-channels dropdown">
@@ -25,7 +27,7 @@
                     <div class="default text">{{msg . "post.new.channels"}}</div>
                 </div>
             </div>
-            {{if gt $length  0}}
+            {{if gt $headerChannelsLength  0}}
             <script>
                 var headerChannelsValues = {{ marshal .settings.headerChannels }};
 
@@ -42,16 +44,18 @@
             </script>
             {{end}}
 
-
-            {{ $length := len .settings.todaysChannels }}
+            {{ $todaysChannelsLength := 0}}
+            {{if .settings.todaysChannels}}
+            {{ $todaysChannelsLength := len .settings.todaysChannels }}
+            {{end}}
             <div class=" field">
                 <label>Customized Today's Posts</label>
                 <div class="ui toggle checkbox customized-todays-select">
-                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $length 0}} checked="checked" {{end}}>
+                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $todaysChannelsLength 0}} checked="checked" {{end}}>
                 </div>
             </div>
 
-            <div class="field customized-todays-posts {{if lt $length 1}}transition hidden{{end}}">
+            <div class="field customized-todays-posts {{if lt $todaysChannelsLength 1}}transition hidden{{end}}">
                 <label>Select up to 5 channel</label>
                 <div class="ui fluid multiple search selection todays-posts-channels dropdown">
                     <input name="todays-posts-channels" multiple=true type="hidden" />
@@ -59,7 +63,7 @@
                     <div class="default text">{{msg . "post.new.channels"}}</div>
                 </div>
             </div>
-            {{if gt $length  0}}
+            {{if gt $todaysChannelsLength 0}}
             <script>
                 var todayChannelsValues = {{ marshal .settings.todaysChannels }};
 
