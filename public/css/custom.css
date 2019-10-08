@@ -105,6 +105,10 @@ p {
   float:left;
 }
 
+.ui.left.sidebar {
+  min-height: fit-content
+}
+
 .ui.selection.list .list>.item, .ui.selection.list>.item {
   color: #000 !important;
 }

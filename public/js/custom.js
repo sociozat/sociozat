@@ -109,21 +109,4 @@ $(document).ready(function () {
 	}
 	);
 
-	$("select").each(function () {
-		var $that = $(this);
-		var values = $that.val();
-		$("option", $that).each(function () {
-			$(this).removeAttr("selected");
-		});
-		$that.dropdown('set selected', values);
-		$("option", $that).each(function () {
-			var curr_value = $(this).val();
-			for (var i = 0; i < values; i++) {
-				if (values[i] == curr_value) {
-					$(this).attr('selected', 'selected');
-				}
-			}
-		});
-	});
-
 });
