@@ -46,7 +46,7 @@ func (c ChannelRepository) GetPostsByChannel(params models.SearchParams) (*pagin
 
 	var err error
 
-	tx := app.DB.Debug().Table("posts").
+	tx := app.DB.Table("posts").
 		Joins("join topics on topics.id = posts.topic_id").
 		Joins("join topic_channels on posts.topic_id = topic_channels.topic_model_id").
 		Where("topic_channels.channel_model_id = ?", channel.ID).

@@ -22,7 +22,8 @@ type Message struct {
 
 type Channel struct {
 	App
-	ChannelService services.ChannelService
+	ChannelService  services.ChannelService
+	SettingsService services.SettingsService
 }
 
 //Json returns a json responce with channel collection
@@ -46,14 +47,19 @@ func (c Channel) Json() revel.Result {
 
 }
 
+//View channel detail page with posts
 func (c Channel) View(slug string) revel.Result {
 	page, _ := strconv.Atoi(c.Params.Query.Get("page"))
-	limit, _ := strconv.Atoi(c.Params.Query.Get("limit"))
 
+	session, err := c.Session.Get("settings")
+	c.Log.Debugf("settings map", session)
+
+	settings, _ := c.SettingsService.MapSettings(session)
+	c.Log.Debugf("settings map", settings)
 	params := models.SearchParams{
 		Slug:    slug,
 		Page:    page,
-		Limit:   limit,
+		Limit:   settings.PostPerPage,
 		OrderBy: []string{"posts.id DESC"},
 	}
 

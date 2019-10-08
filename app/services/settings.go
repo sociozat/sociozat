@@ -7,6 +7,7 @@ import (
 	"sozluk/app/repositories"
 	"time"
 
+	"github.com/mitchellh/mapstructure"
 	"github.com/revel/revel"
 )
 
@@ -22,6 +23,16 @@ type SettingsService struct {
 	PostService       PostService
 }
 
+//MapSettings generates SettingsModel instance from json
+func (s SettingsService) MapSettings(sets interface{}) (models.SettingsModel, error) {
+	settings := models.SettingsModel{}
+
+	err := mapstructure.Decode(sets, &settings)
+
+	return settings, err
+}
+
+//TransformValues generates SettingsModel instance from form params
 func (s SettingsService) TransformValues(params *revel.Params) models.SettingsModel {
 	revel.AppLog.Debug("%v", params.Get("header-channels"))
 
