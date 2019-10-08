@@ -89,8 +89,7 @@ func (c User) Logout() revel.Result {
 	}
 
 	//we need defalt settings
-	settings := models.SettingsModel{}
-	c.Session.Set("settings", settings)
+	app.SetDefaultSettings(c.Controller)
 
 	return c.Redirect(App.Index)
 }

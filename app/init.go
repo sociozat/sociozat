@@ -84,12 +84,24 @@ var GetCurrenUser = func(c *revel.Controller, fc []revel.Filter) {
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
 
+//SetDefaultSettings if there is no settings in session.
 func SetDefaultSettings(c *revel.Controller) revel.Result {
 	//set default settings
-	settings := models.SettingsModel{}
-	if sess, _ := c.Session.Get("settings"); sess == nil {
-		c.Session.Set("settings", settings)
+	settings := models.SettingsModel{
+		PostPerPage:    10,
+		Theme:          "default",
+		TodaysChannels: nil,
+		HeaderChannels: nil,
 	}
+
+	if sess, _ := c.Session.Get("settings"); sess == nil {
+		var inInterface map[string]interface{}
+		inrec, _ := json.Marshal(settings)
+		json.Unmarshal(inrec, &inInterface)
+
+		c.Session.Set("settings", inInterface)
+	}
+
 	return nil
 }
 
