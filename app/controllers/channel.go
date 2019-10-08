@@ -51,11 +51,9 @@ func (c Channel) Json() revel.Result {
 func (c Channel) View(slug string) revel.Result {
 	page, _ := strconv.Atoi(c.Params.Query.Get("page"))
 
-	session, err := c.Session.Get("settings")
-	c.Log.Debugf("settings map", session)
+	sets, err := c.Session.Get("settings")
 
-	settings, _ := c.SettingsService.MapSettings(session)
-	c.Log.Debugf("settings map", settings)
+	settings, _ := c.SettingsService.MapSettings(sets)
 	params := models.SearchParams{
 		Slug:    slug,
 		Page:    page,
