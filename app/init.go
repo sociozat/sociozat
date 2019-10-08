@@ -89,6 +89,7 @@ func SetDefaultSettings(c *revel.Controller) revel.Result {
 	//set default settings
 	settings := models.SettingsModel{
 		PostPerPage:    10,
+		TopicPerPage:   10,
 		Theme:          "default",
 		TodaysChannels: nil,
 		HeaderChannels: nil,

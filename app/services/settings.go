@@ -10,7 +10,7 @@ import (
 	"github.com/revel/revel"
 )
 
-var postPerPage = map[string]int{
+var perPage = map[string]int{
 	"1": 5,
 	"2": 10,
 	"3": 25,
@@ -40,7 +40,6 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 			headerChannels = append(headerChannels, headerChannel)
 		}
 	}
-	revel.AppLog.Debug("%v", headerChannels)
 
 	//todays channels
 	todaysChannels := []models.UserTodaysChannels{}
@@ -67,7 +66,8 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 	settings := models.SettingsModel{
 		HeaderChannels: headerChannels,
 		TodaysChannels: todaysChannels,
-		PostPerPage:    postPerPage[params.Form.Get("post-per-page")],
+		PostPerPage:    perPage[params.Form.Get("post-per-page")],
+		TopicPerPage:   perPage[params.Form.Get("topic-per-page")],
 		Theme:          theme,
 	}
 
@@ -75,6 +75,7 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 
 }
 
+//Save update user settings
 func (s SettingsService) Save(user *models.UserModel, settings models.SettingsModel) (models.SettingsModel, error) {
 
 	settingsjson, err := json.Marshal(settings)

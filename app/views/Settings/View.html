@@ -51,7 +51,8 @@
             <div class=" field">
                 <label>Customized Today's Posts</label>
                 <div class="ui toggle checkbox customized-todays-select">
-                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $todaysChannelsLength 0}} checked="checked" {{end}}>
+                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $todaysChannelsLength 0}}
+                        checked="checked" {{end}}>
                 </div>
             </div>
 
@@ -81,8 +82,6 @@
             </script>
             {{end}}
 
-
-
             <div class="inline fields">
                 <label>Posts Per Page</label>
                 <div class="field">
@@ -107,6 +106,33 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="inline fields">
+                <label>Topic Per Page</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 5.0}} checked="checked"
+                            {{end}} value="1">
+                        <label>5</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 10.0}}
+                            checked="checked" {{end}} value="2">
+                        <label>10</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 25.0}}
+                            checked="checked" {{end}} value="3">
+                        <label>25</label>
+                    </div>
+                </div>
+            </div>
+
             <button class="ui button" type="submit">Save</button>
 
         </form>
