@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"fmt"
+	"sozluk/app/models"
 	"sozluk/app/services"
+	"strconv"
 
 	"github.com/revel/revel"
 )
@@ -29,7 +32,7 @@ func (c Channel) Json() revel.Result {
 		return c.RenderJSON(Message{Success: false, Message: "Type Something"})
 	}
 
-	channels, _ := c.ChannelService.List(search)
+	channels, _ := c.ChannelService.Search(search)
 	if len(channels) > 0 {
 		//map channels as name-value
 		response := []ChannelResponse{}
@@ -44,5 +47,29 @@ func (c Channel) Json() revel.Result {
 }
 
 func (c Channel) View(slug string) revel.Result {
-	return c.Render()
+	page, _ := strconv.Atoi(c.Params.Query.Get("page"))
+	limit, _ := strconv.Atoi(c.Params.Query.Get("limit"))
+
+	params := models.SearchParams{
+		Slug:    slug,
+		Page:    page,
+		Limit:   limit,
+		OrderBy: []string{"posts.id DESC"},
+	}
+
+	posts, channel, err := c.ChannelService.GetPostsByChannel(params)
+
+	if err != nil {
+		c.Flash.Error(err.Error())
+		return c.Redirect(App.Index)
+	}
+
+	var pagination = make(map[int]string)
+	for i := 1; i <= posts.TotalPage; i++ {
+		c.Params.Query.Set("page", strconv.Itoa(i))
+		pageValue := fmt.Sprintf("/c/%s?%s", c.Params.Route.Get("slug"), c.Params.Query.Encode())
+		pagination[i] = pageValue
+	}
+
+	return c.Render(posts, channel, pagination)
 }

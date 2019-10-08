@@ -3,13 +3,21 @@ package services
 import (
 	"sozluk/app/models"
 	"sozluk/app/repositories"
+
+	"github.com/biezhi/gorm-paginator/pagination"
 )
 
+//ChannelService struct
 type ChannelService struct {
 	ChannelRepository repositories.ChannelRepository
 }
 
-//List gets a channel list by searhc query
-func (s ChannelService) List(search string) ([]models.ChannelModel, error) {
-	return s.ChannelRepository.Find(search)
+//Search gets a channel list by search query
+func (s ChannelService) Search(search string) ([]models.ChannelModel, error) {
+	return s.ChannelRepository.Search(search)
+}
+
+//GetPostsByChannel gets a channel by slug or returns errror
+func (s ChannelService) GetPostsByChannel(params models.SearchParams) (*pagination.Paginator, *models.ChannelModel, error) {
+	return s.ChannelRepository.GetPostsByChannel(params)
 }
