@@ -18,6 +18,7 @@ user.form.password = Password
 user.form.remember = Remember
 user.form.lost.passwor = Lost Password
 user.settings = Settings
+user.profile = Profile
 
 user.setting.night.mode = Night Mode
 
@@ -40,6 +41,8 @@ topic.create.success.message = Thanks for contributing. You are awesome!
 
 settings.updated.sucessfully = Settings Updated Successfully
 settings.updated.error = Something went wrong, no worries we logged this. You should try later.
+
+greeting.user = Welcome %s
 
 [GB]
 greeting.user = Welcome %s

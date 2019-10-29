@@ -116,18 +116,13 @@ p {
 }
 
 .ui.left.sidebar {
-  min-height: fit-content
+  margin-top: 22px !important;
 }
 
 .ui.selection.list .list>.item, .ui.selection.list>.item {
   color: #000 !important;
 }
 
-html {
-    overflow: scroll;
-    overflow-x: hidden;
-}
-html, body {height:100%;}
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
@@ -136,3 +131,7 @@ html, body {height:100%;}
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
+  .pusher {
+    margin-top: 20px;
+    padding-left: 15px;
+  }

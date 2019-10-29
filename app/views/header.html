@@ -50,9 +50,9 @@
 				</div>
 			</div>
 		</div>
-  </div>
+  	</div>
   
-	 <div class="tablet mobile only row">
+	<div class="tablet mobile only row">
 		<div class="column">
 			<div class="ui menu fixed">
 					<a id="mobile_item" class="item left"><i class="bars icon"></i></a>
@@ -65,24 +65,21 @@
 	</div>
 
 </div>
+<div class="ui left sidebar vertical visible list divided selection">
+{{template "_partials/left.html" .}}
+</div>
 
-<div class="ui pushable segment">
-		<div class="ui left sidebar vertical visible list divided selection">
-        {{template "_partials/left.html" .}}
-		</div>
+<div class="ui right sidebar vertical menu">
+	{{if (session "user" .)  }}
+		<a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
+		<a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
+		<a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
+		<a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+	{{end}}
+</div>
 
-		<div class="ui right sidebar vertical menu">
-      {{if (session "user" .)  }}
-			<a class="item">Profil</a>
-			<a class="item">mesjlar</a>
-			<a class="item">ayar</a>
-      <a class="item">çıkış</a>
-      {{end}}
-		</div>
-
-		<div class="pusher">
-			<div id="content">
+<div class="pusher">
           <div class="ui grid stackable">
             <!-- Content Starts -->
-						<div class="nine wide column">
-						 {{template "flash.html" .}}
+			<div class="nine wide column">
+				{{template "flash.html" .}}

@@ -1,12 +1,12 @@
 $(document).ready(function () {
-	$('.ui.left.sidebar').sidebar({
-		context: $('.ui.pushable.segment'),
-		transition: 'push',
-		closable: false,
-	}).sidebar('attach events', '#mobile_item');
+	// $('.ui.left.sidebar').sidebar({
+	// 	context: $('.pusher'),
+	// 	transition: 'overlay',
+	// 	closable: false,
+	// }).sidebar('attach events', '#mobile_item');
 
 	$('.ui.right.sidebar').sidebar({
-		context: $('.ui.pushable.segment'),
+		context: $('.pusher'),
 		transition: 'overlay'
 	}).sidebar('attach events', '#user_item');
 
