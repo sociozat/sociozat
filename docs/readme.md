@@ -6,8 +6,8 @@ also `dep` package manager
 
 ### Using Docker Compose
 ``` 
-git clone https://github.com/bencagri/sozluk
-cd sozluk
+git clone https://github.com/bencagri/sociozat
+cd sociozat
 cp conf/app.conf.dist conf/app.conf
 dep ensure
 docker-compose up
@@ -16,8 +16,8 @@ point your browser to `127.0.0.1:9000`
 
 #### For Manual Installation
 ```
-git clone https://github.com/bencagri/sozluk
-cd sozluk
+git clone https://github.com/bencagri/sociozat
+cd sociozat
 cp conf/app.conf.dist conf/app.conf
 dep ensure
 revel run
@@ -38,10 +38,10 @@ admin
 
 #### To build for production
 ```
-revel build -a sozluk/ -t sozluk-app/ -m prod
+revel build -a sociozat/ -t sociozat-app/ -m prod
 ```
 
-Go will build the app inside sozluk-app. you can run `run.sh` to start web server
+Go will build the app inside sociozat-app. you can run `run.sh` to start web server
 
 
 ## Folder Structure Design

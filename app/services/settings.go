@@ -2,9 +2,9 @@ package services
 
 import (
 	"encoding/json"
-	"sozluk/app"
-	"sozluk/app/models"
-	"sozluk/app/repositories"
+	"sociozat/app"
+	"sociozat/app/models"
+	"sociozat/app/repositories"
 	"time"
 
 	"github.com/mitchellh/mapstructure"

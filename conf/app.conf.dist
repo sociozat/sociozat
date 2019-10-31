@@ -24,7 +24,7 @@ app.url = http://localhost:9000
 # Sets `revel.AppName` for use in-app.
 # Example:
 #   `if revel.AppName {...}`
-app.name = sozluk
+app.name = sociozat
 
 # A secret string which is passed to cryptographically sign the cookie to prevent
 # (and detect) user modification.
@@ -65,7 +65,7 @@ db.driver     = postgres  # mysql, postgres or sqlite3
 db.port       = 5432
 db.user       = postgres
 db.password   = postgres
-db.name       = sozluk
+db.name       = sociozat
 db.charset    = utf8
 db.parse.time = True
 db.sslmode    = disable

@@ -1,12 +1,12 @@
 version: '3.5'
 services:
     app:
-      container_name: sozluk-app
+      container_name: sociozat-app
       build: 
         context: . # Use an image built from the specified dockerfile in the current directory.
         dockerfile: Dockerfile
       volumes:
-        - ./:/go/src/sozluk
+        - ./:/go/src/sociozat
       ports:
         - "9000:9000"
       depends_on:
@@ -14,7 +14,7 @@ services:
       #network_mode: "host"
 
     postgres-db:
-      container_name: sozluk-postgres
+      container_name: sociozat-postgres
       image: postgres:latest
       restart: always
 
@@ -31,7 +31,7 @@ services:
         - ./.docker/database.sql:/docker-entrypoint-initdb.d/1-database.sql
 
     pgadmin:
-      container_name: sozluk-pgadmin
+      container_name: sociozat-pgadmin
       image: dpage/pgadmin4
       environment:
         PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}

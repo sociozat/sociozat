@@ -4,8 +4,8 @@ import (
 	"github.com/biezhi/gorm-paginator/pagination"
 	// "github.com/revel/revel"
 	"errors"
-	"sozluk/app"
-	"sozluk/app/models"
+	"sociozat/app"
+	"sociozat/app/models"
 )
 
 //UserRepository struct

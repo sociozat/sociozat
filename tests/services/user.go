@@ -2,7 +2,7 @@ package tests
 
 import (
 	"github.com/revel/revel/testing"
-	"sozluk/app/services"
+	"sociozat/app/services"
 )
 
 type UserServiceTest struct {

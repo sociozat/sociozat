@@ -2,8 +2,8 @@ package services
 
 import (
 	"github.com/biezhi/gorm-paginator/pagination"
-	"sozluk/app/models"
-	"sozluk/app/repositories"
+	"sociozat/app/models"
+	"sociozat/app/repositories"
 )
 
 //TopicService struct

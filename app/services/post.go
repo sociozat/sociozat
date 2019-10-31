@@ -1,9 +1,9 @@
 package services
 
 import (
-	"sozluk/app"
-	"sozluk/app/models"
-	"sozluk/app/repositories"
+	"sociozat/app"
+	"sociozat/app/models"
+	"sociozat/app/repositories"
 	"strconv"
 	"strings"
 

@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/revel/revel"
-	"sozluk/app/services"
+	"sociozat/app/services"
 	"strconv"
 )
 

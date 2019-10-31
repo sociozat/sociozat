@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"sozluk/app/models"
+	"sociozat/app/models"
 	"time"
 
 	"github.com/jinzhu/gorm"

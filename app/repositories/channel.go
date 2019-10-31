@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"sozluk/app"
-	"sozluk/app/models"
+	"sociozat/app"
+	"sociozat/app/models"
 
 	"github.com/biezhi/gorm-paginator/pagination"
 )

@@ -3,9 +3,9 @@ package services
 import (
 	"github.com/biezhi/gorm-paginator/pagination"
 	"regexp"
-	"sozluk/app"
-	"sozluk/app/models"
-	"sozluk/app/repositories"
+	"sociozat/app"
+	"sociozat/app/models"
+	"sociozat/app/repositories"
 
 	"github.com/revel/revel"
 )

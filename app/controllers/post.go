@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"sozluk/app/services"
+	"sociozat/app/services"
 
 	"github.com/revel/revel"
 )

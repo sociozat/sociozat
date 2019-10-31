@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"fmt"
-	"sozluk/app/models"
-	"sozluk/app/services"
+	"sociozat/app/models"
+	"sociozat/app/services"
 	"strconv"
 
 	"github.com/revel/revel"

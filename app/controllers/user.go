@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"sozluk/app"
-	"sozluk/app/models"
-	"sozluk/app/services"
+	"sociozat/app"
+	"sociozat/app/models"
+	"sociozat/app/services"
 
 	"github.com/gosimple/slug"
 

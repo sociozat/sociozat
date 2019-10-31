@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"sozluk/app/models"
-	"sozluk/app/services"
+	"sociozat/app/models"
+	"sociozat/app/services"
 
 	"github.com/gosimple/slug"
 	"github.com/revel/revel"

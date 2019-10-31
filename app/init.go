@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"sozluk/app/helpers"
-	"sozluk/app/models"
+	"sociozat/app/helpers"
+	"sociozat/app/models"
 	"strings"
 
 	"github.com/jinzhu/gorm"
@@ -29,7 +29,7 @@ var DB *gorm.DB
 func InitDB() {
 
 	dbDriver := revel.Config.StringDefault("db.driver", "mysql")
-	dbName := revel.Config.StringDefault("db.name", "sozluk")
+	dbName := revel.Config.StringDefault("db.name", "sociozat")
 	dbUser := revel.Config.StringDefault("db.user", "root")
 	dbPassword := revel.Config.StringDefault("db.password", "root")
 	dbAddress := revel.Config.StringDefault("db.address", "127.0.0.1")
