@@ -118,7 +118,13 @@
   branch = "master"
   digest = "1:e9ba6a34ad011854cedae88e7094bd4ffc571d3ca892b040128ada81ae82de7e"
   name = "github.com/revel/modules"
-  packages = ["."]
+  packages = [
+    ".",
+    "static/app/controllers",
+    "static/app/model",
+    "testrunner/app",
+    "testrunner/app/controllers",
+  ]
   pruneopts = ""
   revision = "2737bfdaa8c41da68eae12bb18f7279b9f156048"
 
@@ -237,7 +243,7 @@
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
     "github.com/jinzhu/gorm/dialects/postgres",
-    "github.com/mattn/go-sqlite3",
+    "github.com/lib/pq",
     "github.com/mitchellh/mapstructure",
     "github.com/revel/modules",
     "github.com/revel/modules/static/app/controllers",

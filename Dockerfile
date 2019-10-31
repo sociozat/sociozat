@@ -11,6 +11,7 @@ CMD cd /conf && [[ ! -e app.conf ]] && cp app.conf.dist app.conf
 
 RUN go get github.com/revel/revel
 RUN go get github.com/revel/cmd/revel
+RUN go get -u github.com/golang/dep/cmd/dep
 
 EXPOSE 9000
 ENTRYPOINT revel run /go/src/sociozat 9000
