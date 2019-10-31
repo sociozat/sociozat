@@ -6,7 +6,7 @@ also `dep` package manager
 
 ### Using Docker Compose
 ``` 
-git clone https://github.com/bencagri/sociozat
+git clone https://github.com/sociozat/sociozat
 cd sociozat
 cp conf/app.conf.dist conf/app.conf
 dep ensure
@@ -16,7 +16,7 @@ point your browser to `127.0.0.1:9000`
 
 #### For Manual Installation
 ```
-git clone https://github.com/bencagri/sociozat
+git clone https://github.com/sociozat/sociozat
 cd sociozat
 cp conf/app.conf.dist conf/app.conf
 dep ensure
