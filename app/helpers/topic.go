@@ -2,15 +2,12 @@ package helpers
 
 import (
 	"sociozat/app/models"
-	"time"
 
 	"github.com/jinzhu/gorm"
 )
 
 func TodaysTopics(db *gorm.DB, channels []uint) []models.TopicModel {
 	topics := []models.TopicModel{}
-
-	yesterday := time.Now().AddDate(0, 0, -1)
 
 	tx := db.Table("posts").
 		Select("count(posts.id) as Post_Count, topics.name as Name, topics.slug as Slug").
@@ -21,7 +18,7 @@ func TodaysTopics(db *gorm.DB, channels []uint) []models.TopicModel {
 			Where("topic_channels.channel_model_id IN(?)", channels)
 	}
 
-	tx.Where("posts.created_at > ?", yesterday).
+	tx.Limit(100).
 		Group("topics.id").
 		Order("topics.updated_at DESC").
 		Find(&topics)
