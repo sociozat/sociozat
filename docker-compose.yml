@@ -5,12 +5,16 @@ services:
       build: 
         context: . # Use an image built from the specified dockerfile in the current directory.
         dockerfile: Dockerfile
+      working_dir: /go/src/sociozat
+      environment:
+        SOCIOZAT_ENV: ${SOCIOZAT_ENV:-dev} #or prod
       volumes:
         - ./:/go/src/sociozat
       ports:
         - "9000:9000"
       depends_on:
         - postgres-db
+      command: "revel run $SOCIOZAT_ENV"
       #network_mode: "host"
 
     postgres-db:

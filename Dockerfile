@@ -1,5 +1,7 @@
 FROM golang:1.12.10
 
+ENV SOCIOZAT_ENV=${SOCIOZAT_ENV:-dev}
+
 ENV GOPATH=/go
 RUN export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ENV GO111MODULE=off
@@ -14,4 +16,3 @@ RUN go get github.com/revel/cmd/revel
 RUN go get -u github.com/golang/dep/cmd/dep
 
 EXPOSE 9000
-ENTRYPOINT revel run /go/src/sociozat 9000

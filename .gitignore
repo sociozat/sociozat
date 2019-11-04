@@ -6,3 +6,4 @@ routes/
 .vscode
 vendor
 conf/app.conf
+log/
