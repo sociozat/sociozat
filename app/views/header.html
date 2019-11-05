@@ -64,6 +64,15 @@
 		</div>
 	</div>
 </div>
+<div class="ui right sidebar vertical menu">
+	{{if (session "user" .)  }}
+	<a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
+	<a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
+	<a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
+	<a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+	{{end}}
+</div>
+
 
 <div class="ui equal width three column stackable grid">
 	<div class="four wide column large screen only">
