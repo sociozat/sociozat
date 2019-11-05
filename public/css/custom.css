@@ -131,7 +131,18 @@ p {
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
-  .pusher {
-    margin-top: 20px;
-    padding-left: 15px;
-  }
+.pusher {
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+.post-count-label {
+  position: absolute !important;
+  transform: translateX(-126%) !important;
+  padding: .501em .833em !important
+ }
+
+ /* make segments flat*/
+ .ui.segment {
+  border-radius: 0em !important;
+ }

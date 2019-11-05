@@ -2,7 +2,12 @@
 
 
 <div class="ui segment">
-  <h3> <a href="{{url "Topic.View" .topic.Slug }}">{{.topic.Name}} </a></h3>
+    <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
+      <i class="icon comment"></i>{{.posts.TotalRecord}}
+    </div>
+    <div class="ui aligned">
+        <h3> <a href="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
+    </div>
 </div>
         
 <div class="segments">

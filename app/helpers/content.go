@@ -3,6 +3,7 @@ package helpers
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 func FormatContent(str string) string {
@@ -23,5 +24,8 @@ func ExtractUrl(str string) string {
 		//replace
 		str = re.ReplaceAllString(str, text)
 	}
+
+	str = strings.ToLower(str)
+
 	return str
 }
