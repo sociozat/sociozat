@@ -63,23 +63,15 @@
 			</div>
 		</div>
 	</div>
-
-</div>
-<div class="ui left sidebar vertical visible list divided selection">
-{{template "_partials/left.html" .}}
 </div>
 
-<div class="ui right sidebar vertical menu">
-	{{if (session "user" .)  }}
-		<a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
-		<a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
-		<a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
-		<a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
-	{{end}}
-</div>
+<div class="ui equal width three column stackable grid">
+	<div class="four wide column large screen only">
+		<div class="ui left sidebar vertical visible list divided selection">
+		{{template "_partials/left.html" .}}
+		</div>
+	</div>
 
-<div class="pusher">
-          <div class="ui grid stackable">
-            <!-- Content Starts -->
-			<div class="nine wide column">
-				{{template "flash.html" .}}
+	<div class="eight wide column centered">
+	{{template "flash.html" .}}
+	<div id="content">

@@ -131,10 +131,6 @@ p {
 ::-webkit-scrollbar-thumb {
     background: #FF0000;
 }
-.pusher {
-  margin-top: 20px;
-  padding-left: 15px;
-}
 
 .post-count-label {
   position: absolute !important;
@@ -145,4 +141,8 @@ p {
  /* make segments flat*/
  .ui.segment {
   border-radius: 0em !important;
+ }
+
+ .ui.left.sidebar, .ui.right.sidebar {
+  width:290px !important
  }

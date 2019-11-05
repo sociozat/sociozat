@@ -38,11 +38,10 @@ $(document).ready(function () {
 
 	$('.ui.post-config').dropdown();
 
-	$('.ui.sticky')
-		.sticky({
-			context: '#context'
-		})
-		;
+	$('.ui.sticky').sticky({
+		context: '#content',
+		offset: 25
+	});
 
 	function jqUpdateSize() {
 		var width = $(window).width();

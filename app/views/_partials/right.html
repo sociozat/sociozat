@@ -1,7 +1,14 @@
 <!-- Right Sidebar Large Screen -->
 <div class="four wide column large screen only">
-    <!-- Error Messages Start -->
-   
+    <div class="ui right sidebar vertical menu visible">
+      {{if (session "user" .)  }}
+        <a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
+        <a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
+        <a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
+        <a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+      {{end}}
+    </div>
+
     <!-- User View -->
     {{if (session "fulluser" .)  }}
     <div class="ui segment">
@@ -30,6 +37,7 @@
     {{end}}
 
     {{if and .topic .topic.Channels}}
+    <div class="ui sticky">
     <div class="ui segment">
         <div class="header">{{msg . "topic.channels"}}</div>
         <div class="ui vertical visible list divided selection">
@@ -39,6 +47,7 @@
                 </a>
             {{end}}
         </div>
+    </div>
     </div>
     {{end}}
       
