@@ -7,8 +7,15 @@ import (
 )
 
 func FormatContent(str string) string {
-	content := ExtractUrl(str)
-	return content
+	str = AutoLink(str)
+	str = ExtractUrl(str)
+	return str
+}
+
+func AutoLink(str string) string {
+	re := regexp.MustCompile(`(http|ftp|https):\/\/([\w\-_]+(?:(?:\.[\w\-_]+)+))([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?`)
+	str = re.ReplaceAllString(str, `<a class="item" href="$0" target="_blank">$0 <i class="icon external alternate"></i></a>`)
+	return str
 }
 
 func ExtractUrl(str string) string {
