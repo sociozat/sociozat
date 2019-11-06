@@ -76,7 +76,7 @@ func (p PostService) FindByID(id int) (*models.PostModel, error) {
 func (p PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
 	p.Validation.Check(m.Topic.Name,
 		revel.Required{},
-		revel.MaxSize{90},
+		revel.MaxSize{120},
 		revel.MinSize{2},
 	).Message(app.Trans("post.create.validation.name"))
 
