@@ -1,15 +1,21 @@
 {{template "header.html" .}}
 
-
-<div class="ui segment">
-    <h3> <a href="{{url "Channel.View" .channel.Slug }}">{{.channel.Name}} </a></h3>
+<div class="ui sticky title">
+  <div class="ui segment">
+      <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
+        <i class="icon comment"></i>{{.posts.TotalRecord}}
+      </div>
+      <div class="ui aligned">
+          <h3> <a href="{{url "Channel.View" .channel.Slug }}">{{format .channel.Name}} </a></h3>
+      </div>
+  </div>
 </div>
-
+{{with $dot := .}}
 {{ range .posts.Records}}
 <div class="ui segments">
 
     <!-- entries start -->
-    <div class="ui segment" style="max-height: 3rem; margin-bottom:10px">
+    <div class="ui segment">
         <h4> <a href="{{url "Topic.View" .Topic.Slug }}">{{.Topic.Name}} </a></h4>
     </div>
 
@@ -32,11 +38,20 @@
             <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
             <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
 
-            <a class="right aligned" style="margin-left:10px"></a>
+            <div class="ui dropdown post-config item right aligned" style="margin-left:10px">
+            <i class="ellipsis horizontal icon"></i>
+            <div class="menu">
+                <a class="item">{{ msg $dot "post.report"}}</a>
+                {{ if eq (session "user" $dot) .User.Username }} <a class="item">{{msg $dot "post.edit"}}</a> {{ end }}
+            </div>
+            </div>
+
+            <a class="right aligned"  href="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
             <a class="right aligned" href="{{url "Post.View" .ID}}">{{datetime .CreatedAt}}</a>
         </div>
     </div>
 </div>
+{{ end }}
 {{ end }}
 
 {{template "_partials/pagination.html" .}}

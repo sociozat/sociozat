@@ -50,7 +50,8 @@ func (c ChannelRepository) GetPostsByChannel(params models.SearchParams) (*pagin
 		Joins("join topics on topics.id = posts.topic_id").
 		Joins("join topic_channels on posts.topic_id = topic_channels.topic_model_id").
 		Where("topic_channels.channel_model_id = ?", channel.ID).
-		Preload("Topic")
+		Preload("Topic").
+		Preload("User")
 
 	paginator := pagination.Paging(&pagination.Param{
 		DB:      tx,

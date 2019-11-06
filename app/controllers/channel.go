@@ -74,6 +74,6 @@ func (c Channel) View(slug string) revel.Result {
 		pageValue := fmt.Sprintf("/c/%s?%s", c.Params.Route.Get("slug"), c.Params.Query.Encode())
 		pagination[i] = pageValue
 	}
-
-	return c.Render(posts, channel, pagination)
+	title := channel.Name
+	return c.Render(posts, channel, pagination, title)
 }
