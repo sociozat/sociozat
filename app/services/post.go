@@ -72,12 +72,12 @@ func (p PostService) FindByID(id int) (*models.PostModel, error) {
 	return p.PostRepository.FindByID(id)
 }
 
-//Validate validates user model form
+//Validate validates post model form
 func (p PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
 	p.Validation.Check(m.Topic.Name,
 		revel.Required{},
 		revel.MaxSize{90},
-		revel.MinSize{4},
+		revel.MinSize{2},
 	).Message(app.Trans("post.create.validation.name"))
 
 	p.Validation.Check(m.Content,

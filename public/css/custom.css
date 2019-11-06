@@ -77,12 +77,7 @@ p {
   margin: 0 0 2em;
   line-height: 1.5285em !important;
 }
-/* */
-#content {
-		min-height: 100px;
-    padding-top: 10px;
-    margin-left: 10px;
-}
+
 .ui.grid{
 		padding: 0 !important;
 }
@@ -142,7 +137,7 @@ p {
  }
 
  .ui.left.sidebar, .ui.right.sidebar {
-  width:290px !important
+    width:24% !important
  }
  .ui.segment, .ui.segments .segment {
    font-size: 1.14rem !important;
