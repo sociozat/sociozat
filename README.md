@@ -1,12 +1,32 @@
-Content Driven Community Platform written in [Go language](http://www.golang.org/).
+# SOCIOZAT
+
+[![Open Source Love png2](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Apache license](https://img.shields.io/badge/License-APACHE-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+
+Sociozat is a Personalised Content Driven Community Platform
 
 <p align="center">
 <img src="screenshot.png">
 </p>
 
-Project Status is *WIP*
+It aims to produce quality content on web with its precious `authors`. Users can filter the content based on their interests, set he bookmark urls to reach channels easily, create a topics, post a definition for a topic, subscribe to channels, users and topics.  
 
-Continue reading [development docs](/docs/readme.md)
+## Prerequisites
+
+Sociozat is open-source project that everybody can contribute, create bug reports and feature requests.
+Our main development platform is Github and we are using [issue tracker](https://github.com/sociozat/sociozat/issues).
+
+
+## Installing
+
+Continue reading [development docs](https://sociozat.org/docs/developer/installation)
+
+## Contributing
+
+Continue reading [contributing](CONTRIBUTING.md).
+
+## License
 
 Copyright 2019 Sociozat
 
