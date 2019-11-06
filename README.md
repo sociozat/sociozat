@@ -12,6 +12,9 @@ Sociozat is a Personalised Content Driven Community Platform
 
 It aims to produce quality content on web with its precious `authors`. Users can filter the content based on their interests, set he bookmark urls to reach channels easily, create a topics, post a definition for a topic, subscribe to channels, users and topics.  
 
+you can see the current `master` branch on live at (beta.sociozat.co)[https://beta.sociozat.co]
+also you can check our [docs](https://sociozat.org) and help us to improve. 
+
 ## Prerequisites
 
 Sociozat is open-source project that everybody can contribute, create bug reports and feature requests.
