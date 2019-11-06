@@ -7,6 +7,9 @@ global.smth= Smth
 global.try= Try
 global.new.topic = New Topic
 global.reply.topic= Reply
+global.search = Search ...
+global.search.results = Search Results
+global.menu.today= Latest
 
 user.login.title = Login
 user.form.logout = Logout
