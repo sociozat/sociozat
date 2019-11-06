@@ -1,15 +1,21 @@
 {{template "header.html" .}}
 
-
-<div class="ui segment">
-  <h3> <a href="{{url "User.Profile" .user.Slug }}">{{.user.Name}} </a></h3>
+<div class="ui sticky title">
+  <div class="ui segment">
+      <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
+        <i class="icon comment"></i>{{.posts.TotalRecord}}
+      </div>
+      <div class="ui aligned">
+          <h3> <a href="{{url "User.Profile" .user.Slug }}">{{.user.Name}} </a></h3>
+      </div>
+  </div>
 </div>
         
 {{ range .posts.Records}}
 <div class="ui segments">
 
   <!-- entries start -->
-  <div class="ui segment" style="max-height: 3rem; margin-bottom:10px">
+  <div class="ui segment">
     <h4> <a href="{{url "Topic.View" .Topic.Slug }}">{{.Topic.Name}} </a></h4>
   </div>
 
