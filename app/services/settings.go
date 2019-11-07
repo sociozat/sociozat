@@ -34,8 +34,6 @@ func (s SettingsService) MapSettings(sets interface{}) (models.SettingsModel, er
 
 //TransformValues generates SettingsModel instance from form params
 func (s SettingsService) TransformValues(params *revel.Params) models.SettingsModel {
-	revel.AppLog.Debug("%v", params.Get("header-channels"))
-
 	//header channels
 	headerChannels := []models.UserHeaderChannels{}
 	if params.Get("header-channels") != "" {

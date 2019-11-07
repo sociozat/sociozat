@@ -2,14 +2,16 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/revel/revel"
 	"sociozat/app/services"
 	"strconv"
+
+	"github.com/revel/revel"
 )
 
 type Topic struct {
 	App
-	TopicService services.TopicService
+	TopicService    services.TopicService
+	SettingsService services.SettingsService
 }
 
 //View renders post by id
@@ -17,7 +19,10 @@ func (c Topic) View(slug string) revel.Result {
 
 	page, _ := strconv.Atoi(c.Params.Query.Get("page"))
 
-	limit, _ := strconv.Atoi(c.Params.Query.Get("limit"))
+	sets, _ := c.Session.Get("settings")
+
+	settings, _ := c.SettingsService.MapSettings(sets)
+	limit := settings.PostPerPage
 
 	startDate := c.Params.Query.Get("start_date")
 	if startDate == "" {
