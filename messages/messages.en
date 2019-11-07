@@ -7,6 +7,9 @@ global.smth= Smth
 global.try= Try
 global.new.topic = New Topic
 global.reply.topic= Reply
+global.search = Search ...
+global.search.results = Search Results
+global.menu.today= Latest
 
 user.login.title = Login
 user.form.logout = Logout
@@ -43,6 +46,8 @@ settings.updated.sucessfully = Settings Updated Successfully
 settings.updated.error = Something went wrong, no worries we logged this. You should try later.
 
 greeting.user = Welcome %s
+
+search.all.results = View All Results
 
 [GB]
 greeting.user = Welcome %s

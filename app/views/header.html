@@ -31,7 +31,17 @@
 					<img src="https://semantic-ui.com/images/logo.png">
 				</div>
 				
-				<a class="item" href="{{url "App.Index"}}">Today</a>
+				<a class="item" href="{{url "App.Index"}}">{{msg . "global.menu.today"}}</a>
+
+				<div class="menu">
+				    <div class="ui right aligned category search item">
+				      <div class="ui transparent icon input">
+				        <input class="prompt" type="text" placeholder="{{msg . "global.search"}}">
+				        <i class="search link icon"></i>
+				      </div>
+				      <div class="results"></div>
+				    </div>
+				</div>
 				{{ $settings := (session "settings" .)}}
 				{{if $settings.headerChannels}}
 					{{ range $channel := $settings.headerChannels }}
@@ -39,15 +49,6 @@
 					{{end}}
 				{{end}}
 
-				<div class="right menu">
-				    <div class="ui right aligned category search item">
-				      <div class="ui transparent icon input">
-				        <input class="prompt" type="text" placeholder="Ara ...">
-				        <i class="search link icon"></i>
-				      </div>
-				      <div class="results"></div>
-				    </div>
-				</div>
 			</div>
 		</div>
   	</div>

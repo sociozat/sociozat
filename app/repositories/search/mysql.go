@@ -1,5 +1,6 @@
 package search
 
+
 import (
 	"sociozat/app"
 	"sociozat/app/models"

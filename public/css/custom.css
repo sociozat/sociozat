@@ -137,8 +137,15 @@ p {
  }
 
  .ui.left.sidebar, .ui.right.sidebar {
-    width:24% !important
+    width:24% !important;
+    z-index: inherit;
  }
  .ui.segment, .ui.segments .segment {
    font-size: 1.14rem !important;
  }
+
+ /* Search */
+.ui[class*="right aligned"].search>.results {
+  right: auto;
+  left: 0;
+}

@@ -136,6 +136,13 @@ i18n.default_language = en
 module.static = github.com/revel/modules/static
 
 
+# Default Search Engine
+# We have adapter pattern for search, you can define as postgres,mysql,elasticsearch,solr 
+# currently supports postgres,mysql and sqlite
+# already set by default database engine
+# for full text capability check documentation on https://github.com/sociozat/docs/blob/master/en-US/developer/search.md
+search.adapter = %(db.driver)s
+
 ###############################################################################
 # Footer links
 
