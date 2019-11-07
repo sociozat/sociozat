@@ -47,6 +47,8 @@ settings.updated.error = Something went wrong, no worries we logged this. You sh
 
 greeting.user = Welcome %s
 
+search.all.results = View All Results
+
 [GB]
 greeting.user = Welcome %s
   

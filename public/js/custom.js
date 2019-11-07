@@ -108,4 +108,58 @@ $(document).ready(function () {
 	}
 	);
 
+
+	// SEARCH
+
+	$('.ui.search').search({
+		type: 'category',
+		minCharacters: 3,
+		apiSettings: {
+			onResponse: function (apiResponse) {
+				var
+					response = {
+						results: {},
+						actions: {}
+					}
+					;
+				// translate GitHub API response to work with search
+				$.each(apiResponse.results, function (index, item) {
+					var maxResults = 12;
+					if (index >= maxResults) {
+						return false;
+					}
+					type = item.type;
+
+					// create new language category
+					if (response.results[type] === undefined) {
+						response.results[type] = {
+							name: type,
+							results: []
+						};
+					}
+
+					if (type == "post") {
+						slug = "/p/" + item.slug
+					} else if (type == "topic") {
+						slug = "/t/" + item.slug
+					} else if (type == "channel") {
+						slug = "/c/" + item.slug
+					} else if (type == "user") {
+						slug = "/u/" + item.slug
+					}
+
+					// add result to category
+					response.results[type].results.push({
+						title: item.title,
+						url: slug
+					});
+				});
+				response.actions = apiResponse.actions
+				console.log(response);
+				return response;
+			},
+			url: '/api/search/{query}'
+		}
+	});
+
 });

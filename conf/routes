@@ -26,6 +26,10 @@ GET     /c/:slug                     Channel.View
 GET     /t/:slug                     Topic.View
 POST    /t/:slug                     Topic.Reply
 
+## Api Routes
+GET     /api/search/:term            ApiSearch.Query
+
+
 # Ignore favicon requests
 GET     /favicon.ico                  404
 
