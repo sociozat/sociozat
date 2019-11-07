@@ -1,18 +1,21 @@
 package search
 
-import "sociozat/app/models"
+
+import (
+	"sociozat/app"
+	"sociozat/app/models"
+)
 
 type MysqlSearch struct {
 }
 
 func (s MysqlSearch) Query(term string) []models.SiteSearchResult {
 	//do query and set results
-	tmp := make([]models.SiteSearchResult, 10)
-	for i := range tmp {
-		tmp[i].Title = "title coming from mysql"
-		tmp[i].Slug = "url"
-		tmp[i].Type = "post"
+	results := []models.SiteSearchResult{}
+
+	if err := app.DB.Table("searches").Where("WHERE MATCH (title) AGAINST (? IN BOOLEAN MODE)", term).Find(&results).Error; err != nil {
+		return results
 	}
 
-	return tmp
+	return results
 }
