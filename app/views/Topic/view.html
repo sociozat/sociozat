@@ -18,7 +18,7 @@
     {{ range .posts.Records}}
 
     <div class="ui segment" style="min-height: 6rem; margin-bottom:10px">
-    <p>{{format .Content}}</p> 
+    <p>{{format .Content}}</p>
       <div class="ui bottom attached label">
         <a  class="left aligned "
             href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
@@ -41,7 +41,9 @@
           <i class="ellipsis horizontal icon"></i>
           <div class="menu">
             <a class="item">{{ msg $dot "post.report"}}</a>
-            {{ if eq (session "user" $dot) .User.Username }} <a class="item">{{msg $dot "post.edit"}}</a> {{ end }}
+            {{ if eq (session "user" $dot) .User.Username }}
+                <a class="item" href="{{url "Post.Edit" .ID}}">{{msg $dot "post.edit"}}</a>
+            {{ end }}
           </div>
         </div>
 

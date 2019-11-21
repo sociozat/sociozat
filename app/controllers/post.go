@@ -62,3 +62,63 @@ func (c Post) View(id int) revel.Result {
 	var topic = post.Topic
 	return c.Render(title, post, topic)
 }
+
+//Edit post by id
+func (c Post) Edit(id int) revel.Result {
+	u := c.connected()
+
+	if u == nil {
+		c.Flash.Error(c.Message("auth.login.required"))
+		return c.Redirect(Post.New)
+	}
+
+	post, err := c.PostService.FindByID(id)
+
+	if err != nil {
+		c.FlashParams()
+		return c.Redirect(App.Index)
+	}
+
+	if u.UserID != post.User.UserID {
+		c.Flash.Error(c.Message("post.update.denied"))
+		return c.Redirect(Post.View, id)
+	}
+
+	var title = c.Message("post.single.title", post.User.Username, post.Topic.Name)
+	var topic = post.Topic
+	return c.Render(title, post, topic)
+}
+
+//UPdate post by id
+func (c Post) Update(id int) revel.Result {
+	u := c.connected()
+
+	if u == nil {
+		c.Flash.Error(c.Message("auth.login.required"))
+		return c.Redirect(Post.New)
+	}
+
+	post, err := c.PostService.FindByID(id)
+
+	if err != nil {
+		c.FlashParams()
+		return c.Redirect(App.Index)
+	}
+
+	if u.UserID != post.User.UserID {
+		c.Flash.Error("post.update.denied")
+		return c.Redirect(Post.View, id)
+	}
+
+	c.PostService.Validation = c.Validation //this should come from controller, cuz of pointed
+	post.Content = c.Params.Form.Get("content")
+	post, v, err := c.PostService.UpdatePost(post)
+
+	if v != nil {
+		c.FlashParams()
+		return c.Redirect(Post.Edit, post.ID)
+	}
+
+	c.Flash.Success(c.Message("post.update.success.message"))
+	return c.Redirect(Post.View, post.ID)
+}

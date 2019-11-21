@@ -33,9 +33,13 @@ post.new.name.placeholder = Max 90 chars
 post.new.content = Post Content
 post.new.channels = Channels
 post.new.send   = Send
-post.single.title = %s commmented on %s
-post.edit = edit
-post.report = report
+post.single.title = %s commented on %s
+post.edit = Edit
+post.update = Update
+post.update.content = Your current post content
+post.update.denied = You can only update your own post
+post.update.success.message = Your post has been updated successfully
+post.report = Report
 
 topic.channels = Channels
 topic.title = %s

@@ -31,7 +31,9 @@
         <i class="ellipsis horizontal icon"></i>
         <div class="menu">
           <a class="item">{{ msg $dot "post.report"}}</a>
-          {{ if eq (session "user" $dot) .post.User.Username }} <a class="item">{{msg $dot "post.edit"}}</a> {{ end }}
+          {{ if eq (session "user" $dot) .post.User.Username }}
+              <a class="item" href="{{url "Post.Edit" .post.ID}}">{{msg $dot "post.edit"}}</a>
+          {{ end }}
         </div>
       </div>
 

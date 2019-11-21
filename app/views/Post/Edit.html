@@ -1,0 +1,20 @@
+{{template "header.html" .}}
+
+<div class="ui segment">
+  <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
+</div>
+
+{{with $dot := .}}
+
+<div class="ui segment">
+    <form class="ui form" action="{{url "Post.Update" .post.ID}}" method="POST">
+        <div class="field">
+            <label>{{msg . "post.update.content"}}</label>
+            <textarea name="content">{{format .post.Content}}</textarea>
+        </div>
+        <button class="ui button" type="submit">{{msg . "post.update"}}</button>
+    </form>
+</div>
+{{end}}
+
+{{template "footer.html" .}}
