@@ -18,6 +18,17 @@ func (c PostRepository) Create(p *models.PostModel) (*models.PostModel, error) {
 	return p, err
 }
 
+//Update post by id
+func (c PostRepository) Update(p *models.PostModel) (*models.PostModel, error) {
+
+	var err error
+	if err := app.DB.Save(&p).Error; err != nil {
+		return p, err
+	}
+
+	return p, err
+}
+
 func (c PostRepository) FindByID(id int) (*models.PostModel, error) {
 	post := models.PostModel{}
 

@@ -42,6 +42,25 @@ func (p PostService) CreateNewPost(name string, content string, channels string,
 
 }
 
+//UpdatePost validates post model and sends to repository
+func (p PostService) UpdatePost(post *models.PostModel) (*models.PostModel, map[string]*revel.ValidationError, error) {
+	var err error
+
+	//validate
+	v := p.Validate(post)
+
+	//update db
+	if v == nil {
+		m, err := p.PostRepository.Update(post)
+		if err != nil {
+			return post, v, err
+		}
+		return m, v, err
+	}
+	return post, v, err
+
+}
+
 func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 	c := []models.ChannelModel{}
 	if channels == "" {
