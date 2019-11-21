@@ -7,7 +7,7 @@ import (
 )
 
 func FormatContent(str string) string {
-	str = AutoLink(str)
+	// str = AutoLink(str)
 	str = ExtractUrl(str)
 	return str
 }
