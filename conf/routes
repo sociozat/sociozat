@@ -28,6 +28,8 @@ GET     /c/:slug                     Channel.View
 GET     /t/:slug                     Topic.View
 POST    /t/:slug                     Topic.Reply
 
+GET     /q/:name                     Notation.View
+
 ## Api Routes
 GET     /api/search/:term            ApiSearch.Query
 

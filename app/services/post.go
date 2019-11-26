@@ -1,6 +1,7 @@
 package services
 
 import (
+	"github.com/gosimple/slug"
 	"sociozat/app"
 	"sociozat/app/models"
 	"sociozat/app/repositories"
@@ -12,6 +13,7 @@ import (
 
 //PostService struct
 type PostService struct {
+	TopicRepository   repositories.TopicRepository
 	UserRepository    repositories.UserRepository
 	PostRepository    repositories.PostRepository
 	ChannelRepository repositories.ChannelRepository
@@ -25,6 +27,13 @@ func (p PostService) CreateNewPost(name string, content string, channels string,
 	var topicChannels = p.GenerateChannels(channels)
 
 	post := models.CreateNewPost(name, content, user)
+
+	//set topic if there is one already
+	topic, err := p.TopicRepository.FindBySlug(slug.Make(name))
+	if err == nil {
+		post.Topic = topic
+	}
+
 	post.Topic.Channels = topicChannels
 
 	//validate

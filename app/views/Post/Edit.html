@@ -4,17 +4,15 @@
   <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
 </div>
 
-{{with $dot := .}}
-
 <div class="ui segment">
     <form class="ui form" action="{{url "Post.Update" .post.ID}}" method="POST">
+        {{template "_partials/editor_buttons.html"}}
         <div class="field">
             <label>{{msg . "post.update.content"}}</label>
-            <textarea name="content">{{.post.Content}}</textarea>
+            <textarea name="content" id="content">{{.post.Content}}</textarea>
         </div>
         <button class="ui button" type="submit">{{msg . "post.update"}}</button>
     </form>
 </div>
-{{end}}
 
 {{template "footer.html" .}}

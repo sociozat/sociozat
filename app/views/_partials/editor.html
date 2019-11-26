@@ -1,14 +1,13 @@
   {{if (session "user" .)  }}
   <div class="ui segment">
       <form class="ui form" action="{{url "Topic.Reply" .topic.Slug}}" method="POST">
+          {{template "_partials/editor_buttons.html"}}
           <div class="field">
-            <a class="ui mini button"> (bkz) </a>
-            <a class="ui mini button"> * </a>
-            <a class="ui mini button"> spoiler </a>
-            <a class="ui mini button"> url </a>
-          </div>
-          <div class="field">
-            <textarea name="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+          {{if .post.Content}}
+            <textarea name="content" id="content">{{.post.Content}}</textarea>
+          {{else}}
+            <textarea name="content" id="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+          {{end}}  
           </div>
 
           <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>

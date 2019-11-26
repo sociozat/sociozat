@@ -1,19 +1,21 @@
 {{set . "title" .title}}
 {{template "header.html" .}}
-
+<div class="ui segment">
+<div class="ui info message">
+	<div class="header">
+		{{msg . "notation.not.found" .title}}
+	</div>
+</div>
+</div>
 
 <div class="ui segment">
     <form class="ui form" action="{{url "Post.Create"}}" method="POST">
-        <div class="field">
-          <label>{{msg . "post.new.name"}}</label>
-          <input type="text" name="name" size="19" placeholder="{{msg . "post.new.name.placeholder"}}" value="{{.flash.username}}" />
-        </div>
+        <input type="hidden" name="name" size="19" value="{{.title}}" />
         <div class="field">
           <label>{{msg . "post.new.content"}}</label>
           {{template "_partials/editor_buttons.html"}}
           <textarea name="content" id="content" placeholder="{{msg . "post.new.content"}}"></textarea>
         </div>
-
         <div class="field">
             <label>{{msg . "post.new.channels"}}</label>
             <div class="ui fluid multiple search selection channels dropdown">
