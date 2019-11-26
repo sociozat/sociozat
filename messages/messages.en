@@ -11,14 +11,14 @@ global.search = Search ...
 global.search.results = Search Results
 global.menu.today= Latest
 
-editor.refto= (ref #)
+editor.refto= (ref)
 editor.refto.pattern= (ref #refence topic#)
 editor.notation= *
 editor.notation.pattern= *#refence topic#
 editor.spoiler= spoiler
 editor.spoiler.pattern= -----#spoiler#-----
 editor.url= url
-editor.url.pattern= <https://site.com>#site#
+editor.url.pattern= (https://site.com)#site#
 
 user.login.title = Login
 user.form.logout = Logout
@@ -40,6 +40,7 @@ post.new.title = New Post
 post.new.name = Topic name
 post.new.name.placeholder = Max 90 chars
 post.new.content = Post Content
+post.reply= Share your thoughts about %s
 post.new.channels = Channels
 post.new.send   = Send
 post.single.title = %s commented on %s
