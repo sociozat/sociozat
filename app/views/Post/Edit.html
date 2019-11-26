@@ -9,7 +9,7 @@
         {{template "_partials/editor_buttons.html"}}
         <div class="field">
             <label>{{msg . "post.update.content"}}</label>
-            <textarea name="content">{{.post.Content}}</textarea>
+            <textarea name="content" id="content">{{.post.Content}}</textarea>
         </div>
         <button class="ui button" type="submit">{{msg . "post.update"}}</button>
     </form>

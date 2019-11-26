@@ -162,4 +162,18 @@ $(document).ready(function () {
 		}
 	});
 
+
+	//textarea buttons
+	//TODO improve this feature
+	$(".editor-button").on("click", function(){
+	   var text = $(this).data("content")
+	   console.log(text);
+	   
+	   var $txt = jQuery("#content");
+	   var caretPos = $txt[0].selectionStart;
+	   var textAreaTxt = $txt.val();
+	   $txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
+	});
+
+
 });
