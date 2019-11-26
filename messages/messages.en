@@ -12,7 +12,7 @@ global.search.results = Search Results
 global.menu.today= Latest
 
 editor.refto= (ref)
-editor.refto.pattern= (ref #refence topic#)
+editor.refto.pattern= (ref.#refence topic#)
 editor.notation= *
 editor.notation.pattern= *#refence topic#
 editor.spoiler= spoiler

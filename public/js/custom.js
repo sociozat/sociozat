@@ -169,7 +169,7 @@ $(document).ready(function () {
 	   var text = $(this).data("content")
 	   console.log(text);
 	   
-	   var $txt = jQuery("#content");
+	   var $txt = $("#content");
 	   var caretPos = $txt[0].selectionStart;
 	   var textAreaTxt = $txt.val();
 	   $txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
