@@ -18,7 +18,7 @@ func FormatContent(str string) string {
 
 func ExtractUrl(str string) string {
 	//pattern "<sample.com>#sample.com#"
-	var pattern = "<(.*?)>+#(.*?)#"
+	var pattern = "\\((.*?)\\)+#(.*?)#"
 	r := regexp.MustCompile(pattern)
 	matched := r.FindAllStringSubmatch(str, -1)
 	if len(matched) > 0 {

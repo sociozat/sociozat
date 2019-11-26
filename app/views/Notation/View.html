@@ -13,8 +13,8 @@
         <input type="hidden" name="name" size="19" value="{{.title}}" />
         <div class="field">
           <label>{{msg . "post.new.content"}}</label>
-          {{template "_partials/editor_buttons.html"}}
-          <textarea name="content" id="content" placeholder="{{msg . "post.new.content"}}"></textarea>
+          {{template "_partials/editor_buttons.html" .}}
+          <textarea name="content" id="content" placeholder="{{msg . "post.reply" .title}}"></textarea>
         </div>
         <div class="field">
             <label>{{msg . "post.new.channels"}}</label>
