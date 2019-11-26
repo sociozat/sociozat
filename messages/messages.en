@@ -46,6 +46,7 @@ topic.title = %s
 topic.title.with.page = %s Page: %d
 topic.create.success.message = Thanks for contributing. You are awesome!
 
+notation.not.found = Oops. Seems we have no content about <b>%s</b>. <br> Would you like to share your thoughts?
 settings.updated.sucessfully = Settings Updated Successfully
 settings.updated.error = Something went wrong, no worries we logged this. You should try later.
 
