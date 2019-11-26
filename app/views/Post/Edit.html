@@ -6,7 +6,7 @@
 
 <div class="ui segment">
     <form class="ui form" action="{{url "Post.Update" .post.ID}}" method="POST">
-        {{template "_partials/editor_buttons.html"}}
+        {{template "_partials/editor_buttons.html" .}}
         <div class="field">
             <label>{{msg . "post.update.content"}}</label>
             <textarea name="content" id="content">{{.post.Content}}</textarea>
