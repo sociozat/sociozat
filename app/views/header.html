@@ -1,85 +1,85 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>{{.title}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script
-	  src="https://code.jquery.com/jquery-3.1.1.min.js"
-	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
-  <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-  <script src="/public/js/semantic.min.js"></script>
-  <script src="/public/js/custom.js"></script>
-  {{range .moreStyles}}
-    <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-  {{end}}
-  {{range .moreScripts}}
-    <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-  {{end}}
-  <script>
-	var BASE_URL = "{{url "App.Index"}}";
-  </script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+	<link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+	<script src="/public/js/semantic.min.js"></script>
+	<script src="/public/js/custom.js"></script>
+	{{range .moreStyles}}
+	<link rel="stylesheet" type="text/css" href="/public/{{.}}">
+	{{end}}
+	{{range .moreScripts}}
+	<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+	{{end}}
+	<script>
+		var BASE_URL = "{{url "App.Index"}}";
+	</script>
 </head>
-<body>
-<div class="ui grid fixed">
-	<div class="computer only row">
-		<div class="column">
-			<div class="ui menu fixed">
-				<div class="ui mini image middle aligned ">
-					<img src="https://semantic-ui.com/images/logo.png">
-				</div>
-				
-				<a class="item" href="{{url "App.Index"}}">{{msg . "global.menu.today"}}</a>
 
-				<div class="menu">
-				    <div class="ui right aligned category search item">
-				      <div class="ui transparent icon input">
-				        <input class="prompt" type="text" placeholder="{{msg . "global.search"}}">
-				        <i class="search link icon"></i>
-				      </div>
-				      <div class="results"></div>
-				    </div>
-				</div>
-				{{ $settings := (session "settings" .)}}
-				{{if $settings.headerChannels}}
+<body>
+	<div class="ui grid fixed">
+		<div class="computer only row">
+			<div class="column">
+				<div class="ui menu fixed">
+					<div class="ui mini image middle aligned ">
+						<img src="/public/img/logo.png">
+					</div>
+
+					<a class="item" href="{{url "App.Index"}}">{{msg . "global.menu.today"}}</a>
+
+					<div class="menu">
+						<div class="ui right aligned category search item">
+							<div class="ui transparent icon input">
+								<input class="prompt" type="text" placeholder="{{msg . "global.search"}}">
+								<i class="search link icon"></i>
+							</div>
+							<div class="results"></div>
+						</div>
+					</div>
+					{{ $settings := (session "settings" .)}}
+					{{if $settings.headerChannels}}
 					{{ range $channel := $settings.headerChannels }}
 					<a class="item" href="{{url "Channel.View" $channel.slug}}">{{$channel.name}}</a>
 					{{end}}
-				{{end}}
+					{{end}}
 
+				</div>
 			</div>
 		</div>
-  	</div>
-  
-	<div class="tablet mobile only row">
-		<div class="column">
-			<div class="ui menu fixed">
+
+		<div class="tablet mobile only row">
+			<div class="column">
+				<div class="ui menu fixed">
 					<a id="mobile_item" class="item left"><i class="bars icon"></i></a>
 					<div class="ui mini image">
 						<img src="https://semantic-ui.com/images/logo.png">
 					</div>
 					<a id="user_item" class="item right"><i class="user icon"></i></a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="ui right sidebar vertical menu">
-	{{if (session "user" .)  }}
-	<a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
-	<a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
-	<a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
-	<a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
-	{{end}}
-</div>
-
-
-<div class="ui three column stackable grid">
-	<div class="four wide column computer screen only">
-		{{template "_partials/left.html" .}}
+	<div class="ui right sidebar vertical menu">
+		{{if (session "user" .)  }}
+		<a class="item" href="{{url "User.Profile" (session "fulluser" .).Slug}}">{{msg . "user.profile"}}</a>
+		<a class="item" href="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
+		<a class="item" href="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
+		<a class="item" href="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+		{{end}}
 	</div>
 
-	<div class="eight wide column centered">
-	{{template "flash.html" .}}
-	<div id="content">
+
+	<div class="ui three column stackable grid">
+		<div class="four wide column computer screen only">
+			{{template "_partials/left.html" .}}
+		</div>
+
+		<div class="eight wide column centered">
+			{{template "flash.html" .}}
+			<div id="content">
