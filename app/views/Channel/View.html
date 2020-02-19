@@ -42,7 +42,7 @@
             <div class="ui dropdown post-config item right aligned" style="margin-left:10px">
             <i class="ellipsis horizontal icon"></i>
             <div class="menu">
-                <a class="item">{{ msg $dot "post.report"}}</a>
+                <!--<a class="item">{{ msg $dot "post.report"}}</a>//-->
                 {{ if eq (session "user" $dot) .User.Username }}
                     <a class="item" href="{{url "Post.Edit" .ID}}">{{msg $dot "post.edit"}}</a>
                 {{ end }}
