@@ -5,13 +5,15 @@ require (
 	github.com/gosimple/slug v1.5.0
 	github.com/jinzhu/gorm v1.9.10
 	github.com/mitchellh/mapstructure v1.1.2
-	github.com/revel/revel v0.21.0
+	github.com/revel/revel v1.0.0
 	github.com/satori/go.uuid v1.2.0
-	golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 )
 
 require (
+	github.com/fsnotify/fsnotify v1.4.7 // indirect
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
+	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/inconshreveable/log15 v0.0.0-20180818164646-67afb5ed74ec // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
@@ -30,7 +32,6 @@ require (
 	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	google.golang.org/appengine v1.4.0 // indirect
-	gopkg.in/fsnotify/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0-20170531160350-a96e63847dc3 // indirect
 	gopkg.in/stack.v0 v0.0.0-20141108040640-9b43fcefddd0 // indirect
 	gopkg.in/stretchr/testify.v1 v1.2.2 // indirect
