@@ -8,7 +8,9 @@
 		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="/public/css/custom.css">
-	<link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+	{{if config "site.logo" "" }}
+	<link rel="shortcut icon" type="image/png" href="{{config "site.favicon" ""}}">
+	{{end}}
 	<script src="/public/js/semantic.min.js"></script>
 	<script src="/public/js/custom.js"></script>
 	{{range .moreStyles}}
@@ -27,9 +29,11 @@
 		<div class="computer only row">
 			<div class="column">
 				<div class="ui menu fixed">
+					{{if config "site.logo" "" }}
 					<div class="ui mini image middle aligned ">
-						<img src="/public/img/logo.png">
+						<img src="{{ config "site.logo" ""}}">
 					</div>
+					{{end}}
 
 					<a class="item" href="{{url "App.Index"}}">{{msg . "global.menu.today"}}</a>
 

@@ -1,10 +1,10 @@
-FROM golang:1.12.10
+FROM golang:1.19.9
 
 ENV SOCIOZAT_ENV=${SOCIOZAT_ENV:-dev}
 
 ENV GOPATH=/go
 RUN export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-ENV GO111MODULE=off
+ENV GO111MODULE=on
 RUN mkdir -p /go/src/sociozat
 ADD . /go/src/sociozat
 

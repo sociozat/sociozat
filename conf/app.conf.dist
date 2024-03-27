@@ -143,6 +143,15 @@ module.static = github.com/revel/modules/static
 # for full text capability check documentation on https://github.com/sociozat/docs/blob/master/en-US/developer/search.md
 search.adapter = %(db.driver)s
 
+
+###############################################################################
+# Site Settings
+site.favicon = /public/img/favicon.png
+site.logo = /public/img/logo.png
+
+## this is the todays section threshold, in hours.
+latest.threshold = 24
+
 ###############################################################################
 # Footer links
 

@@ -12,13 +12,13 @@ global.search.results = Search Results
 global.menu.today= Latest
 
 editor.refto= (ref)
-editor.refto.pattern= (ref.#refence topic#)
+editor.refto.pattern= (ref. #refence topic#)
 editor.notation= *
-editor.notation.pattern= *#refence topic#
+editor.notation.pattern= *notation*
 editor.spoiler= spoiler
 editor.spoiler.pattern= -----#spoiler#-----
 editor.url= url
-editor.url.pattern= (https://site.com)#site#
+editor.url.pattern= [Link](https://site.com)
 
 user.login.title = Login
 user.form.logout = Logout
@@ -28,7 +28,7 @@ user.form.username = Username
 user.form.email = Email
 user.form.password = Password
 user.form.remember = Remember
-user.form.lost.passwor = Lost Password
+user.form.lost.password = Lost Password
 user.settings = Settings
 user.profile = Profile
 

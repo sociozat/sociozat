@@ -90,9 +90,17 @@ p {
   overflow: scroll;
 }
 
+.segments{
+  margin: 1rem 0 !important;
+}
+
+.ui .segments{
+  margin: 2rem 0 !important;
+}
+
 .segment {
   top: 20px;
-  background: #f7f6f6 !important;
+  background: #f8f8f8 !important;
 }
 .sidebar.vertical{
   top:20px;

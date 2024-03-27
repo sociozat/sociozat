@@ -14,6 +14,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/mitchellh/mapstructure"
 	"github.com/revel/revel"
+	"github.com/grokify/html-strip-tags-go"
 )
 
 var (
@@ -40,7 +41,7 @@ func InitDB() {
 	if dbDriver == "mysql" {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
-		connstring = fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=%s", dbUser, dbPassword, dbAddress, dbName, dbSslMode)
+		connstring = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s", dbUser, dbPassword, dbAddress, dbPort, dbName, dbSslMode)
 	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}
@@ -156,7 +157,9 @@ func init() {
 	}
 
 	revel.TemplateFuncs["format"] = func(str string) template.HTML {
-		return template.HTML(strings.Replace(helpers.FormatContent(str), "\n", "<br>", -1))
+		var content string
+		content = strip.StripTags(str)
+		return template.HTML(strings.Replace(helpers.FormatContent(content), "\n", "<br>", -1))
 	}
 
 	revel.TemplateFuncs["marshal"] = func(v interface{}) string {
