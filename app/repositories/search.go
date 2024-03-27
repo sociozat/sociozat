@@ -34,7 +34,7 @@ func (s SearchRepository) GetAdapterType(adapter string) SearchInterface {
 
 }
 
-//Query makes the searchover database adapter
+//Query makes the search over database adapter
 func (s SearchRepository) Query(term string) []models.SiteSearchResult {
 	adapter := s.GetAdapterType(s.Adapter)
 	return adapter.Query(term)

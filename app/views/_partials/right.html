@@ -3,7 +3,7 @@
     <!-- User View -->
     {{if (session "fulluser" .)  }}
     <div class="ui segment">
-        <div class="five ui buttons menu">
+        <div class="four ui buttons menu">
             <a class="icon item button tiny"  href="{{url "User.Profile" (session "fulluser" .).Slug}}">
               <i class="user icon"></i>
             </a>
@@ -13,9 +13,9 @@
             <a class="icon item button popup" href="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
               <i class="cog icon"></i>
             </a>
-            <a class="icon item button active popup" data-content="{{msg . "user.setting.night.mode"}}" data-position="bottom center">
-              <i class="moon icon"></i>
-            </a>
+<!--            <a class="icon item button active popup" data-content="{{msg . "user.setting.night.mode"}}" data-position="bottom center">-->
+<!--              <i class="moon icon"></i>-->
+<!--            </a>-->
             <a class="icon item button popup" href="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
               <i class="sign out alternate icon"></i>
             </a>

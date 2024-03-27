@@ -12,11 +12,13 @@
 package.folders = conf, public, app/views, docs
 
 
-
-
 # Revel reconfigurable section
 #
 ################################################################################
+
+#use fasthttp server
+server.engine = fasthttp
+module.fasthttp = github.com/revel/modules/server-engine/fasthttp
 
 # Full App Url that will be used in templates
 app.url = http://localhost:9000
