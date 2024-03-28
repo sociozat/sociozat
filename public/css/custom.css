@@ -60,6 +60,7 @@
 
 body {
   font-size: 15px !important;
+  background: #f2f2f2;
 }
 
 a {
@@ -100,13 +101,12 @@ p {
 
 .segment {
   top: 20px;
-  background: #f8f8f8 !important;
 }
 .sidebar.vertical{
   top:20px;
 }
 .menu {
-  background: #f7f6f6 !important;
+  background: #f2f2f2 !important;
 }
 .ui.label .right {
   float:right;
@@ -139,9 +139,13 @@ p {
   padding: .501em .833em !important
  }
 
+.ui.card{
+  background: #f7f7f7;
+}
  /* make segments flat*/
  .ui.segment {
-  border-radius: 0em !important;
+  border-radius: 0em !important;background: #f2f2f2 !important;
+
  }
 
  .ui.left.sidebar, .ui.right.sidebar {
@@ -151,9 +155,6 @@ p {
 
  .ui.segments .segment {
    font-size: 1.14rem !important;
- }
- .ui.segment{
-   background: #fff !important;
  }
 
  /* Search */

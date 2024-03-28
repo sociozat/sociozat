@@ -4,6 +4,7 @@
   <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
 </div>
 
+
 {{with $dot := .}}
 <div class="segments">
   <!-- entries start -->
@@ -18,7 +19,7 @@
       </a>
 
       <a class="left aligned " 
-          href="https://twitter.com/share?url={{config "app.url" "" }}{{url "Post.View" .post.ID}}&text={{ .post.Topic.Name}}"
+          href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .post.ID}}&text={{ .post.Topic.Name}}"
           onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
           target="_blank" title="Share on Twitter"
           style="margin-left:10px">
