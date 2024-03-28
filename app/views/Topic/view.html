@@ -10,7 +10,10 @@
       </div>
   </div>
 </div>
-        
+
+{{with $dot := .}}
+
+
 <div class="segments">
   <!-- entries start -->
     {{if gt .previousPostCount 0 }}
@@ -24,7 +27,6 @@
     </div>
     {{end}}
 
-  {{with $dot := .}}
     {{ range .posts.Records}}
     <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
         <div class="content">

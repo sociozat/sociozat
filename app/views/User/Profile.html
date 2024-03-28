@@ -2,7 +2,7 @@
 
 <div class="ui sticky title">
   <div class="ui segment">
-      <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
+      <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
         <i class="icon comment"></i>{{.posts.TotalRecord}}
       </div>
       <div class="ui aligned">
@@ -11,10 +11,17 @@
   </div>
 </div>
 
+{{with $dot := .}}
+
 <div class="segments">
 {{ range .posts.Records}}
 <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
+
     <div class="content">
+        <div class="ui header">
+            <h3><a href="{{url "Topic.View" .Topic.Slug}}"> {{format  .Topic.Name }}</a></h3>
+        </div>
+
         <div class="description">
             <p>{{format .Content}}</p>
         </div>
@@ -47,6 +54,8 @@
 </div>
 {{ end }}
 </div>
+{{ end }}
+
 {{template "_partials/pagination.html" .}}
 
 {{template "footer.html" .}}

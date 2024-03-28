@@ -17,6 +17,9 @@
 
 <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
     <div class="content">
+        <div class="ui header">
+            <h3><a href="{{url "Topic.View" .Topic.Slug}}"> {{format  .Topic.Name }}</a></h3>
+        </div>
         <div class="description">
             <p>{{format .Content}}</p>
         </div>
