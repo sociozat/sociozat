@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sociozat/app/services"
 	"strconv"
+	"time"
 
 	"github.com/revel/revel"
 )
@@ -24,10 +25,16 @@ func (c Topic) View(slug string) revel.Result {
 	settings, _ := c.SettingsService.MapSettings(sets)
 	limit := settings.PostPerPage
 
-	startDate := c.Params.Query.Get("start_date")
-	if startDate == "" {
-		startDate = "1970-01-01" //set this as beginning
+	a := c.Params.Query.Get("a")
+
+    startDate  := "1970-01-01"
+    threshold, _ := strconv.Atoi(revel.Config.StringDefault("latest.threshold", "24"))
+	if a == "trending" {
+		currentTime := time.Now()
+		startDate  = currentTime.Add(time.Duration(-threshold) * time.Hour).Format("2006-01-02 15:04:05") //set this as beginning
 	}
+
+    fmt.Println(startDate)
 
 	topic, posts, err := c.TopicService.FindBySlug(slug, page, limit, startDate)
 	if err != nil {
@@ -37,8 +44,12 @@ func (c Topic) View(slug string) revel.Result {
 
 	var title = c.Message("topic.title", topic.Name)
 
+    previousPostCount := 0
+
 	if page > 0 {
 		title = c.Message("topic.title.with.page", topic.Name, page)
+        previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
+        fmt.Println(previousPostCount)
 	}
 
 	//set pages
@@ -48,10 +59,13 @@ func (c Topic) View(slug string) revel.Result {
 	for i := 1; i <= posts.TotalPage; i++ {
 		c.Params.Query.Set("page", strconv.Itoa(i))
 		pageValue := fmt.Sprintf("/t/%s?%s", c.Params.Route.Get("slug"), c.Params.Query.Encode())
+		if a == "trending" {
+		    pageValue = fmt.Sprintf("/t/%s?%s&a=trending", c.Params.Route.Get("slug"), c.Params.Query.Encode())
+		}
 		pagination[i] = pageValue
 	}
 
-	return c.Render(title, topic, posts, pagination)
+	return c.Render(title, topic, posts, pagination, previousPostCount)
 }
 
 //Reply topic with POST method

@@ -47,3 +47,8 @@ func (t TopicService) Reply(topic models.TopicModel, user *models.UserModel, con
 
 	return post, err
 }
+
+func (t TopicService) PostCountUntil(topic models.TopicModel, date string) int {
+    count := t.TopicRepository.CountPostsUntil(topic.ID, date)
+    return count
+}

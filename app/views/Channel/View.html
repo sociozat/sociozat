@@ -13,45 +13,42 @@
 
 {{with $dot := .}}
 {{ range .posts.Records}}
-<div class="ui segments">
 
-    <!-- entries start -->
-    <div class="ui segment">
-        <h4> <a href="{{url "Topic.View" .Topic.Slug }}">{{.Topic.Name}} </a></h4>
+<div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
+    <div class="content">
+        <div class="description">
+            <p>{{format .Content}}</p>
+        </div>
     </div>
+    <div class="extra content">
+        <span class="left floated">
+            {{ if eq (session "user" $dot) .User.Username }}
+                <a class="item" href="{{url "Post.Edit" .ID}}"><i class="edit icon"></i></a>
+            {{ end }}
 
-    <div class="ui secondary segment" style="min-height: 6rem;">
-        <p>{{format .Content}}</p>
-        <div class="ui bottom attached label">
-            <a class="left aligned "
+            <a  class="left aligned "
                 href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                target="_blank" title="Share on Facebook">
+            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+            target="_blank" title="Share on Facebook">
                 <i class="icon facebook"></i>
             </a>
 
             <a class="left aligned "
-                href="https://twitter.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                target="_blank" title="Share on Twitter" style="margin-left:10px">
+               href="https://twitter.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
+            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+            target="_blank" title="Share on Twitter"
+            style="margin-left:10px">
                 <i class="icon twitter"></i>
             </a>
+
             <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
             <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
 
-            <div class="ui dropdown post-config item right aligned" style="margin-left:10px">
-            <i class="ellipsis horizontal icon"></i>
-            <div class="menu">
-                <!--<a class="item">{{ msg $dot "post.report"}}</a>//-->
-                {{ if eq (session "user" $dot) .User.Username }}
-                    <a class="item" href="{{url "Post.Edit" .ID}}">{{msg $dot "post.edit"}}</a>
-                {{ end }}
-            </div>
-            </div>
-
+        </span>
+        <span class="right floated">
             <a class="right aligned"  href="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
-            <a class="right aligned" href="{{url "Post.View" .ID}}">{{datetime .CreatedAt}}</a>
-        </div>
+            <a class="right aligned" href="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
+        </span>
     </div>
 </div>
 {{ end }}

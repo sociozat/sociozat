@@ -157,3 +157,13 @@ p {
   right: auto;
   left: 0;
 }
+
+.ui.selection.dropdown{
+  padding: .78571429em 1.5em .78571429em !important;
+  min-height: initial !important;
+  font-size: .85714286rem;
+}
+
+.ui.selection.dropdown > .dropdown.icon{
+  display: none !important;
+}

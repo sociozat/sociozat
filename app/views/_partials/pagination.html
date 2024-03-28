@@ -1,12 +1,11 @@
 {{if .pagination}}
 
 {{if gt .posts.TotalPage 1 }}
-<div class="ui clearing segment">
   <div class="ui right floated">
-
     {{if gt .posts.Page 1 }}
-    <a class="ui button" href="{{index .pagination .posts.PrevPage }}">&laquo;</a>
+    <a class="ui button tiny" href="{{index .pagination .posts.PrevPage }}">&laquo;</a>
     {{end}}
+
 
     <select class="ui compact dropdown topic-pages">
       {{ range $key, $val := .pagination}}
@@ -14,13 +13,12 @@
       {{ end }}
     </select>
     /
-    <a class="ui button" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a>
+    <a class="ui button tiny" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a>
 
     {{if lt .posts.Page .posts.TotalPage }}
-    <a class="ui button" href="{{index .pagination .posts.NextPage }}">&raquo;</a>
+    <a class="ui button tiny" href="{{index .pagination .posts.NextPage }}">&raquo;</a>
     {{end}}
   </div>
-</div>
 {{end}}
 
 {{end}}

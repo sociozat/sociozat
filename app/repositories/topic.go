@@ -52,3 +52,20 @@ func (t TopicRepository) FindBySlug(slug string) (models.TopicModel, error) {
 
 	return topic, err
 }
+
+type TotalCount struct {
+  Total int
+}
+
+func (t TopicRepository) CountPostsUntil(ID uint, date string) int {
+
+    var result TotalCount
+
+    app.DB.Table("posts").Select("count(id) as Total").
+        Where("posts.topic_id = ?", ID).
+        Where("posts.created_at <= ?", date).
+        Scan(&result)
+
+    return result.Total
+
+}
