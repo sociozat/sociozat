@@ -17,7 +17,7 @@
     {{if gt .previousPostCount 0 }}
     <div class="ui tiny message">
         <div class="ui center aligned grid">
-            <a href="{{url "Topic.View" .topic.Slug}}?page={{ $.posts.Page }}">There are ( {{ .previousPostCount }} ) posts more</a>
+            <a href="{{url "Topic.View" .topic.Slug}}?page={{ .previousPostsPage }}">There are ( {{ .previousPostCount }} ) posts more</a>
         </div>
     </div>
     {{end}}

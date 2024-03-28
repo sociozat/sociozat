@@ -44,29 +44,28 @@
             </script>
             {{end}}
 
-            {{ $todaysChannelsLength := 0}}
-            {{if .settings.todaysChannels}}
-            {{ $todaysChannelsLength = len .settings.todaysChannels }}
+            {{ $trendingChannelsLength := 0}}
+            {{if .settings.trendingChannels}}
+            {{ $trendingChannelsLength = len .settings.trendingChannels }}
             {{end}}
             <div class=" field">
-                <label>Customized Today's Posts</label>
-                <div class="ui toggle checkbox customized-todays-select">
-                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $todaysChannelsLength 0}}
-                        checked="checked" {{end}}>
+                <label>Customized Trending Posts</label>
+                <div class="ui toggle checkbox customized-trending-select">
+                    <input type="checkbox" tabindex="0" class="hidden" {{if gt $trendingChannelsLength 0}} checked="checked" {{end}}>
                 </div>
             </div>
 
-            <div class="field customized-todays-posts {{if lt $todaysChannelsLength 1}}transition hidden{{end}}">
+            <div class="field customized-trending-posts {{if lt $trendingChannelsLength 1}}transition hidden{{end}}">
                 <label>Select up to 5 channel</label>
-                <div class="ui fluid multiple search selection todays-posts-channels dropdown">
-                    <input name="todays-posts-channels" multiple=true type="hidden" />
+                <div class="ui fluid multiple search selection trending-posts-channels dropdown">
+                    <input name="trending-posts-channels" multiple=true type="hidden" />
                     <i class="dropdown icon"></i>
                     <div class="default text">{{msg . "post.new.channels"}}</div>
                 </div>
             </div>
-            {{if gt $todaysChannelsLength 0}}
+            {{if gt $trendingChannelsLength 0}}
             <script>
-                var todayChannelsValues = {{ marshal .settings.todaysChannels }};
+                var todayChannelsValues = {{ marshal .settings.trendingChannels }};
 
                 todayChannels = JSON.parse(todayChannelsValues);
                 Object.keys(todayChannels).map(function (key, index) {
@@ -75,7 +74,7 @@
                     delete todayChannels[key].lastRead
                     delete todayChannels[key].slug
                 });
-                $('.todays-posts-channels.dropdown')
+                $('.trending-posts-channels.dropdown')
                     .dropdown({
                         values: todayChannels
                     });

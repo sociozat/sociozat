@@ -152,7 +152,7 @@ site.favicon = /public/img/favicon.png
 site.logo = /public/img/logo.png
 
 ## this is the todays section threshold, in hours.
-latest.threshold = 24
+trending.threshold = 24
 
 ###############################################################################
 # Footer links

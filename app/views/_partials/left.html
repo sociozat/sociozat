@@ -1,7 +1,7 @@
 <div id="left-sidebar" class="ui left sidebar vertical visible list divided selection">
-{{ if $rows := todays (session "settings" .) }}
+{{ if $rows := trending (session "settings" .) }}
 {{ range $row := $rows }}
-<a class="item" href="/t/{{$row.Slug}}">
+<a class="item" href="/t/{{$row.Slug}}?a=trending">
   <div class="ui label mini horizontal">
     {{ $row.PostCount }}
   </div>

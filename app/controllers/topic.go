@@ -5,6 +5,7 @@ import (
 	"sociozat/app/services"
 	"strconv"
 	"time"
+	"math"
 
 	"github.com/revel/revel"
 )
@@ -28,8 +29,8 @@ func (c Topic) View(slug string) revel.Result {
 	a := c.Params.Query.Get("a")
 
     startDate  := "1970-01-01"
-    threshold, _ := strconv.Atoi(revel.Config.StringDefault("latest.threshold", "24"))
 	if a == "trending" {
+        threshold, _ := strconv.Atoi(revel.Config.StringDefault("trending.threshold", "24"))
 		currentTime := time.Now()
 		startDate  = currentTime.Add(time.Duration(-threshold) * time.Hour).Format("2006-01-02 15:04:05") //set this as beginning
 	}
@@ -45,11 +46,11 @@ func (c Topic) View(slug string) revel.Result {
 	var title = c.Message("topic.title", topic.Name)
 
     previousPostCount := 0
-
+    previousPostsPage := 0
 	if page > 0 {
 		title = c.Message("topic.title.with.page", topic.Name, page)
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
-        fmt.Println(previousPostCount)
+        previousPostsPage = math.Round(int(previousPostCount) / int(limit))
 	}
 
 	//set pages
@@ -65,7 +66,7 @@ func (c Topic) View(slug string) revel.Result {
 		pagination[i] = pageValue
 	}
 
-	return c.Render(title, topic, posts, pagination, previousPostCount)
+	return c.Render(title, topic, posts, pagination, previousPostCount, previousPostsPage)
 }
 
 //Reply topic with POST method

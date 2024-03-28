@@ -85,7 +85,7 @@ $(document).ready(function () {
 		})
 		;
 
-	$('.todays-posts-channels.dropdown')
+	$('.trending-posts-channels.dropdown')
 		.dropdown({
 			allowAdditions: false,
 			maxSelections: 5,
@@ -97,13 +97,13 @@ $(document).ready(function () {
 		})
 		;
 
-	$('.customized-todays-select').checkbox({
+	$('.customized-trending-select').checkbox({
 		onChecked: function () {
-			$(".customized-todays-posts").removeClass("transition hidden");
+			$(".customized-trending-posts").removeClass("transition hidden");
 		},
 		onUnchecked: function () {
-			$('.todays-posts-channels.dropdown').dropdown("clear");
-			$(".customized-todays-posts").addClass("transition hidden");
+			$('.trending-posts-channels.dropdown').dropdown("clear");
+			$(".customized-trending-posts").addClass("transition hidden");
 		}
 	}
 	);

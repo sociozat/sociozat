@@ -50,18 +50,18 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 		}
 	}
 
-	//todays channels
-	todaysChannels := []models.UserTodaysChannels{}
-	if params.Get("todays-posts-channels") != "" {
-		channels := s.PostService.GenerateChannels(params.Get("todays-posts-channels"))
+	//trending channels
+	trendingChannels := []models.UserTrendingChannels{}
+	if params.Get("trending-posts-channels") != "" {
+		channels := s.PostService.GenerateChannels(params.Get("trending-posts-channels"))
 		for _, channel := range channels {
-			todaysChannel := models.UserTodaysChannels{
+			trendingChannel := models.UserTrendingChannels{
 				ID:   channel.ID,
 				Name: channel.Name,
 				Slug: channel.Slug,
 			}
 
-			todaysChannels = append(todaysChannels, todaysChannel)
+			trendingChannels = append(trendingChannels, trendingChannel)
 		}
 	}
 
@@ -74,7 +74,7 @@ func (s SettingsService) TransformValues(params *revel.Params) models.SettingsMo
 
 	settings := models.SettingsModel{
 		HeaderChannels: headerChannels,
-		TodaysChannels: todaysChannels,
+		TrendingChannels: trendingChannels,
 		PostPerPage:    perPage[params.Form.Get("post-per-page")],
 		TopicPerPage:   perPage[params.Form.Get("topic-per-page")],
 		Theme:          theme,

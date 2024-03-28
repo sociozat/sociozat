@@ -8,6 +8,8 @@ import (
 	"sociozat/app/helpers"
 	"sociozat/app/models"
 	"strings"
+	"strconv"
+	"time"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -92,7 +94,7 @@ func SetDefaultSettings(c *revel.Controller) revel.Result {
 		PostPerPage:    10,
 		TopicPerPage:   10,
 		Theme:          "default",
-		TodaysChannels: nil,
+		TrendingChannels: nil,
 		HeaderChannels: nil,
 	}
 
@@ -144,16 +146,20 @@ func init() {
 		return CurrentUser
 	}
 
-	revel.TemplateFuncs["todays"] = func(sets map[string]interface{}) []models.TopicModel {
+	revel.TemplateFuncs["trending"] = func(sets map[string]interface{}) []models.TopicModel {
 
 		var ids []uint
 		settings := models.SettingsModel{}
 		mapstructure.Decode(sets, &settings)
-		for _, channel := range settings.TodaysChannels {
+		for _, channel := range settings.TrendingChannels {
 			ids = append(ids, channel.ID)
 		}
 
-		return helpers.TodaysTopics(DB, ids)
+        threshold, _ := strconv.Atoi(revel.Config.StringDefault("trending.threshold", "24"))
+        currentTime := time.Now()
+		startDate  := currentTime.Add(time.Duration(-threshold) * time.Hour).Format("2006-01-02 15:04:05") //set this as beginning
+
+		return helpers.TrendingTopics(DB, ids, startDate)
 	}
 
 	revel.TemplateFuncs["format"] = func(str string) template.HTML {
