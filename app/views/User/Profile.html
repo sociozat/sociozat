@@ -11,8 +11,8 @@
   </div>
 </div>
 
+<div class="segments">
 {{ range .posts.Records}}
-
 <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
     <div class="content">
         <div class="description">
@@ -45,9 +45,8 @@
         </span>
     </div>
 </div>
-
 {{ end }}
-
+</div>
 {{template "_partials/pagination.html" .}}
 
 {{template "footer.html" .}}

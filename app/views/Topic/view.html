@@ -2,8 +2,8 @@
 
 <div class="ui sticky title">
   <div class="ui segment">
-      <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
-        <i class="icon comment"></i>{{.posts.TotalRecord}}
+      <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
+          <i class="icon comment"></i>{{.posts.TotalRecord}}
       </div>
       <div class="ui aligned">
           <h3> <a href="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
@@ -13,11 +13,13 @@
         
 <div class="segments">
   <!-- entries start -->
-
     {{if gt .previousPostCount 0 }}
     <div class="ui tiny message">
         <div class="ui center aligned grid">
-            <a href="{{url "Topic.View" .topic.Slug}}?page={{ .previousPostsPage }}">There are ( {{ .previousPostCount }} ) posts more</a>
+            <a href="{{url "Topic.View" .topic.Slug}}?page={{ .previousPostsPage }}">
+            {{msg . "topic.trending.total" .previousPostCount }}
+            </a>
+
         </div>
     </div>
     {{end}}

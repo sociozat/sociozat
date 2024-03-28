@@ -9,7 +9,9 @@ global.new.topic = New Topic
 global.reply.topic= Reply
 global.search = Search ...
 global.search.results = Search Results
-global.menu.today= Latest
+global.menu.trending= Trending
+global.menu.today= Today
+global.save= Save
 
 editor.refto= (ref)
 editor.refto.pattern= (ref. #refence topic#)
@@ -20,6 +22,7 @@ editor.spoiler.pattern= -----#spoiler#-----
 editor.url= url
 editor.url.pattern= [Link](https://site.com)
 
+user.id = My Unique User Id
 user.login.title = Login
 user.form.logout = Logout
 user.form.login = Login
@@ -30,8 +33,13 @@ user.form.password = Password
 user.form.remember = Remember
 user.form.lost.password = Lost Password
 user.settings = Settings
+user.password.change = Change Password
 user.profile = Profile
-
+user.profile.bookmarks = Bookmark Channel List (max 10)
+user.profile.trending.channels = Customized Trending Topics
+user.profile.select.trending.channels = Select up to 5 channel
+user.profile.post.perpage = Posts Per Page
+user.profile.topic.perpage = Topics Per Page
 user.setting.night.mode = Night Mode
 
 similar.topics = Similar Topics
@@ -55,6 +63,7 @@ topic.channels = Channels
 topic.title = %s
 topic.title.with.page = %s Page: %d
 topic.create.success.message = Thanks for contributing. You are awesome!
+topic.trending.total = There are ( %v ) posts more
 
 notation.not.found = Oops. Seems we have no content about <b>%s</b>. <br> Would you like to share your thoughts?
 settings.updated.sucessfully = Settings Updated Successfully

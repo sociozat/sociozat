@@ -2,7 +2,7 @@
 
 <div class="ui sticky title">
   <div class="ui segment">
-      <div class="ui teal right ribbon label aligned post-count-label" style="float:left">
+      <div class="ui grey right ribbon label aligned post-count-label">
         <i class="icon comment"></i>{{.posts.TotalRecord}}
       </div>
       <div class="ui aligned">
@@ -11,6 +11,7 @@
   </div>
 </div>
 
+<div class="segments">
 {{with $dot := .}}
 {{ range .posts.Records}}
 
@@ -53,6 +54,7 @@
 </div>
 {{ end }}
 {{ end }}
+</div>
 
 {{template "_partials/pagination.html" .}}
 

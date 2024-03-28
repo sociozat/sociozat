@@ -3,14 +3,14 @@
 
 <div class="ui segment">
     <div class="ui menu">
-        <a class="item active">Settings</a>
-        <a class="item">Change Password</a>
+        <a class="item active"> {{msg . "user.settings"}}</a>
+        <a class="item">{{msg . "user.password.change"}}</a>
     </div>
 
     <div class="ui form">
         <form class="ui form" action="{{url "Settings.SettingsPost"}}" method="POST">
             <div class="field">
-                <label>My Unique User Id</label>
+                <label>{{msg . "user.id"}}</label>
                 <div class="ui fluid multiple">
                     <input type="text" disabled value="{{ .uuid}}">
                 </div>
@@ -20,7 +20,7 @@
             {{ $headerChannelsLength = len .settings.headerChannels }}
             {{end}}
             <div class="field">
-                <label>Header Channel List (max 10)</label>
+                <label>{{msg . "user.profile.bookmarks"}}</label>
                 <div class="ui fluid multiple search selection header-channels dropdown">
                     <input name="header-channels" type="hidden">
                     <i class="dropdown icon"></i>
@@ -49,14 +49,14 @@
             {{ $trendingChannelsLength = len .settings.trendingChannels }}
             {{end}}
             <div class=" field">
-                <label>Customized Trending Posts</label>
+                <label>{{msg . "user.profile.trending.channels"}}</label>
                 <div class="ui toggle checkbox customized-trending-select">
                     <input type="checkbox" tabindex="0" class="hidden" {{if gt $trendingChannelsLength 0}} checked="checked" {{end}}>
                 </div>
             </div>
 
             <div class="field customized-trending-posts {{if lt $trendingChannelsLength 1}}transition hidden{{end}}">
-                <label>Select up to 5 channel</label>
+                <label>{{msg . "user.profile.select.trending.channels"}}</label>
                 <div class="ui fluid multiple search selection trending-posts-channels dropdown">
                     <input name="trending-posts-channels" multiple=true type="hidden" />
                     <i class="dropdown icon"></i>
@@ -82,7 +82,7 @@
             {{end}}
 
             <div class="inline fields">
-                <label>Posts Per Page</label>
+                <label>{{msg . "user.profile.post.perpage"}}</label>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 5.0}} checked="checked"
@@ -108,7 +108,7 @@
 
 
             <div class="inline fields">
-                <label>Topic Per Page</label>
+                <label>{{msg . "user.profile.topic.perpage"}}</label>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 5.0}} checked="checked"
@@ -132,7 +132,7 @@
                 </div>
             </div>
 
-            <button class="ui button" type="submit">Save</button>
+            <button class="ui button" type="submit">{{msg . "global.save"}}</button>
 
         </form>
     </div>

@@ -5,7 +5,6 @@ import (
 	"sociozat/app/services"
 	"strconv"
 	"time"
-	"math"
 
 	"github.com/revel/revel"
 )
@@ -50,7 +49,7 @@ func (c Topic) View(slug string) revel.Result {
 	if page > 0 {
 		title = c.Message("topic.title.with.page", topic.Name, page)
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
-        previousPostsPage = math.Round(int(previousPostCount) / int(limit))
+        previousPostsPage = int(previousPostCount) / int(limit)
 	}
 
 	//set pages
