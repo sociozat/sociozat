@@ -34,8 +34,6 @@ func (c Topic) View(slug string) revel.Result {
 		startDate  = currentTime.Add(time.Duration(-threshold) * time.Hour).Format("2006-01-02 15:04:05") //set this as beginning
 	}
 
-    fmt.Println(startDate)
-
 	topic, posts, err := c.TopicService.FindBySlug(slug, page, limit, startDate)
 	if err != nil {
 		c.FlashParams()
@@ -58,10 +56,8 @@ func (c Topic) View(slug string) revel.Result {
 	var pagination = make(map[int]string)
 	for i := 1; i <= posts.TotalPage; i++ {
 		c.Params.Query.Set("page", strconv.Itoa(i))
+
 		pageValue := fmt.Sprintf("/t/%s?%s", c.Params.Route.Get("slug"), c.Params.Query.Encode())
-		if a == "trending" {
-		    pageValue = fmt.Sprintf("/t/%s?%s&a=trending", c.Params.Route.Get("slug"), c.Params.Query.Encode())
-		}
 		pagination[i] = pageValue
 	}
 

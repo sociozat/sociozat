@@ -36,7 +36,7 @@
         </div>
         <div class="extra content">
         <span class="left floated">
-            {{ if eq (session "user" $dot) .User.Username }}
+            {{ if and .User (eq (session "user" $dot) .User.Username) }}
                 <a class="left aligned " href="{{url "Post.Edit" .ID}}"><i class="edit icon"></i></a>
             {{ end }}
 
