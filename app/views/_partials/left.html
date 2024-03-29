@@ -1,7 +1,7 @@
 <div id="left-sidebar" class="ui left sidebar vertical visible list divided selection">
 {{ if $rows := trending (session "settings" .) }}
 {{ range $row := $rows }}
-<a class="item" href="/t/{{$row.Slug}}?a=trending">
+<a class="item" hx-get="/t/{{$row.Slug}}?a=trending" hx-target="#content" hx-replace-url="true">
   <div class="ui label mini horizontal">
     {{ $row.PostCount }}
   </div>

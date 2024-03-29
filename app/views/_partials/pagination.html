@@ -3,7 +3,7 @@
 {{if gt .posts.TotalPage 1 }}
   <div class="ui right floated">
     {{if gt .posts.Page 1 }}
-    <a class="ui button tiny" href="{{index .pagination .posts.PrevPage }}">&laquo;</a>
+    <a class="ui button tiny" hx-replace-url="true" hx-target="#content" hx-get="{{index .pagination .posts.PrevPage }}">&laquo;</a>
     {{end}}
 
 
@@ -13,10 +13,10 @@
       {{ end }}
     </select>
     /
-    <a class="ui button tiny" href="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a>
+    <a class="ui button tiny" hx-replace-url="true" hx-target="#content" hx-get="{{index .pagination .posts.TotalPage}}">{{ .posts.TotalPage }}</a>
 
     {{if lt .posts.Page .posts.TotalPage }}
-    <a class="ui button tiny" href="{{index .pagination .posts.NextPage }}">&raquo;</a>
+    <a class="ui button tiny" hx-replace-url="true" hx-target="#content" hx-get="{{index .pagination .posts.NextPage }}">&raquo;</a>
     {{end}}
   </div>
 {{end}}

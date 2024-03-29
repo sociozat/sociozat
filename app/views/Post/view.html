@@ -1,7 +1,9 @@
+{{if not (session "isHtmx" .)}}
 {{template "header.html" .}}
+{{ end }}
 
 <div class="ui segment">
-  <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
+  <h3> <a  hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
 </div>
 
 
@@ -17,7 +19,7 @@
     <div class="extra content">
         <span class="left floated">
             {{ if eq (session "user" $dot) .post.User.Username }}
-                <a class="item" href="{{url "Post.Edit" .post.ID}}"><i class="edit icon"></i></a>
+                <a class="item"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.Edit" .post.ID}}"><i class="edit icon"></i></a>
             {{ end }}
 
             <a  class="left aligned "
@@ -40,8 +42,8 @@
 
         </span>
       <span class="right floated">
-            <a class="right aligned"  href="{{url "User.Profile" .post.User.Slug}}" style="margin-left:10px">{{.post.User.Username}}</a>
-        <a class="right aligned" href="{{url "Post.View" .post.ID}}">{{timeago .post.CreatedAt}}</a>
+            <a class="right aligned"   hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .post.User.Slug}}" style="margin-left:10px">{{.post.User.Username}}</a>
+        <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .post.ID}}">{{timeago .post.CreatedAt}}</a>
         </span>
     </div>
   </div>
@@ -49,4 +51,6 @@
 </div>
 {{end}}
 
+{{if not (session "isHtmx" .)}}
 {{template "footer.html" .}}
+{{ end }}

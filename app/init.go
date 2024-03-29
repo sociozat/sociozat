@@ -106,6 +106,7 @@ func SetDefaultSettings(c *revel.Controller) revel.Result {
 		c.Session.Set("settings", inInterface)
 	}
 
+    c.Session.Set("isHtmx", c.Request.Header.Get("HX-Request"))
 	return nil
 }
 

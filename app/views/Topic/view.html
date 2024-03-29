@@ -1,4 +1,6 @@
-{{template "header.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "header.html" . }}
+{{ end }}
 
 <div class="ui sticky title">
   <div class="ui segment">
@@ -13,7 +15,6 @@
 
 {{with $dot := .}}
 
-
 <div class="segments">
   <!-- entries start -->
     {{if gt .previousPostCount 0 }}
@@ -26,7 +27,6 @@
         </div>
     </div>
     {{end}}
-
     {{ range .posts.Records}}
     <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
         <div class="content">
@@ -60,8 +60,8 @@
 
         </span>
         <span class="right floated">
-            <a class="right aligned"  href="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
-            <a class="right aligned" href="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
+            <a class="right aligned"   hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
+            <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
         </span>
         </div>
     </div>
@@ -69,7 +69,8 @@
   {{ end }}
   {{template "_partials/pagination.html" .}}
   {{template "_partials/editor.html" .}}
-
 </div>
 
+{{if not (session "isHtmx" .)}}
 {{template "footer.html" .}}
+{{ end }}
