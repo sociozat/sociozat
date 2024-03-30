@@ -1,5 +1,7 @@
 {{set . "title" .title}}
-{{template "header.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "header.html" . }}
+{{ end }}
 
 <div class="ui segment">
 	<h3>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</h3>
@@ -54,4 +56,6 @@
 </div>
 <!-- pagination end -->
 
-{{template "footer.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "footer.html" . }}
+{{ end }}

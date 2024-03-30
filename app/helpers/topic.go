@@ -17,7 +17,7 @@ func TodaysTopics(db *gorm.DB, channels []uint) []models.TopicModel {
 			Where("topic_channels.channel_model_id IN(?)", channels)
 	}
 
-	tx.Limit(50).
+	tx.Limit(30).
 		Group("topics.id").
 		Order("topics.updated_at DESC").
 		Find(&topics)
@@ -38,7 +38,7 @@ func TrendingTopics(db *gorm.DB, channels []uint, startDate string) []models.Top
 			Where("topic_channels.channel_model_id IN(?)", channels)
 	}
 
-	tx.Limit(50).
+	tx.Limit(30).
 		Group("topics.id").
 		Order("topics.updated_at DESC").
 		Find(&topics)

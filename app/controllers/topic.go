@@ -42,13 +42,18 @@ func (c Topic) View(slug string) revel.Result {
 
 	var title = c.Message("topic.title", topic.Name)
 
-    previousPostCount := 0
-    previousPostsPage := 0
+
 	if page > 0 {
 		title = c.Message("topic.title.with.page", topic.Name, page)
+	}
+
+    //add total post
+    previousPostCount := 0
+    previousPostsPage := 0
+    if a == "trending" {
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
         previousPostsPage = int(previousPostCount) / int(limit)
-	}
+    }
 
 	//set pages
 	c.Params.Query = c.Request.URL.Query()

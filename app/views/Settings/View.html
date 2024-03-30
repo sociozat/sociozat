@@ -1,5 +1,7 @@
 {{set . "title" .title}}
-{{template "header.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "header.html" . }}
+{{ end }}
 
 <div class="ui segment">
     <div class="ui menu">
@@ -139,4 +141,6 @@
 
 </div>
 
-{{template "footer.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "footer.html" . }}
+{{ end }}

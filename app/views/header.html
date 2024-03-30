@@ -28,7 +28,20 @@
 </head>
 
 <body>
-	<div class="ui grid fixed">
+	<div class="ui left sidebar mbl vertical menu visible " >
+		{{template "_partials/left.html" .}}
+	</div>
+
+<!--	<div class="ui vertical user sidebar menu hidden">-->
+<!--		{{if (session "user" .)  }}-->
+<!--		<a class="item" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}" >{{msg . "user.profile"}}</a>-->
+<!--		<a class="item" hx-target="#content" hx-get="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>-->
+<!--		<a class="item" hx-target="#content" hx-get="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>-->
+<!--		<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>-->
+<!--		{{end}}-->
+<!--	</div>-->
+
+	<div class="ui top fixed menu grid">
 		<div class="computer only row">
 			<div class="column">
 				<div class="ui menu fixed">
@@ -51,15 +64,26 @@
 					</div>
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
-					{{ range $channel := $settings.headerChannels }}
-					<a class="item" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">{{$channel.name}}</a>
-					{{end}}
+						{{ range $channel := $settings.headerChannels }}
+							<a class="item" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">{{$channel.name}}</a>
+						{{end}}
 					{{end}}
 
+					{{ if (session "user" . ) }}
+					<div class="right menu">
+						<div class="ui dropdown item">
+							{{ session "user" . }} <i class="dropdown icon"></i>
+							<div class="menu">
+								<a class="item">Profile</a>
+								<a class="item">Settings</a>
+								<a class="item">New Topic</a>
+							</div>
+						</div>
+					</div>
+					{{end}}
 				</div>
 			</div>
 		</div>
-
 		<div class="tablet mobile only row">
 			<div class="column">
 				<div class="ui menu fixed">
@@ -71,22 +95,12 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="ui right sidebar vertical menu">
-		{{if (session "user" .)  }}
-		<a class="item" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}" >{{msg . "user.profile"}}</a>
-		<a class="item" hx-target="#content" hx-get="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
-		<a class="item" hx-target="#content" hx-get="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
-		<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
-		{{end}}
+
 	</div>
 
-
-	<div class="ui three column stackable grid">
-		<div class="four wide column computer screen only">
-			{{template "_partials/left.html" .}}
-		</div>
-
-		<div class="eight wide column centered">
+	<div class="pusher" style="margin-top:2rem !important">
+	<div class="ui two column doubling stackable grid">
+		<div class="one wide column"></div>
+		<div class="eight wide column">
 			{{template "flash.html" .}}
 			<div id="content">

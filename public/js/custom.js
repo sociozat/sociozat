@@ -5,9 +5,21 @@ $(document).ready(function () {
 	// 	closable: false,
 	// }).sidebar('attach events', '#mobile_item');
 
-	$('.ui.right.sidebar').sidebar({
+	$('.ui.mbl.sidebar').sidebar({
 		context: $('.pusher'),
-		transition: 'overlay'
+		transition: 'push',
+		direction: 'right',
+		dimPage: false,
+	})
+		.sidebar('attach events', '#mobile_item')
+		.sidebar('setting', 'transition', 'push');
+
+
+	$('.ui.user.sidebar').sidebar({
+		context: $('.pusher'),
+		transition: 'push',
+		direction: 'left',
+		dimPage: false,
 	}).sidebar('attach events', '#user_item');
 
 	$('.example .menu .browse').popup({
@@ -110,25 +122,24 @@ $(document).ready(function () {
 
 
 	// SEARCH
-
 	$('.ui.search').search({
 		type: 'category',
 		minCharacters: 3,
+		cache: true,
 		apiSettings: {
 			onResponse: function (apiResponse) {
-				var
-					response = {
+				const response = {
 						results: {},
 						actions: {}
 					}
-					;
+				;
 				// translate GitHub API response to work with search
 				$.each(apiResponse.results, function (index, item) {
 					var maxResults = 12;
 					if (index >= maxResults) {
 						return false;
 					}
-					type = item.type;
+					let type = item.type;
 
 					// create new language category
 					if (response.results[type] === undefined) {
@@ -138,13 +149,14 @@ $(document).ready(function () {
 						};
 					}
 
-					if (type == "post") {
+					let slug;
+					if (type === "post") {
 						slug = "/p/" + item.slug
-					} else if (type == "topic") {
+					} else if (type === "topic") {
 						slug = "/t/" + item.slug
-					} else if (type == "channel") {
+					} else if (type === "channel") {
 						slug = "/c/" + item.slug
-					} else if (type == "user") {
+					} else if (type === "user") {
 						slug = "/u/" + item.slug
 					}
 
@@ -155,11 +167,10 @@ $(document).ready(function () {
 					});
 				});
 				response.actions = apiResponse.actions
-				console.log(response);
 				return response;
 			},
 			url: '/api/search/{query}'
-		}
+		},
 	});
 
 
@@ -173,5 +184,10 @@ $(document).ready(function () {
 	   $txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
 	});
 
+
+	//auto scroll to body
+	$(document).click(function(e) {
+		$("body").scrollTop(0);
+	});
 
 });

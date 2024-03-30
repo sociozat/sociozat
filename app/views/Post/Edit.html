@@ -1,4 +1,6 @@
-{{template "header.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "header.html" . }}
+{{ end }}
 
 <div class="ui segment">
   <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
@@ -15,4 +17,6 @@
     </form>
 </div>
 
-{{template "footer.html" .}}
+{{if not (session "isHtmx" .)}}
+{{ template "footer.html" . }}
+{{ end }}

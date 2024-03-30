@@ -58,6 +58,12 @@
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .ui.left.sidebar{
+    margin-left: 2.4rem !important;
+  }
+}
+
 body {
   font-size: 15px !important;
   background: #f2f2f2;
@@ -83,7 +89,7 @@ p {
 		padding: 0 !important;
 }
 .pushable.segment{
-		margin: 0 !important;
+  margin: 0 !important;
 }
 
 .posts {
@@ -102,9 +108,7 @@ p {
 .segment {
   top: 20px;
 }
-.sidebar.vertical{
-  top:20px;
-}
+
 .menu {
   background: #f2f2f2 !important;
 }
@@ -116,9 +120,6 @@ p {
   float:left;
 }
 
-.ui.left.sidebar {
-  margin-top: 22px !important;
-}
 
 .ui.selection.list .list>.item, .ui.selection.list>.item {
   color: #000 !important;
@@ -139,6 +140,9 @@ p {
   padding: .501em .833em !important
  }
 
+.description {
+  font-size: 1.19rem !important;
+}
 .ui.card{
   background: #f7f7f7;
 }
@@ -148,9 +152,10 @@ p {
 
  }
 
- .ui.left.sidebar, .ui.right.sidebar {
-    width:24% !important;
-    z-index: inherit;
+ .ui.left.sidebar{
+   min-width: 22rem;
+   max-width: 100%;
+   margin-top: 1rem !important;
  }
 
  .ui.segments .segment {
