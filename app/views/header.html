@@ -28,7 +28,7 @@
 </head>
 
 <body>
-	<div class="ui left sidebar mbl vertical menu visible " >
+	<div class="ui left sidebar mbl vertical menu visible">
 		{{template "_partials/left.html" .}}
 	</div>
 
@@ -40,7 +40,6 @@
 <!--		<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>-->
 <!--		{{end}}-->
 <!--	</div>-->
-
 	<div class="ui top fixed menu grid">
 		<div class="computer only row">
 			<div class="column">
@@ -95,12 +94,7 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
-	<div class="pusher" style="margin-top:2rem !important">
-	<div class="ui two column doubling stackable grid">
-		<div class="one wide column"></div>
-		<div class="eight wide column">
-			{{template "flash.html" .}}
-			<div id="content">
+	<div class="pusher">
+	<div class="ui two column doubling stackable grid" id="content">

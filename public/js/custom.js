@@ -1,4 +1,10 @@
 $(document).ready(function () {
+	const STICKY_OFFSET = 160;
+	document.addEventListener("htmx:after-swap", (event) => {
+		const content = document.getElementById("content");
+		window.scrollTo(0, content - STICKY_OFFSET);
+	});
+
 	// $('.ui.left.sidebar').sidebar({
 	// 	context: $('.pusher'),
 	// 	transition: 'overlay',

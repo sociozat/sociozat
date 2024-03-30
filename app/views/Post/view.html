@@ -1,6 +1,9 @@
 {{if not (session "isHtmx" .)}}
 {{template "header.html" .}}
 {{ end }}
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
 
 <div class="ui segment">
   <h3> <a  hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
@@ -51,6 +54,8 @@
 </div>
 {{end}}
 
-{{if not (session "isHtmx" .)}}
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
 {{template "footer.html" .}}
-{{ end }}
+

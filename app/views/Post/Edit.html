@@ -1,6 +1,9 @@
 {{if not (session "isHtmx" .)}}
 {{ template "header.html" . }}
 {{ end }}
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
 
 <div class="ui segment">
   <h3> <a href="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
@@ -17,6 +20,7 @@
     </form>
 </div>
 
-{{if not (session "isHtmx" .)}}
-{{ template "footer.html" . }}
-{{ end }}
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
+{{template "footer.html" .}}

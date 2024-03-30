@@ -1,75 +1,78 @@
 {{if not (session "isHtmx" .)}}
 {{ template "header.html" . }}
 {{ end }}
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
 
-<div class="ui title">
-  <div class="ui segment">
-      <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
-          <i class="icon comment"></i>{{.posts.TotalRecord}}
+    <div class="ui title">
+      <div class="ui segment">
+          <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
+              <i class="icon comment"></i>{{.posts.TotalRecord}}
+          </div>
+          <div class="ui aligned">
+              <h3><a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
+          </div>
       </div>
-      <div class="ui aligned">
-          <h3><a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
-      </div>
-  </div>
-</div>
-
-{{with $dot := .}}
-
-<div class="segments">
-  <!-- entries start -->
-    {{if gt .previousPostCount 0 }}
-    <div class="ui tiny message">
-        <div class="ui center aligned grid">
-            <a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug}}?page={{ .previousPostsPage }}">
-            {{msg . "topic.trending.total" .previousPostCount }}
-            </a>
-        </div>
     </div>
-    {{end}}
-    {{ range .posts.Records}}
-    <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
-        <div class="content">
-            <div class="description">
-                <p>{{format .Content}}</p>
+
+    {{with $dot := .}}
+
+    <div class="segments">
+      <!-- entries start -->
+        {{if gt .previousPostCount 0 }}
+        <div class="ui tiny message">
+            <div class="ui center aligned grid">
+                <a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug}}?page={{ .previousPostsPage }}">
+                {{msg . "topic.trending.total" .previousPostCount }}
+                </a>
             </div>
         </div>
-        <div class="extra content">
-        <span class="left floated">
-            {{ if and .User (eq (session "user" $dot) .User.Username) }}
-                <a class="left aligned " href="{{url "Post.Edit" .ID}}"><i class="edit icon"></i></a>
-            {{ end }}
+        {{end}}
+        {{ range .posts.Records}}
+        <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
+            <div class="content">
+                <div class="description">
+                    <p>{{format .Content}}</p>
+                </div>
+            </div>
+            <div class="extra content">
+            <span class="left floated">
+                {{ if and .User (eq (session "user" $dot) .User.Username) }}
+                    <a class="left aligned " href="{{url "Post.Edit" .ID}}"><i class="edit icon"></i></a>
+                {{ end }}
 
-            <a  class="left aligned "
-                href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Facebook">
-                <i class="icon facebook"></i>
-            </a>
+                <a  class="left aligned "
+                    href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
+                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                target="_blank" title="Share on Facebook">
+                    <i class="icon facebook"></i>
+                </a>
 
-            <a class="left aligned "
-               href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Twitter"
-            style="margin-left:10px">
-                <i class="icon twitter"></i>
-            </a>
+                <a class="left aligned "
+                   href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
+                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                target="_blank" title="Share on Twitter"
+                style="margin-left:10px">
+                    <i class="icon twitter"></i>
+                </a>
 
-            <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
-            <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
+                <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
+                <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
 
-        </span>
-        <span class="right floated">
-            <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
-            <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
-        </span>
+            </span>
+            <span class="right floated">
+                <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
+                <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
+            </span>
+            </div>
         </div>
+        {{ end }}
+      {{ end }}
+      {{template "_partials/pagination.html" .}}
+      {{template "_partials/editor.html" .}}
     </div>
-    {{ end }}
-  {{ end }}
-  {{template "_partials/pagination.html" .}}
-  {{template "_partials/editor.html" .}}
-</div>
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
 
-{{if not (session "isHtmx" .)}}
 {{template "footer.html" .}}
-{{ end }}

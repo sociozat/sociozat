@@ -65,8 +65,8 @@
 }
 
 body {
-  font-size: 15px !important;
   background: #f2f2f2;
+  max-height: 100vh;
 }
 
 a {
@@ -149,13 +149,12 @@ p {
  /* make segments flat*/
  .ui.segment {
   border-radius: 0em !important;background: #f2f2f2 !important;
-
  }
 
  .ui.left.sidebar{
    min-width: 22rem;
    max-width: 100%;
-   margin-top: 1rem !important;
+   margin-top:3rem !important
  }
 
  .ui.segments .segment {
@@ -174,6 +173,21 @@ p {
   font-size: .85714286rem;
 }
 
-.ui.selection.dropdown > .dropdown.icon{
-  display: none !important;
+.pusher{
+  margin-top:2rem !important
+}
+.pushable{
+  height:initial !important;
+}
+
+.pushable:not(body) {
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.pushable:not(body) > .ui.sidebar,
+.pushable:not(body) > .fixed,
+.pushable:not(body) > .pusher:after {
+  position: fixed;
 }

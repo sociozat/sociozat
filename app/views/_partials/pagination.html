@@ -7,7 +7,7 @@
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.PrevPage }}"
-       hx-swap="innerHTML scroll:top"
+       hx-swap="show:window:top"
     >&laquo;
     </a>
     {{end}}
@@ -23,7 +23,7 @@
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.TotalPage}}"
-       hx-swap="innerHTML scroll:top"
+       hx-swap="show:window:top"
     >{{ .posts.TotalPage }}
     </a>
 
@@ -32,7 +32,7 @@
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.NextPage }}"
-       hx-swap="innerHTML scroll:top"
+       hx-swap="show:window:top"
     >&raquo;
     </a>
     {{end}}

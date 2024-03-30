@@ -1,6 +1,11 @@
 {{if not (session "isHtmx" .)}}
 {{template "header.html" .}}
 {{ end }}
+
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
+
 <div class="ui title">
   <div class="ui segment">
       <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
@@ -59,6 +64,7 @@
 
 {{template "_partials/pagination.html" .}}
 
-{{if not (session "isHtmx" .)}}
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
 {{template "footer.html" .}}
-{{ end }}

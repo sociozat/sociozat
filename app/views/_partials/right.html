@@ -7,10 +7,10 @@
             <a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}">
               <i class="user icon"></i>
             </a>
-            <a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
+            <a class="icon item button popup" href="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
               <i class="add icon"></i>
             </a>
-            <a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
+            <a class="icon item button popup" href="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
               <i class="cog icon"></i>
             </a>
 <!--            <a class="icon item button active popup" data-content="{{msg . "user.setting.night.mode"}}" data-position="bottom center">-->
@@ -41,6 +41,32 @@
     </div>
     </div>
     {{end}}
+
+    <!-- Footer -->
+    <div class="ui section divider"></div>
+    <div class="ui horizontal small divided link list"  style="float:left">
+        <div class="item">
+            © copyright 2024 {{config "app.name" ""}}
+        </div>
+    </div>
+
+    <div class="ui horizontal small divided link list"  style="float:right">
+        <a class="right item" href="{{config "footer.about.url" "#"}}" target="_blank">
+        {{config "footer.about.name" "about"}}
+        </a>
+
+        <a class="item right" href="{{config "footer.tos.url" "#"}}" target="_blank">
+        {{config "footer.tos.name" "tos"}}
+        </a>
+
+        <a class="item right" href="{{config "footer.faq.url" "#"}}" target="_blank">
+        {{config "footer.faq.name" "faq"}}
+        </a>
+
+        <a class="item right" href="https://github.com/sociozat/sociozat" target="_blank">
+           <i class="icon heart grey"></i>
+        </a>
+    </div>
       
 </div>
 <!-- Right Sidebar Large Screen End-->

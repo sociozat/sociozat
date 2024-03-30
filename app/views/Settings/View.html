@@ -3,7 +3,11 @@
 {{ template "header.html" . }}
 {{ end }}
 
-<div class="ui segment">
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
+
+    <div class="ui segment">
     <div class="ui menu">
         <a class="item active"> {{msg . "user.settings"}}</a>
         <a class="item">{{msg . "user.password.change"}}</a>
@@ -141,6 +145,7 @@
 
 </div>
 
-{{if not (session "isHtmx" .)}}
-{{ template "footer.html" . }}
-{{ end }}
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
+{{template "footer.html" .}}

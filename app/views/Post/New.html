@@ -3,6 +3,9 @@
 {{ template "header.html" . }}
 {{ end }}
 
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
 
 <div class="ui segment">
     <form class="ui form" action="{{url "Post.Create"}}" method="POST">
@@ -25,9 +28,10 @@
             </div>
         </div>
         <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
-       
     </form>
 </div>
-{{if not (session "isHtmx" .)}}
-{{ template "footer.html" . }}
-{{ end }}
+
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
+{{template "footer.html" .}}
