@@ -12,12 +12,16 @@ import (
 type App struct {
 	*revel.Controller
 	UserService services.UserService
+	PostService services.PostService
 }
 
 //Index renders home page
 func (c App) Index() revel.Result {
 	title, _ := revel.Config.String("app.name")
-	return c.Render(title)
+
+	posts, _ := c.PostService.GetHomePagePosts()
+
+	return c.Render(title, posts)
 }
 
 func (c App) connected() *models.UserModel {

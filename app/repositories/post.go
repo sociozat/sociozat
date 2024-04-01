@@ -29,6 +29,20 @@ func (c PostRepository) Update(p *models.PostModel) (*models.PostModel, error) {
 	return p, err
 }
 
+
+func (c PostRepository) Find() ([]models.PostModel, error) {
+
+    posts := []models.PostModel{}
+    var err error
+
+    if err := app.DB.Limit(10).Order("id desc").Preload("Topic").Preload("User").Find(&posts).Error; err != nil {
+		return posts, err
+	}
+
+	return posts, err
+
+}
+
 func (c PostRepository) FindByID(id int) (*models.PostModel, error) {
 	post := models.PostModel{}
 

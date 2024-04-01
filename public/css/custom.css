@@ -154,7 +154,8 @@ p {
  .ui.left.sidebar{
    min-width: 22rem;
    max-width: 100%;
-   margin-top:3rem !important
+   margin-top:3rem !important;
+   z-index: inherit;
  }
 
  .ui.segments .segment {
@@ -173,6 +174,14 @@ p {
   font-size: .85714286rem;
 }
 
+select.ui.dropdown{
+  height: auto !important;
+}
+
+
+/**
+* Pusher, Sidebar, Scroll Fix
+ */
 .pusher{
   margin-top:2rem !important
 }

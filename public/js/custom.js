@@ -2,7 +2,7 @@ $(document).ready(function () {
 	const STICKY_OFFSET = 160;
 	document.addEventListener("htmx:after-swap", (event) => {
 		const content = document.getElementById("content");
-		window.scrollTo(0, content - STICKY_OFFSET);
+		window.scrollTo(0, content);
 	});
 
 	// $('.ui.left.sidebar').sidebar({

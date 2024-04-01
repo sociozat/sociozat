@@ -70,6 +70,10 @@ func (p PostService) UpdatePost(post *models.PostModel) (*models.PostModel, map[
 
 }
 
+func (p PostService) GetHomePagePosts() ([]models.PostModel, error) {
+    return p.PostRepository.Find()
+}
+
 func (p PostService) GenerateChannels(channels string) []models.ChannelModel {
 	c := []models.ChannelModel{}
 	if channels == "" {
