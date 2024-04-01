@@ -69,14 +69,22 @@
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
-						<div class="ui dropdown item">
-							{{ session "user" . }} <i class="dropdown icon"></i>
-							<div class="menu">
-								<a class="item">Profile</a>
-								<a class="item">Settings</a>
-								<a class="item">New Topic</a>
-							</div>
-						</div>
+						<a class="icon item button popup" href="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
+							<i class="add icon"></i>
+						</a>
+
+						<a class="icon item button popup" href="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
+							<i class="cog icon"></i>
+						</a>
+
+						<a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}">
+							{{ session "user" . }}
+						</a>
+
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
+							<i class="sign out alternate icon"></i>
+						</a>
+
 					</div>
 					{{end}}
 				</div>

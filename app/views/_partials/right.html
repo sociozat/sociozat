@@ -1,30 +1,9 @@
 <!-- Right Sidebar Large Screen -->
 <div class="four wide column computer screen only">
     <!-- User View -->
-    {{if (session "fulluser" .)  }}
-    <div class="ui segment">
-        <div class="four ui buttons menu">
-            <a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}">
-              <i class="user icon"></i>
-            </a>
-            <a class="icon item button popup" href="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
-              <i class="add icon"></i>
-            </a>
-            <a class="icon item button popup" href="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
-              <i class="cog icon"></i>
-            </a>
-<!--            <a class="icon item button active popup" data-content="{{msg . "user.setting.night.mode"}}" data-position="bottom center">-->
-<!--              <i class="moon icon"></i>-->
-<!--            </a>-->
-            <a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
-              <i class="sign out alternate icon"></i>
-            </a>
-            
-        </div>
-    </div>
-    {{else}}
-    <!-- Guest View -->
-    {{template "_partials/login.html" .}}
+    {{if not (session "fulluser" .)  }}
+        <!-- Guest View -->
+        {{template "_partials/login.html" .}}
     {{end}}
 
     {{if and .topic .topic.Channels}}
@@ -39,6 +18,21 @@
             {{end}}
         </div>
     </div>
+    </div>
+    {{end}}
+
+    {{if .related}}
+    <div class="ui sticky">
+        <div class="ui segment">
+            <div class="header">{{msg . "topic.channels"}}</div>
+            <div class="ui vertical visible list divided selection">
+                {{ range .related }}
+                <a class="item" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .Slug}}">
+                {{.Name}}
+                </a>
+                {{end}}
+            </div>
+        </div>
     </div>
     {{end}}
 

@@ -1,6 +1,10 @@
 {{set . "title" .title}}
 {{template "header.html" .}}
 
+<div class="one wide column"></div>
+<div class="eight wide column">
+    {{template "flash.html" .}}
+
 <div class="ui segment">
     <form class="ui form" action="{{url "User.SaveUser"}}" method="POST">
       {{with $field := field "user.Username" .}}
@@ -29,4 +33,8 @@
       <a href="{{url "App.Index"}}">{{msg . "global.cancel"}}</a>
     </form>
 </div>
+
+</div> <!-- Eight Grid -->
+{{template "_partials/right.html" .}}
+
 {{template "footer.html" .}}
