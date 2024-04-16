@@ -29,6 +29,7 @@ type UserModel struct {
 	HashedPassword string `gorm:"type:varchar(255)"`
 	Settings       string `gorm:"type:text`
 	Type           int
+	EmailVerified  bool   `gorm:"type:bool`
 }
 
 //TableName sets table name on db

@@ -2,19 +2,14 @@ $(document).ready(function () {
 	const STICKY_OFFSET = 160;
 	document.addEventListener("htmx:after-swap", (event) => {
 		const content = document.getElementById("content");
-		window.scrollTo(0, content);
+		window.scrollTo(0, content + STICKY_OFFSET);
 	});
 
-	// $('.ui.left.sidebar').sidebar({
-	// 	context: $('.pusher'),
-	// 	transition: 'overlay',
-	// 	closable: false,
-	// }).sidebar('attach events', '#mobile_item');
 
 	$('.ui.mbl.sidebar').sidebar({
 		context: $('.pusher'),
-		transition: 'push',
 		direction: 'right',
+		transition: 'push',
 		dimPage: false,
 	})
 		.sidebar('attach events', '#mobile_item')
@@ -22,11 +17,13 @@ $(document).ready(function () {
 
 
 	$('.ui.user.sidebar').sidebar({
-		context: $('.pusher'),
 		transition: 'push',
-		direction: 'left',
+		direction: 'right',
 		dimPage: false,
-	}).sidebar('attach events', '#user_item');
+	})
+		.sidebar('attach events', '#user_item')
+		.sidebar('setting', 'transition', 'push');
+
 
 	$('.example .menu .browse').popup({
 		popup: $('.mega-menu')

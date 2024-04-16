@@ -28,10 +28,15 @@ func (c Topic) View(slug string) revel.Result {
 	a := c.Params.Query.Get("a")
 
     startDate  := "1970-01-01"
+    currentTime := time.Now()
+
 	if a == "trending" {
         threshold, _ := strconv.Atoi(revel.Config.StringDefault("trending.threshold", "24"))
-		currentTime := time.Now()
 		startDate  = currentTime.Add(time.Duration(-threshold) * time.Hour).Format("2006-01-02 15:04:05") //set this as beginning
+	}
+
+	if a == "today" {
+		startDate  = currentTime.Add(time.Duration(-24) * time.Hour).Format("2006-01-02 15:04:05")
 	}
 
 	topic, posts, err := c.TopicService.FindBySlug(slug, page, limit, startDate)
@@ -50,7 +55,7 @@ func (c Topic) View(slug string) revel.Result {
     //add total post
     previousPostCount := 0
     previousPostsPage := 0
-    if a == "trending" {
+    if a == "trending" ||  a == "today" {
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
         previousPostsPage = int(previousPostCount) / int(limit)
     }

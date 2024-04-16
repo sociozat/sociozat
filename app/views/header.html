@@ -27,18 +27,37 @@
 </head>
 
 <body>
-	<div class="ui left sidebar mbl vertical menu visible">
+	<div class="ui left sidebar mbl vertical menu visible" id="left">
+
+		<div id="left-placeholder" class="htmx-indicator" style="display: none">
+			<div class="ui placeholder">
+				<div class="header">
+					<div class="line"></div>
+					<div class="line"></div>
+				</div><div class="header">
+					<div class="line"></div>
+					<div class="line"></div>
+				</div><div class="header">
+					<div class="line"></div>
+					<div class="line"></div>
+				</div><div class="header">
+					<div class="line"></div>
+					<div class="line"></div>
+				</div>
+			</div>
+		</div>
+
 		{{template "_partials/left.html" .}}
 	</div>
 
-<!--	<div class="ui vertical user sidebar menu hidden">-->
-<!--		{{if (session "user" .)  }}-->
-<!--		<a class="item" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}" >{{msg . "user.profile"}}</a>-->
-<!--		<a class="item" hx-target="#content" hx-get="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>-->
-<!--		<a class="item" hx-target="#content" hx-get="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>-->
-<!--		<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>-->
-<!--		{{end}}-->
-<!--	</div>-->
+	<div class="ui right sidebar user vertical menu hidden">
+		{{if (session "user" .)  }}
+			<a class="item" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}" >{{msg . "user.profile"}}</a>
+			<a class="item" hx-target="#content" hx-get="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
+			<a class="item" hx-target="#content" hx-get="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
+			<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+		{{end}}
+	</div>
 	<div class="ui top fixed menu grid">
 		<div class="computer only row">
 			<div class="column">
@@ -49,7 +68,8 @@
 					</div>
 					{{end}}
 
-					<a class="item" hx-target="#content" hx-get="{{url "App.Index"}}">{{msg . "global.menu.trending"}}</a>
+					<a class="item" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Trending"}}">{{msg . "global.menu.trending"}}</a>
+					<a class="item" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Today"}}">{{msg . "global.menu.today"}}</a>
 
 					<div class="menu">
 						<div class="ui right aligned category search item">
@@ -93,7 +113,7 @@
 		<div class="tablet mobile only row">
 			<div class="column">
 				<div class="ui menu fixed">
-					<a id="mobile_item" class="item left"><i class="bars icon"></i></a>
+					<a id="mobile_item" class="item left"><i class="align left icon"></i></a>
 					<div class="mobile-header">
 						<div class="ui mini image">
 							<img src="https://semantic-ui.com/images/logo.png">

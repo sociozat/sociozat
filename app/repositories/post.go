@@ -30,12 +30,12 @@ func (c PostRepository) Update(p *models.PostModel) (*models.PostModel, error) {
 }
 
 
-func (c PostRepository) Find() ([]models.PostModel, error) {
+func (c PostRepository) Find(limit int) ([]models.PostModel, error) {
 
     posts := []models.PostModel{}
     var err error
 
-    if err := app.DB.Limit(10).Order("id desc").Preload("Topic").Preload("User").Find(&posts).Error; err != nil {
+    if err := app.DB.Limit(limit).Order("id desc").Preload("Topic").Preload("User").Find(&posts).Error; err != nil {
 		return posts, err
 	}
 

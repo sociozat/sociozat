@@ -71,7 +71,11 @@ func (p PostService) UpdatePost(post *models.PostModel) (*models.PostModel, map[
 }
 
 func (p PostService) GetHomePagePosts() ([]models.PostModel, error) {
-    return p.PostRepository.Find()
+    return p.PostRepository.Find(10)
+}
+
+func (p PostService) TodaysPosts() ([]models.TopicModel, error) {
+    return p.TopicRepository.Todays(50)
 }
 
 func (p PostService) GenerateChannels(channels string) []models.ChannelModel {

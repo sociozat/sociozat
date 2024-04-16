@@ -39,7 +39,7 @@ func (c User) SaveUser(user models.UserModel) revel.Result {
 	}
 
 	if err != nil {
-		c.Flash.Error(err.Error())
+		c.Flash.Error("user exists")
 		return c.Redirect(User.Register)
 	}
 	//set success flash

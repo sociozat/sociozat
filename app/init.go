@@ -58,6 +58,7 @@ func InitDB() {
 	DB.AutoMigrate(&models.PostModel{})
 	DB.AutoMigrate(&models.TopicModel{})
 	DB.AutoMigrate(&models.ChannelModel{})
+	DB.AutoMigrate(&models.InvitationModel{})
 }
 
 var DefaultLocale string

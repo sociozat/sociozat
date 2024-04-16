@@ -30,6 +30,9 @@ POST    /t/:slug                     Topic.Reply
 
 GET     /q/:name                     Notation.View
 
+GET     /a/trending                  App.Trending
+GET     /a/today                     App.Today
+
 ## Api Routes
 GET     /api/search/:term            ApiSearch.Query
 

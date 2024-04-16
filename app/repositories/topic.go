@@ -4,6 +4,7 @@ import (
 	"github.com/biezhi/gorm-paginator/pagination"
 	"sociozat/app"
 	"sociozat/app/models"
+	"time"
 )
 
 type TopicSearchParams struct {
@@ -31,6 +32,7 @@ func (t TopicRepository) Find(params TopicSearchParams) (models.TopicModel, *pag
 	rows := app.DB.Table("posts").
 		Where("posts.topic_id = ?", topic.ID).
 		Where("posts.created_at >= ?", params.StartDate).
+		Order("posts.id ASC").
 		Preload("User")
 
 	paginator := pagination.Paging(&pagination.Param{
@@ -67,5 +69,28 @@ func (t TopicRepository) CountPostsUntil(ID uint, date string) int {
         Scan(&result)
 
     return result.Total
+
+}
+
+func (c TopicRepository) Todays(limit int) ([]models.TopicModel, error) {
+    topics := []models.TopicModel{}
+
+    currentTime := time.Now()
+    startDate  := currentTime.Add(time.Duration(-24) * time.Hour).Format("2006-01-02 15:04:05")
+
+    tx := app.DB.Table("posts").
+        Select("count(posts.id) as Post_Count, topics.name as Name, topics.slug as Slug").
+        Joins("join topics on posts.topic_id = topics.id").
+        Where("posts.created_at >= ?", startDate).
+        Group("topics.id").
+        Order("topics.updated_at ASC").
+        Limit(limit)
+
+
+    if err := tx.Find(&topics).Error; err != nil {
+		return topics, err
+	}
+
+    return topics, nil
 
 }

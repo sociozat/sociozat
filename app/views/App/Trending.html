@@ -1,0 +1,15 @@
+{{ if .posts }}
+{{ range $row := .posts }}
+<a class="item" hx-get="/t/{{$row.Slug}}?a=trending" hx-target="#content" hx-replace-url="true">
+    <div class="ui label mini horizontal">
+        {{ $row.PostCount }}
+    </div>
+    {{format $row.Name }}
+</a>
+{{ end }}
+
+{{ else }}
+
+{{msg . "global.no.posts.found"}}
+
+{{ end}}

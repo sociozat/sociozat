@@ -52,3 +52,8 @@ func (t TopicService) PostCountUntil(topic models.TopicModel, date string) int {
     count := t.TopicRepository.CountPostsUntil(topic.ID, date)
     return count
 }
+
+func (t TopicService) Todays(topic models.TopicModel, date string) []models.TopicModel {
+    topics, _ := t.TopicRepository.Todays(50)
+    return topics
+}

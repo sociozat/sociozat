@@ -69,6 +69,10 @@ body {
   max-height: 100vh;
 }
 
+body.pushable{
+  background: rgb(255, 255, 255) !important
+}
+
 a {
   color: #5f5f5f;
   text-decoration: none;
@@ -102,11 +106,7 @@ p {
 }
 
 .ui .segments{
-  margin: 2rem 0 !important;
-}
-
-.segment {
-  top: 20px;
+  margin: 1rem 0 !important;
 }
 
 .menu {
@@ -155,7 +155,11 @@ p {
    min-width: 22rem;
    max-width: 100%;
    margin-top:3rem !important;
-   z-index: inherit;
+   z-index: 999;
+ }
+
+ .ui.sidebar.menu .item{
+   line-height: 1.3rem !important;
  }
 
  .ui.segments .segment {
