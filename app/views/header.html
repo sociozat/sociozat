@@ -63,6 +63,9 @@
 							<div class="results"></div>
 						</div>
 					</div>
+
+					<div class="scrollable-wrapper">
+						<div class="item link-group">
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
 						{{ range $channel := $settings.headerChannels }}
@@ -71,6 +74,8 @@
 							</a>
 						{{end}}
 					{{end}}
+					</div>
+					</div>
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
