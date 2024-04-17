@@ -108,5 +108,6 @@ func (c Topic) Reply(slug string) revel.Result {
 	websocket.Publish("channels", strings.Join(list, ","))
 
 	c.Flash.Success(c.Message("topic.create.success.message"))
-	return c.Redirect(Post.View, post.ID)
+
+	return c.RenderTemplate("Post.View", post, topic)
 }
