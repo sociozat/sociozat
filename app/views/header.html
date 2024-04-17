@@ -28,25 +28,6 @@
 
 <body>
 	<div class="ui left sidebar mbl vertical menu visible" id="left">
-
-		<div id="left-placeholder" class="htmx-indicator" style="display: none">
-			<div class="ui placeholder">
-				<div class="header">
-					<div class="line"></div>
-					<div class="line"></div>
-				</div><div class="header">
-					<div class="line"></div>
-					<div class="line"></div>
-				</div><div class="header">
-					<div class="line"></div>
-					<div class="line"></div>
-				</div><div class="header">
-					<div class="line"></div>
-					<div class="line"></div>
-				</div>
-			</div>
-		</div>
-
 		{{template "_partials/left.html" .}}
 	</div>
 
@@ -69,7 +50,9 @@
 					{{end}}
 
 					<a class="item" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Trending"}}">{{msg . "global.menu.trending"}}</a>
-					<a class="item" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Today"}}">{{msg . "global.menu.today"}}</a>
+					<a id="cid0"  class="item p-count" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Today"}}">
+						{{msg . "global.menu.today"}}
+					</a>
 
 					<div class="menu">
 						<div class="ui right aligned category search item">
@@ -83,7 +66,9 @@
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
 						{{ range $channel := $settings.headerChannels }}
-							<a class="item" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">{{$channel.name}}</a>
+							<a id="cid{{$channel.value}}" class="item p-count" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
+								{{$channel.name}}
+							</a>
 						{{end}}
 					{{end}}
 

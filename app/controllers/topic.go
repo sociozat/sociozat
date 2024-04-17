@@ -3,8 +3,10 @@ package controllers
 import (
 	"fmt"
 	"sociozat/app/services"
+	"sociozat/app/websocket"
 	"strconv"
 	"time"
+	"strings"
 
 	"github.com/revel/revel"
 )
@@ -55,7 +57,7 @@ func (c Topic) View(slug string) revel.Result {
     //add total post
     previousPostCount := 0
     previousPostsPage := 0
-    if a == "trending" ||  a == "today" {
+    if limit > 0 && (a == "trending" ||  a == "today") {
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
         previousPostsPage = int(previousPostCount) / int(limit)
     }
@@ -97,6 +99,13 @@ func (c Topic) Reply(slug string) revel.Result {
 		c.Flash.Error(err.Error())
 		return c.Redirect(Topic.View, t.ID)
 	}
+
+    //publish via websocket
+    var list []string
+    for _, c := range t.Channels {
+        list = append(list, strconv.FormatUint(uint64(c.ID), 10))
+    }
+	websocket.Publish("channels", strings.Join(list, ","))
 
 	c.Flash.Success(c.Message("topic.create.success.message"))
 	return c.Redirect(Post.View, post.ID)

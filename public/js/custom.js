@@ -1,4 +1,42 @@
 $(document).ready(function () {
+
+	// Create a socket
+	let socket = new WebSocket('ws://'+window.location.host+'/ws/posts')
+
+	// Display a message
+	let display = function(event) {
+		let cids = event.Text.split(',')
+		cids.push(0)
+		cids.forEach(function(id){
+			const elem = $('#cid'+id)
+			if(Object.keys(elem).length > 0){
+				let total;
+				let badge = elem.children().first();
+				if(badge.hasClass('p-count-content')){
+					total = parseInt(badge.html()) + 1;
+				}else{
+					badge  = $('<div/>', {
+						"class": 'ui label tiny p-count-content',
+					}).appendTo(elem);
+					total = 1;
+				}
+				badge.html(total)
+			}
+		})
+	}
+
+	// Message received on the socket
+	socket.onmessage = function(event) {
+		display(JSON.parse(event.data))
+	}
+
+	$('.p-count').click(function (){
+		let badge = $(this).children().first();
+		if(badge.hasClass('p-count-content')){
+			badge.remove()
+		}
+	});
+
 	const STICKY_OFFSET = 160;
 	document.addEventListener("htmx:after-swap", (event) => {
 		const content = document.getElementById("content");
@@ -192,5 +230,4 @@ $(document).ready(function () {
 	$(document).click(function(e) {
 		$("body").scrollTop(0);
 	});
-
 });
