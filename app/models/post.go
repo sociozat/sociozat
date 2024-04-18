@@ -22,9 +22,9 @@ type PostModel struct {
 	gorm.Model
 	Content  string `gorm:"type:text;"`
 	User     *UserModel
-	UserID   int
+	UserID   uint
 	Topic    TopicModel
-	TopicID  int
+	TopicID  uint
 	Likes    int
 	Dislikes int
 }

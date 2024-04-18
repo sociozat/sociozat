@@ -39,8 +39,8 @@ func (t TopicService) Reply(topic models.TopicModel, user *models.UserModel, con
 
 	p := models.PostModel{
 		Content: content,
-		User:    user,
-		Topic:   topic,
+		UserID:    user.ID,
+		TopicID:   topic.ID,
 	}
 
 	post, err := t.PostRepository.Create(&p)

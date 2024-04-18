@@ -78,13 +78,12 @@ func (c TopicRepository) Todays(limit int) ([]models.TopicModel, error) {
     currentTime := time.Now()
     startDate  := currentTime.Add(time.Duration(-24) * time.Hour).Format("2006-01-02 15:04:05")
 
-    tx := app.DB.Table("posts").
+    tx := app.DB.Table("topics").
         Select("count(posts.id) as Post_Count, topics.name as Name, topics.slug as Slug").
-        Joins("join topics on posts.topic_id = topics.id").
+        Joins("join posts on posts.topic_id = topics.id").
         Where("posts.created_at >= ?", startDate).
-        Group("topics.id").
-        Order("topics.updated_at ASC").
-        Limit(limit)
+        Group("Slug, Name ").
+        Order("MAX(posts.created_at) DESC")
 
 
     if err := tx.Find(&topics).Error; err != nil {
