@@ -109,5 +109,5 @@ func (c Topic) Reply(slug string) revel.Result {
 
 	c.Flash.Success(c.Message("topic.create.success.message"))
 
-	return c.RenderTemplate("Post.View", post, topic)
+	return c.Redirect(Post.View, post.ID)
 }

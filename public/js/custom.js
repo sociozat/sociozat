@@ -6,7 +6,7 @@ $(document).ready(function () {
 	// Display a message
 	let display = function(event) {
 		let cids = event.Text.split(',')
-		cids.push(0)
+		cids.push(0) //dont miss the today
 		cids.forEach(function(id){
 			const elem = $('#cid'+id)
 			if(Object.keys(elem).length > 0){
@@ -223,11 +223,5 @@ $(document).ready(function () {
 	   var caretPos = $txt[0].selectionStart;
 	   var textAreaTxt = $txt.val();
 	   $txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
-	});
-
-
-	//auto scroll to body
-	$(document).click(function(e) {
-		$("body").scrollTop(0);
 	});
 });

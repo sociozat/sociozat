@@ -49,8 +49,8 @@
 					</div>
 					{{end}}
 
-					<a class="item" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Trending"}}">{{msg . "global.menu.trending"}}</a>
-					<a id="cid0"  class="item p-count" hx-indicator="#left-placeholder" hx-target="#left" hx-get="{{url "App.Today"}}">
+					<a class="item" hx-target="#left" hx-get="{{url "App.Trending"}}">{{msg . "global.menu.trending"}}</a>
+					<a id="cid0"  class="item p-count" hx-target="#left" hx-get="{{url "App.Today"}}">
 						{{msg . "global.menu.today"}}
 					</a>
 

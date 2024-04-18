@@ -203,7 +203,7 @@ select.ui.dropdown{
 }
 
 .ui.menu.fixed .item{
-  max-height: 48px !important;
+  max-height: 42px !important;
 }
 
 /**
