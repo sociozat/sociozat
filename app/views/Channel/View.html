@@ -10,14 +10,14 @@
             <i class="icon comment"></i>{{.posts.TotalRecord}}
           </div>
           <div class="ui aligned">
-              <h3> <a hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" .channel.Slug }}">{{format .channel.Name}} </a></h3>
+              <h3> <a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" .channel.Slug }}">{{format .channel.Name}} </a></h3>
           </div>
       </div>
     </div>
 
     <div class="segments">
     {{with $dot := .}}
-    {{ range .posts.Records}}
+    {{ range $post := .posts.Records}}
 
     <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
         <div class="content">
@@ -28,36 +28,8 @@
                 <p>{{format .Content}}</p>
             </div>
         </div>
-        <div class="extra content">
-            <span class="left floated">
-                {{ if eq (session "user" $dot) .User.Username }}
-                    <a class="item" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.Edit" .ID}}"><i class="edit icon"></i></a>
-                {{ end }}
+        {{template "_partials/post_footer.html"  $post}}
 
-                <a  class="left aligned "
-                    href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                target="_blank" title="Share on Facebook">
-                    <i class="icon facebook"></i>
-                </a>
-
-                <a class="left aligned "
-                   href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                target="_blank" title="Share on Twitter"
-                style="margin-left:10px">
-                    <i class="icon twitter"></i>
-                </a>
-
-                <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
-                <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
-
-            </span>
-            <span class="right floated">
-                <a class="right aligned" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}" style="margin-left:10px">{{.User.Username}}</a>
-                <a class="right aligned" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
-            </span>
-        </div>
     </div>
     {{ end }}
     {{ end }}

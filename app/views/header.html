@@ -79,11 +79,11 @@
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
-						<a class="icon item button popup" href="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
 							<i class="add icon"></i>
 						</a>
 
-						<a class="icon item button popup" href="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
 							<i class="cog icon"></i>
 						</a>
 

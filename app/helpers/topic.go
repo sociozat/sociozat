@@ -18,7 +18,7 @@ func TrendingTopics(db *gorm.DB, channels []uint, startDate string) []models.Top
 			Where("topic_channels.channel_model_id IN(?)", channels)
 	}
 
-	tx.Limit(30).
+	tx.Limit(100).
 		Group("topics.id").
 		Order("hotness_score DESC").
 		Find(&topics)

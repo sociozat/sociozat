@@ -5,6 +5,7 @@ import (
 	"sociozat/app/websocket"
 	"strconv"
 	"strings"
+	"fmt"
 
 	"github.com/revel/revel"
 )
@@ -97,6 +98,7 @@ func (c Post) Edit(id int) revel.Result {
 
 	var title = c.Message("post.single.title", post.User.Username, post.Topic.Name)
 	var topic = post.Topic
+
 	return c.Render(title, post, topic)
 }
 
@@ -132,4 +134,28 @@ func (c Post) Update(id int) revel.Result {
 
 	c.Flash.Success(c.Message("post.update.success.message"))
 	return c.Redirect(Post.View, post.ID)
+}
+
+
+func (c Post) Action(id int)  revel.Result {
+
+    u := c.connected()
+
+    if u == nil {
+    c.Flash.Error(c.Message("auth.login.required"))
+        return c.Redirect(Post.New)
+    }
+    action := c.Params.Get("action")
+
+    total, err := c.PostService.SaveAction(id, action, u)
+
+    data := make(map[string]interface{})
+    if err != nil {
+        fmt.Println(err)
+        data["error"] = err
+        return c.RenderJSON(data)
+    }
+
+    data["total"] = total
+    return c.RenderJSON(data)
 }

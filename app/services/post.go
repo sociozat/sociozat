@@ -108,6 +108,10 @@ func (p PostService) FindByID(id int) (*models.PostModel, error) {
 	return p.PostRepository.FindByID(id)
 }
 
+func (p PostService) SaveAction(id int, action string, user *models.UserModel) (*models.PostActionResponse, error) {
+	return p.PostRepository.SaveAction(id, action, user.ID)
+}
+
 //Validate validates post model form
 func (p PostService) Validate(m *models.PostModel) map[string]*revel.ValidationError {
 	p.Validation.Check(m.Topic.Name,

@@ -78,19 +78,6 @@ $(document).ready(function () {
 		})
 		;
 
-	$('.ui.channels.dropdown')
-		.dropdown({
-			allowAdditions: true,
-			maxSelections: 3,
-			apiSettings: {
-				// this url parses query server side and returns filtered results
-				url: '/c/json/?s={query}'
-			},
-		})
-		;
-
-	$('.ui.post-config').dropdown();
-
 	$('.ui.sticky').sticky({
 		context: '#content',
 		offset: 25
@@ -114,53 +101,8 @@ $(document).ready(function () {
 	autoHideSidebar($(window).width());
 	$(window).resize(jqUpdateSize);
 
-	$('.topic-pages').dropdown({
-		onChange: function (val) {
-			window.location.href = val;
-		}
-	});
 
 	$('.popup').popup();
-
-	//
-	// SETTINGS
-	//
-
-	$('.header-channels.dropdown')
-		.dropdown({
-			allowAdditions: false,
-			maxSelections: 10,
-			clearable: true,
-			apiSettings: {
-				// this url parses query server side and returns filtered results
-				url: '/c/json/?s={query}'
-			},
-		})
-		;
-
-	$('.trending-posts-channels.dropdown')
-		.dropdown({
-			allowAdditions: false,
-			maxSelections: 5,
-			clearable: true,
-			apiSettings: {
-				// this url parses query server side and returns filtered results
-				url: '/c/json/?s={query}'
-			},
-		})
-		;
-
-	$('.customized-trending-select').checkbox({
-		onChecked: function () {
-			$(".customized-trending-posts").removeClass("transition hidden");
-		},
-		onUnchecked: function () {
-			$('.trending-posts-channels.dropdown').dropdown("clear");
-			$(".customized-trending-posts").addClass("transition hidden");
-		}
-	}
-	);
-
 
 	// SEARCH
 	$('.ui.search').search({
@@ -214,14 +156,101 @@ $(document).ready(function () {
 		},
 	});
 
+	htmx.onLoad(function(elt) {
+		//
+		// SETTINGS
+		//
 
-	//textarea buttons
-	//TODO improve this feature
-	$(".editor-button").on("click", function(){
-	   var text = $(this).data("content")
-	   var $txt = $("textarea#content");
-	   var caretPos = $txt[0].selectionStart;
-	   var textAreaTxt = $txt.val();
-	   $txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
-	});
+		$('.ui.channels.dropdown')
+			.dropdown({
+				allowAdditions: true,
+				maxSelections: 3,
+				apiSettings: {
+					// this url parses query server side and returns filtered results
+					url: '/c/json/?s={query}'
+				},
+			})
+		;
+
+		$('.ui.post-config').dropdown();
+
+
+		$('.topic-pages').dropdown({
+			onChange: function (val) {
+				return htmx.ajax('GET', val, {target:'#content', url: true})
+			}
+		});
+
+		$('.header-channels.dropdown')
+			.dropdown({
+				allowAdditions: false,
+				maxSelections: 10,
+				clearable: true,
+				apiSettings: {
+					// this url parses query server side and returns filtered results
+					url: '/c/json/?s={query}'
+				},
+			})
+		;
+
+		$('.trending-posts-channels.dropdown')
+			.dropdown({
+				allowAdditions: false,
+				maxSelections: 5,
+				clearable: true,
+				apiSettings: {
+					// this url parses query server side and returns filtered results
+					url: '/c/json/?s={query}'
+				},
+			})
+		;
+
+		$('.customized-trending-select').checkbox({
+				onChecked: function () {
+					$(".customized-trending-posts").removeClass("transition hidden");
+				},
+				onUnchecked: function () {
+					$('.trending-posts-channels.dropdown').dropdown("clear");
+					$(".customized-trending-posts").addClass("transition hidden");
+				}
+			}
+		);
+
+		$('.post-action').off().on("click",function(e){
+			e.preventDefault();
+			const post = $(this).attr('data-post');
+			const action = $(this).attr('data-action');
+			$.post( "/a/action/" + post, {"action" : action}, function (response){
+
+				$("a[data-post='" + post + "']").each(function(){
+					$this = $(this)
+					const icon = $this.children().first();
+					if(!icon.hasClass('outline')) icon.addClass('outline')
+					const value = icon.hasClass('up') ? response.total.Likes : response.total.Dislikes;
+
+					if(icon.hasClass('up') && action == "like"){
+						icon.removeClass('outline')
+					}
+
+					if(icon.hasClass('down') && action == "dislike"){
+						icon.removeClass('outline')
+						console.log(icon)
+					}
+
+					$this.html(icon.prop('outerHTML') + value)
+				})
+
+			});
+		});
+
+		//textarea buttons
+		//TODO improve this feature
+		$(".editor-button").off().on("click", function(){
+			var text = $(this).data("content")
+			var $txt = $("textarea#content");
+			var caretPos = $txt[0].selectionStart;
+			var textAreaTxt = $txt.val();
+			$txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
+		});
+	})
 });

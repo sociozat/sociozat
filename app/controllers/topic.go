@@ -25,7 +25,10 @@ func (c Topic) View(slug string) revel.Result {
 	sets, _ := c.Session.Get("settings")
 
 	settings, _ := c.SettingsService.MapSettings(sets)
-	limit := settings.PostPerPage
+	limit := 10
+	if(settings.PostPerPage > 0){
+	    limit = settings.PostPerPage
+	}
 
 	a := c.Params.Query.Get("a")
 
@@ -57,7 +60,7 @@ func (c Topic) View(slug string) revel.Result {
     //add total post
     previousPostCount := 0
     previousPostsPage := 0
-    if limit > 0 && (a == "trending" ||  a == "today") {
+    if a == "trending" ||  a == "today" {
         previousPostCount  = c.TopicService.PostCountUntil(topic, startDate)
         previousPostsPage = int(previousPostCount) / int(limit)
     }

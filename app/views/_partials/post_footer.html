@@ -1,0 +1,26 @@
+
+<div class="extra content">
+        <span class="left floated">
+            <a  class="left aligned "
+                href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ .Topic.Name}}"
+            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+            target="_blank" title="Share on Facebook">
+                <i class="icon facebook"></i>
+            </a>
+
+            <a class="left aligned "
+               href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ .Topic.Name}}"
+            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+            target="_blank" title="Share on Twitter"
+            style="margin-left:10px">
+                <i class="icon twitter"></i>
+            </a>
+
+            <a class="left aligned post-action" data-post="{{ .ID }}" data-action="like" style="margin-left:10px"><i class="icon thumbs up outline green"></i> {{.Likes}}</a>
+            <a class="left aligned post-action" data-post="{{ .ID }}" data-action="dislike" style="margin-left:10px"><i class="icon thumbs down outline red"></i> {{.Dislikes}}</a>
+
+        </span>
+        <span class="right floated">
+            <a class="right aligned" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
+        </span>
+</div>

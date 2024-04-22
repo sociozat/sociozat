@@ -32,6 +32,7 @@ GET     /q/:name                     Notation.View
 
 GET     /a/trending                  App.Trending
 GET     /a/today                     App.Today
+POST    /a/action/:id                Post.Action
 
 ## Api Routes
 GET     /api/search/:term            ApiSearch.Query

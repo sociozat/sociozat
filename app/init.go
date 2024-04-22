@@ -38,12 +38,14 @@ func InitDB() {
 	dbAddress := revel.Config.StringDefault("db.address", "127.0.0.1")
 	dbPort := revel.Config.StringDefault("db.port", "3306")
 	dbSslMode := revel.Config.StringDefault("db.sslmode", "disable")
+	dbDebug := revel.Config.BoolDefault("db.debug", false)
+	dbOptions := revel.Config.StringDefault("db.options", "-")
 
 	var connstring string
 	if dbDriver == "mysql" {
 		connstring = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True", dbUser, dbPassword, dbAddress, dbPort, dbName)
 	} else if dbDriver == "postgres" {
-		connstring = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s", dbUser, dbPassword, dbAddress, dbPort, dbName, dbSslMode)
+		connstring = fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s&options=%s", dbUser, dbPassword, dbAddress, dbPort, dbName, dbSslMode, dbOptions)
 	} else if dbDriver == "sqlite3" {
 		connstring = dbAddress
 	}
@@ -54,11 +56,17 @@ func InitDB() {
 		revel.AppLog.Info("DB Error", err)
 	}
 	revel.AppLog.Info("DB Connected")
+	DB.LogMode(dbDebug)
+	DB.DB().SetMaxIdleConns(10)
+	DB.DB().SetMaxOpenConns(100)
+	DB.DB().SetConnMaxLifetime(time.Hour)
+
 	DB.AutoMigrate(&models.UserModel{})
 	DB.AutoMigrate(&models.PostModel{})
 	DB.AutoMigrate(&models.TopicModel{})
 	DB.AutoMigrate(&models.ChannelModel{})
 	DB.AutoMigrate(&models.InvitationModel{})
+	DB.AutoMigrate(&models.PostActionModel{})
 }
 
 var DefaultLocale string

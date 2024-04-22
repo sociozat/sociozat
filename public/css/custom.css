@@ -206,6 +206,10 @@ select.ui.dropdown{
   max-height: 42px !important;
 }
 
+.link{
+  cursor: pointer;
+}
+
 /**
 * Pusher, Sidebar, Scroll Fix
  */

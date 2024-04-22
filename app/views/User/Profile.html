@@ -20,7 +20,7 @@
 {{with $dot := .}}
 
 <div class="segments">
-{{ range .posts.Records}}
+{{ range $post := .posts.Records}}
 <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
 
     <div class="content">
@@ -32,31 +32,8 @@
             <p>{{format .Content}}</p>
         </div>
     </div>
-    <div class="extra content">
-        <span class="left floated">
-            <a  class="left aligned "
-                href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Facebook">
-                <i class="icon facebook"></i>
-            </a>
+    {{template "_partials/post_footer.html" $post }}
 
-            <a class="left aligned "
-               href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Twitter"
-            style="margin-left:10px">
-                <i class="icon twitter"></i>
-            </a>
-
-            <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.Likes}}</a>
-            <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.Dislikes}}</a>
-
-        </span>
-        <span class="right floated">
-            <a class="right aligned" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
-        </span>
-    </div>
 </div>
 {{ end }}
 </div>

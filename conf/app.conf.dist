@@ -71,6 +71,7 @@ db.name       = sociozat
 db.charset    = utf8
 db.parse.time = True
 db.sslmode    = disable
+db.debug      = false
 
 
 # For any cookies set by Revel (Session,Flash,Error) these properties will set

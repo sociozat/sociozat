@@ -18,6 +18,25 @@ func (t TopicModel) TableName() string {
 	return "topics"
 }
 
+type PostActionModel struct {
+	ID       uint `gorm:"primarykey"`
+	User     *UserModel
+	UserID   uint
+    Post     PostModel
+    PostID   int
+    Action   string `gorm:"type:varchar(7)"`
+}
+
+func (t PostActionModel) TableName() string {
+	return "post_actions"
+}
+
+
+type PostActionResponse struct {
+    Likes int
+    Dislikes int
+}
+
 type PostModel struct {
 	gorm.Model
 	Content  string `gorm:"type:text;"`

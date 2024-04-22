@@ -3,6 +3,7 @@ package repositories
 import (
 	"sociozat/app"
 	"sociozat/app/models"
+	"github.com/jinzhu/gorm"
 )
 
 type PostRepository struct{}
@@ -58,3 +59,57 @@ func (c PostRepository) FindByID(id int) (*models.PostModel, error) {
 
 	return &post, err
 }
+
+func (c PostRepository) SaveAction(post int, action string, user uint) (*models.PostActionResponse, error) {
+	p := models.PostActionModel{}
+
+    err := app.DB.Transaction(func(tx *gorm.DB) error {
+      // do some database operations in the transaction (use 'tx' from this point, not 'db')
+      tx.Where("post_id = ?", post).Where("user_id = ?", user).First(&p)
+
+      p.UserID = user
+      p.PostID = post
+
+      if p.ID > 0 {
+        if action != p.Action && action == "like" {
+            tx.Exec("UPDATE posts SET likes = likes + 1, dislikes = dislikes - 1 WHERE id = ?", post)
+        }
+
+        if action != p.Action && action == "dislike" {
+            tx.Exec("UPDATE posts SET likes = likes - 1, dislikes = dislikes + 1 WHERE id = ?", post)
+        }
+
+        p.Action = action
+        if err :=  tx.Save(&p).Error; err != nil {
+            return err
+        }
+
+      }else{
+        p.Action = action
+        if err := tx.Create(&p).Error; err != nil {
+            return err
+        }
+
+        if action == "like" {
+            tx.Exec("UPDATE posts SET likes = likes + 1 WHERE id = ?", post)
+        }
+
+        if action == "dislike" {
+            tx.Exec("UPDATE posts SET dislikes = dislikes + 1 WHERE id = ?", post)
+        }
+      }
+
+      return nil
+    })
+
+    postModel := models.PostModel{}
+    app.DB.First(&postModel, post)
+
+    actionResponse := models.PostActionResponse{}
+    actionResponse.Likes = postModel.Likes
+    actionResponse.Dislikes = postModel.Dislikes
+
+    //return
+	return &actionResponse, err;
+}
+
