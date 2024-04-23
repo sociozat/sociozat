@@ -64,18 +64,18 @@
 						</div>
 					</div>
 
-					<div class="scrollable-wrapper">
-						<div class="item link-group">
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
-						{{ range $channel := $settings.headerChannels }}
-							<a id="cid{{$channel.value}}" class="item p-count" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
-								{{$channel.name}}
-							</a>
-						{{end}}
+						<div class="scrollable-wrapper">
+							<div class="item link-group">
+							{{ range $channel := $settings.headerChannels }}
+								<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
+									{{$channel.name}}
+								</a>
+							{{end}}
+							</div>
+						</div>
 					{{end}}
-					</div>
-					</div>
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
@@ -90,11 +90,9 @@
 						<a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}">
 							{{ session "user" . }}
 						</a>
-
 						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
 							<i class="sign out alternate icon"></i>
 						</a>
-
 					</div>
 					{{end}}
 				</div>
@@ -104,11 +102,18 @@
 			<div class="column">
 				<div class="ui menu fixed">
 					<a id="mobile_item" class="item left"><i class="align left icon"></i></a>
-					<div class="mobile-header">
-						<div class="ui mini image">
-							<img src="https://semantic-ui.com/images/logo.png">
+					{{ $settings := (session "settings" .)}}
+					{{if $settings.headerChannels}}
+					<div class="scrollable-wrapper">
+						<div class="item link-group">
+							{{ range $channel := $settings.headerChannels }}
+							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
+							{{$channel.name}}
+							</a>
+							{{end}}
 						</div>
 					</div>
+					{{end}}
 					<a id="user_item" class="item right"><i class="user icon"></i></a>
 				</div>
 			</div>

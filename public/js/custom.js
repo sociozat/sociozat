@@ -8,7 +8,7 @@ $(document).ready(function () {
 		let cids = event.Text.split(',')
 		cids.push(0) //dont miss the today
 		cids.forEach(function(id){
-			const elem = $('#cid'+id)
+			const elem = $('.cid'+id)
 			if(Object.keys(elem).length > 0){
 				let total;
 				let badge = elem.children().first();
@@ -83,23 +83,23 @@ $(document).ready(function () {
 		offset: 25
 	});
 
-	function jqUpdateSize() {
-		var width = $(window).width();
-		autoHideSidebar(width);
-	};
-
-	function autoHideSidebar(width) {
-		var sidebar = $('.ui.left.sidebar');
-		if (width <= 768) {
-			sidebar.removeClass('visible');
-		} else {
-			sidebar.addClass('visible');
-			$(".pusher").removeClass("dimmed");
-		}
-	}
-
-	autoHideSidebar($(window).width());
-	$(window).resize(jqUpdateSize);
+	// function jqUpdateSize() {
+	// 	var width = $(window).width();
+	// 	autoHideSidebar(width);
+	// };
+	//
+	// function autoHideSidebar(width) {
+	// 	var sidebar = $('.ui.left.sidebar');
+	// 	if (width <= 768) {
+	// 		sidebar.removeClass('visible');
+	// 	} else {
+	// 		sidebar.addClass('visible');
+	// 		$(".pusher").removeClass("dimmed");
+	// 	}
+	// }
+	//
+	// autoHideSidebar($(window).width());
+	// $(window).resize(jqUpdateSize);
 
 
 	$('.popup').popup();

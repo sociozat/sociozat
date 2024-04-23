@@ -58,7 +58,8 @@ func (c UserRepository) GetUserInfo(params models.SearchParams) (models.UserMode
 	rows := app.DB.Table("posts").
 		Where("posts.user_id = ?", user.ID).
 		Order("posts.id DESC").
-		Preload("Topic")
+		Preload("Topic").
+		Preload("User")
 
 	paginator := pagination.Paging(&pagination.Param{
 		DB:    rows,

@@ -173,7 +173,6 @@ p {
 }
 
 .ui.selection.dropdown{
-  padding: .78571429em 1.5em .78571429em !important;
   min-height: initial !important;
   font-size: .85714286rem;
 }
@@ -198,7 +197,7 @@ select.ui.dropdown{
   display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
 }
 
-.item.link-group {
+.link-group {
   white-space: nowrap; /* Prevent line breaks for horizontal layout */
 }
 
@@ -230,4 +229,8 @@ select.ui.dropdown{
 .pushable:not(body) > .fixed,
 .pushable:not(body) > .pusher:after {
   position: fixed;
+}
+
+.ui.menu .item::before{
+  content: none;
 }

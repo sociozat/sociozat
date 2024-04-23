@@ -66,7 +66,7 @@ func (c Post) View(id int) revel.Result {
 	post, err := c.PostService.FindByID(id)
 
 	if err != nil {
-		c.FlashParams()
+		c.Flash.Error(c.Message("post.not.found"))
 		return c.Redirect(App.Index)
 	}
 

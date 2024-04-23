@@ -1,31 +1,43 @@
 {{set . "title" .title}}
-{{template "header.html" .}}
-<div class="ui segment">
-<div class="ui info message">
-	<div class="header">
-		{{msg . "notation.not.found" .title}}
-	</div>
-</div>
+
+{{if not (session "isHtmx" .)}}
+{{ template "header.html" . }}
+{{ end }}
+
+<div class="one wide column"></div>
+<div class="eight wide column">
+
+    <div class="ui segment">
+    <div class="ui info message">
+        <div class="header">
+            {{msg . "notation.not.found" .title}}
+        </div>
+    </div>
+    </div>
+
+    <div class="ui segment">
+        <form class="ui form" action="{{url "Post.Create"}}" method="POST">
+            <input type="hidden" name="name" size="19" value="{{.title}}" />
+            <div class="field">
+              <label>{{msg . "post.new.content"}}</label>
+              {{template "_partials/editor_buttons.html" .}}
+              <textarea name="content" id="content" placeholder="{{msg . "post.reply" .title}}"></textarea>
+            </div>
+            <div class="field">
+                <label>{{msg . "post.new.channels"}}</label>
+                <div class="ui fluid multiple search selection channels dropdown">
+                    <input name="tags" type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">{{msg . "post.new.channels"}}</div>
+                </div>
+            </div>
+            <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
+
+        </form>
+    </div>
 </div>
 
-<div class="ui segment">
-    <form class="ui form" action="{{url "Post.Create"}}" method="POST">
-        <input type="hidden" name="name" size="19" value="{{.title}}" />
-        <div class="field">
-          <label>{{msg . "post.new.content"}}</label>
-          {{template "_partials/editor_buttons.html" .}}
-          <textarea name="content" id="content" placeholder="{{msg . "post.reply" .title}}"></textarea>
-        </div>
-        <div class="field">
-            <label>{{msg . "post.new.channels"}}</label>
-            <div class="ui fluid multiple search selection channels dropdown">
-                <input name="tags" type="hidden">
-                <i class="dropdown icon"></i>
-                <div class="default text">{{msg . "post.new.channels"}}</div>
-            </div>
-        </div>
-        <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>
-       
-    </form>
-</div>
+
+{{template "_partials/right.html" .}}
+
 {{template "footer.html" .}}
