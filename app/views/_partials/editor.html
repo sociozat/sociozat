@@ -1,4 +1,4 @@
-  {{if (session "user" .)  }}
+  {{if and (session "user" .) (not .topic.IsLocked)  }}
   <div class="ui segment">
       <form class="ui form" hx-target="#content" hx-post="{{url "Topic.Reply" .topic.Slug}}" method="POST">
           {{template "_partials/editor_buttons.html" .}}

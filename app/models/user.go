@@ -20,7 +20,7 @@ const (
 //UserModel struct
 type UserModel struct {
 	gorm.Model
-	UserID         string `gorm:"type:char(36);primary_key"`
+	UserID         string `gorm:"type:char(36)"`
 	Slug           string `gorm:"index:user_slug"`
 	Name           string
 	Username       string `gorm:"unique;not null"`

@@ -40,7 +40,7 @@ type PostActionResponse struct {
 type PostModel struct {
 	gorm.Model
 	Content  string `gorm:"type:text;"`
-	User     *UserModel
+	User     *UserModel  `gorm:"constraint:OnDelete:CASCADE;"`
 	UserID   uint
 	Topic    TopicModel
 	TopicID  uint

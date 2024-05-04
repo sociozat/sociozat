@@ -6,49 +6,26 @@
     {{template "flash.html" .}}
 
 <div class="ui segment">
-  <h3> <a  hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{.post.Topic.Name}} </a></h3>
+  <h3> <a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{format .post.Topic.Name}} </a></h3>
 </div>
 
+{{with $post := .post}}
 
-{{with $dot := .}}
 <div class="segments">
 
   <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
     <div class="content">
+      <div class="meta">
+        <a class="left" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}">{{.User.Username}}</a>
+        <span class="right floated">
+            <a class="right aligned" href="#"><i class="ellipsis vertical icon  light grey"></i></a>
+        </span>
+      </div>
       <div class="description">
-        <p>{{format .post.Content}}</p>
+        <p>{{format $post.Content}}</p>
       </div>
     </div>
-    <div class="extra content">
-        <span class="left floated">
-            {{ if eq (session "user" $dot) .post.User.Username }}
-                <a class="item"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.Edit" .post.ID}}"><i class="edit icon"></i></a>
-            {{ end }}
-
-            <a  class="left aligned "
-                href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .post.ID}}&t={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Facebook">
-                <i class="icon facebook"></i>
-          </a>
-
-          <a class="left aligned "
-             href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .post.ID}}&text={{ $.title}}"
-            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-            target="_blank" title="Share on Twitter"
-            style="margin-left:10px">
-                <i class="icon twitter"></i>
-          </a>
-
-          <a class="left aligned " style="margin-left:10px"><i class="icon angle up green"></i> {{.post.Likes}}</a>
-            <a class="left aligned " style="margin-left:10px"><i class="icon angle down red "></i> {{.post.Dislikes}}</a>
-
-        </span>
-      <span class="right floated">
-            <a class="right aligned"   hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .post.User.Slug}}" style="margin-left:10px">{{.post.User.Username}}</a>
-        <a class="right aligned"  hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .post.ID}}">{{timeago .post.CreatedAt}}</a>
-        </span>
-    </div>
+      {{template "_partials/post_footer.html" $post }}
   </div>
 
 </div>

@@ -13,7 +13,7 @@
               <i class="icon comment"></i>{{.posts.TotalRecord}}
           </div>
           <div class="ui aligned">
-              <h3><a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
+              <h3><a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h3>
           </div>
       </div>
     </div>

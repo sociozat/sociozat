@@ -6,15 +6,15 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
 		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
-	<link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/style.css">
 	{{if config "site.logo" "" }}
-	<link rel="shortcut icon" type="image/png" href="{{config "site.favicon" ""}}">
+	<link rel="shortcut icon" type="image/png" href='{{config "site.favicon" ""}}'>
 	{{end}}
 
 	<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 
 	<script src="/public/js/semantic.min.js"></script>
-	<script src="/public/js/custom.js"></script>
+	<script src="/public/js/scripts.js"></script>
 	{{range .moreStyles}}
 	<link rel="stylesheet" type="text/css" href="/public/{{.}}">
 	{{end}}
@@ -22,7 +22,7 @@
 	<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
 	{{end}}
 	<script>
-		var BASE_URL = "{{url "App.Index"}}";
+		const BASE_URL = "{{url "App.Index"}}";
 	</script>
 </head>
 
@@ -33,10 +33,10 @@
 
 	<div class="ui right sidebar user vertical menu hidden">
 		{{if (session "user" .)  }}
-			<a class="item" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}" >{{msg . "user.profile"}}</a>
-			<a class="item" hx-target="#content" hx-get="{{url "Post.New"}}">{{msg . "global.new.topic"}}</a>
-			<a class="item" hx-target="#content" hx-get="{{url "Settings.View"}}">{{msg . "user.settings"}}</a>
-			<a class="item" hx-target="#content" hx-get="{{url "User.Logout"}}">{{msg . "user.form.logout"}}</a>
+			<a class="item" hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}' >{{msg . "user.profile"}}</a>
+			<a class="item" hx-target="#content" hx-get='{{url "Post.New"}}'>{{msg . "global.new.topic"}}</a>
+			<a class="item" hx-target="#content" hx-get='{{url "Settings.View"}}'>{{msg . "user.settings"}}</a>
+			<a class="item" hx-target="#content" hx-get='{{url "User.Logout"}}'>{{msg . "user.form.logout"}}</a>
 		{{end}}
 	</div>
 	<div class="ui top fixed menu grid">
@@ -45,19 +45,19 @@
 				<div class="ui menu fixed">
 					{{if config "site.logo" "" }}
 					<div class="ui mini image middle aligned ">
-						<img src="{{ config "site.logo" ""}}">
+						<img src='{{ config "site.logo" ""}}'>
 					</div>
 					{{end}}
 
-					<a class="item" hx-target="#left" hx-get="{{url "App.Trending"}}">{{msg . "global.menu.trending"}}</a>
-					<a id="cid0"  class="item p-count" hx-target="#left" hx-get="{{url "App.Today"}}">
+					<a class="item" hx-target="#left" hx-get='{{url "App.Trending"}}'>{{msg . "global.menu.trending"}}</a>
+					<a id="cid0"  class="item p-count cid0" hx-target="#left" hx-get='{{url "App.Today"}}'>
 						{{msg . "global.menu.today"}}
 					</a>
 
 					<div class="menu">
 						<div class="ui right aligned category search item">
 							<div class="ui transparent icon input">
-								<input class="prompt" type="text" placeholder="{{msg . "global.search"}}">
+								<input class="prompt" type="text" placeholder='{{msg . "global.search"}}'>
 								<i class="search link icon"></i>
 							</div>
 							<div class="results"></div>
@@ -69,7 +69,7 @@
 						<div class="scrollable-wrapper">
 							<div class="item link-group">
 							{{ range $channel := $settings.headerChannels }}
-								<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
+								<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}'>
 									{{$channel.name}}
 								</a>
 							{{end}}
@@ -79,18 +79,18 @@
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
-						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.New"}}" data-content="{{msg . "global.new.topic"}}" data-position="bottom center">
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "Post.New"}}' data-content='{{msg . "global.new.topic"}}' data-position="bottom center">
 							<i class="add icon"></i>
 						</a>
 
-						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "Settings.View"}}" data-content="{{msg . "user.settings"}}" data-position="bottom center">
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "Settings.View"}}' data-content='{{msg . "user.settings"}}' data-position="bottom center">
 							<i class="cog icon"></i>
 						</a>
 
-						<a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" (session "fulluser" .).Slug}}">
+						<a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}'>
 							{{ session "user" . }}
 						</a>
-						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Logout"}}" data-content="{{msg . "user.form.logout"}}" data-position="bottom center">
+						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "User.Logout"}}' data-content='{{msg . "user.form.logout"}}' data-position="bottom center">
 							<i class="sign out alternate icon"></i>
 						</a>
 					</div>
@@ -107,7 +107,7 @@
 					<div class="scrollable-wrapper">
 						<div class="item link-group">
 							{{ range $channel := $settings.headerChannels }}
-							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $channel.slug}}">
+							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}'>
 							{{$channel.name}}
 							</a>
 							{{end}}

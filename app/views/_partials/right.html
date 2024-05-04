@@ -7,7 +7,7 @@
     {{end}}
 
     {{if and .topic .topic.Channels}}
-    <div class="ui sticky">
+    <div class="ui sticky computer only row">
     <div class="ui segment">
         <div class="header">{{msg . "topic.channels"}}</div>
         <div class="ui vertical visible list divided selection">
@@ -22,7 +22,7 @@
     {{end}}
 
     {{if .related}}
-    <div class="ui sticky">
+    <div class="ui sticky computer only row">
         <div class="ui segment">
             <div class="header">{{msg . "topic.channels"}}</div>
             <div class="ui vertical visible list divided selection">
@@ -61,6 +61,6 @@
            <i class="icon heart grey"></i>
         </a>
     </div>
-      
+
 </div>
 <!-- Right Sidebar Large Screen End-->

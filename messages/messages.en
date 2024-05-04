@@ -14,7 +14,7 @@ global.menu.today= Today
 global.save= Save
 
 editor.refto= (ref)
-editor.refto.pattern= (ref. #refence topic#)
+editor.refto.pattern= (#)
 editor.notation= *
 editor.notation.pattern= *notation*
 editor.spoiler= spoiler
@@ -63,7 +63,7 @@ topic.channels = Channels
 topic.title = %s
 topic.title.with.page = %s Page: %d
 topic.create.success.message = Thanks for contributing. You are awesome!
-topic.trending.total = There are ( %v ) posts more
+topic.trending.total = There are %v more posts
 
 notation.not.found = Oops. Seems we have no content about <b>%s</b>. <br> Would you like to share your thoughts?
 settings.updated.sucessfully = Settings Updated Successfully

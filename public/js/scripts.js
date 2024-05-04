@@ -6,7 +6,7 @@ $(document).ready(function () {
 	// Display a message
 	let display = function(event) {
 		let cids = event.Text.split(',')
-		cids.push(0) //dont miss the today
+		cids.push("0") //dont miss the today
 		cids.forEach(function(id){
 			const elem = $('.cid'+id)
 			if(Object.keys(elem).length > 0){
@@ -46,8 +46,9 @@ $(document).ready(function () {
 
 	$('.ui.mbl.sidebar').sidebar({
 		context: $('.pusher'),
-		direction: 'right',
+		direction: 'left',
 		transition: 'push',
+		silent: true,
 		dimPage: false,
 	})
 		.sidebar('attach events', '#mobile_item')
@@ -56,6 +57,7 @@ $(document).ready(function () {
 
 	$('.ui.user.sidebar').sidebar({
 		transition: 'push',
+		silent: true,
 		direction: 'right',
 		dimPage: false,
 	})
@@ -78,31 +80,23 @@ $(document).ready(function () {
 		})
 		;
 
-	$('.ui.sticky').sticky({
-		context: '#content',
-		offset: 25
-	});
 
-	// function jqUpdateSize() {
-	// 	var width = $(window).width();
-	// 	autoHideSidebar(width);
-	// };
-	//
-	// function autoHideSidebar(width) {
-	// 	var sidebar = $('.ui.left.sidebar');
-	// 	if (width <= 768) {
-	// 		sidebar.removeClass('visible');
-	// 	} else {
-	// 		sidebar.addClass('visible');
-	// 		$(".pusher").removeClass("dimmed");
-	// 	}
-	// }
-	//
-	// autoHideSidebar($(window).width());
-	// $(window).resize(jqUpdateSize);
+	function jqUpdateSize() {
+		var width = $(window).width();
+		autoHideSidebar(width);
+	};
+
+	function autoHideSidebar(width) {
+		var sidebar = $('.ui.left.sidebar');
+		if (width <= 768) {
+			sidebar.removeClass('visible');
+		} else {
+			sidebar.addClass('visible');
+			$(".pusher").removeClass("dimmed");
+		}
+	}
 
 
-	$('.popup').popup();
 
 	// SEARCH
 	$('.ui.search').search({
@@ -157,9 +151,19 @@ $(document).ready(function () {
 	});
 
 	htmx.onLoad(function(elt) {
+
+		autoHideSidebar($(window).width());
+		$(window).resize(jqUpdateSize);
+
 		//
 		// SETTINGS
 		//
+		$('.popup').popup();
+
+		// $('.ui.sticky').sticky({
+		// 	context: '.eight',
+		// 	offset: 25
+		// });
 
 		$('.ui.channels.dropdown')
 			.dropdown({
