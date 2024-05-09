@@ -18,8 +18,7 @@
     <div class="segments">
     {{with $dot := .}}
     {{ range $post := .posts.Records}}
-
-    <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
+        <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
         <div class="content">
             <div class="ui header">
                 <h3><a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .Topic.Slug}}"> {{format  .Topic.Name }}</a></h3>

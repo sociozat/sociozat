@@ -9,7 +9,7 @@
 
 # Comma delimited list of folders that are included with the package, or build commands
 # If you want to not include folders within these ones prefix the folder with a . to make it hidden
-package.folders = conf, public, app/views, docs
+package.folders = conf, public, app/views, docs, messages
 
 
 # Revel reconfigurable section
@@ -146,13 +146,15 @@ module.static = github.com/revel/modules/static
 # for full text capability check documentation on https://github.com/sociozat/docs/blob/master/en-US/developer/search.md
 search.adapter = %(db.driver)s
 
-
+3
 ###############################################################################
 # Site Settings
 site.favicon = /public/img/favicon.png
 site.logo = /public/img/logo.png
 
-## this is the todays section threshold, in hours.
+gtag.id =
+
+## this is the trending section threshold, in hours.
 trending.threshold = 24
 
 ###############################################################################
