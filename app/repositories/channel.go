@@ -14,7 +14,7 @@ type ChannelRepository struct{}
 func (c ChannelRepository) Search(search string) ([]models.ChannelModel, error) {
 	var channels []models.ChannelModel
 	var err error
-	if err := app.DB.Where("name LIKE ?", "%"+search+"%").Find(&channels).Error; err != nil {
+	if err := app.DB.Where("name ILIKE ?", "%"+search+"%").Find(&channels).Error; err != nil {
 		return channels, err
 	}
 

@@ -1,3 +1,4 @@
+{{set . "title" .post.Topic.Name}}
 {{if not (session "isHtmx" .)}}
 {{template "header.html" .}}
 {{ end }}
@@ -6,7 +7,7 @@
     {{template "flash.html" .}}
 
 <div class="ui segment">
-  <h3> <a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{format .post.Topic.Name}} </a></h3>
+  <h1><a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .post.Topic.Slug }}">{{format .post.Topic.Name}} </a></h1>
 </div>
 
 {{with $post := .post}}
@@ -16,7 +17,7 @@
   <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
     <div class="content">
       <div class="meta">
-        <a class="left" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}">{{.User.Username}}</a>
+        <a class="left" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}">{{format .User.Username}}</a>
         <span class="right floated">
             <a class="right aligned" href="#"><i class="ellipsis vertical icon  light grey"></i></a>
         </span>

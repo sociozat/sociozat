@@ -89,6 +89,10 @@ p {
   line-height: 1.5285em !important;
 }
 
+h1 {
+  font-size: 1.4rem;
+}
+
 .ui.grid{
 		padding: 0 !important;
 }

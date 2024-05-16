@@ -19,41 +19,40 @@ func FormatContent(str string) string {
 
 func ExtractUrl(str string) string {
 	//pattern "[Link Text](https://url.com)"
-	var pattern = `(\[.*\])(\((http)(?:s)?(\:\/\/).*\))`
-	r := regexp.MustCompile(pattern)
-	matched := r.FindAllStringSubmatch(str, -1)
-	if len(matched) > 0 {
-		for i, _ := range matched {
-			href := matched[i][2]
-			url := matched[i][1]
-			text := fmt.Sprintf(`<a class="item" href="%s" target="_blank">%s <i class="icon external alternate"></i></a>`, href, url)
+	var pattern = `(\[.*?\])\((http(?:s)?://.*?)\)`
+    r := regexp.MustCompile(pattern)
+    matched := r.FindAllStringSubmatch(str, -1)
 
-			//replace
-			str = strings.Replace(str, matched[i][0], text, len(matched))
-		}
-	}
+    if len(matched) > 0 {
+        for _, match := range matched {
+            linkText := match[1][1:len(match[1])-1] // strip the square brackets
+            url := match[2] // capture group for the URL
+            // format the HTML anchor tag
+            text := fmt.Sprintf(`<a class="item" href="%s" target="_blank">%s <i class="icon external alternate"></i></a>`, url, linkText)
+            // replace the Markdown link with the HTML anchor tag in the original string
+            str = strings.Replace(str, match[0], text, 1)
+        }
+    }
 
-	str = strings.ToLower(str)
-
-	return str
+    return str
 }
 
 func Post(str string) string {
-	//pattern "#41234"
-	var pattern = `\W(\#[0-9]*[1-9]+\b)`
+// pattern to match hashtags like #41234
+	var pattern = `(\B#[1-9][0-9]*)`
 	r := regexp.MustCompile(pattern)
 	matched := r.FindAllStringSubmatch(str, -1)
-
 	if len(matched) > 0 {
-		for i, _ := range matched {
-			href := matched[i][1]
+		for _, match := range matched {
+			href := match[1]
 			url := fmt.Sprintf("/p/%s", url.QueryEscape(href[1:]))
-			text := fmt.Sprintf(`<a class="item" href="%s">%s </a>`, url, href)
-			//replace
-			str = strings.Replace(str, matched[i][0], text, len(matched))
+			text := fmt.Sprintf(`<a class="item" href="%s">%s</a>`, url, href)
+			// replace the matched hashtag with the HTML anchor tag
+			str = strings.Replace(str, match[0], text, -1)
 		}
 	}
 
+	// convert the final string to lowercase
 	str = strings.ToLower(str)
 
 	return str
@@ -65,13 +64,13 @@ func Topic(str string) string {
 	r := regexp.MustCompile(pattern)
 	matched := r.FindAllStringSubmatch(str, -1)
 
-	if len(matched) > 0 {
-		for i, _ := range matched {
-			href := matched[i][1]
+    if len(matched) > 0 {
+		for _, match := range matched {
+			href := match[1]
 			url := fmt.Sprintf("/q/%s", url.QueryEscape(href))
-			text := fmt.Sprintf(`<a class="item" href="%s">%s </a>`, url, href)
-			//replace
-			str = strings.Replace(str, matched[i][0], text, len(matched))
+			text := fmt.Sprintf(`<a class="item" href="%s">%s</a>`, url, href)
+			// replace the matched topic with the HTML anchor tag
+			str = strings.Replace(str, match[0], text, 1)
 		}
 	}
 
@@ -81,21 +80,22 @@ func Topic(str string) string {
 }
 
 func Notation(str string) string {
-	//pattern "#sample.com#"
-	var pattern = `[*](.*)[*]`
+	// pattern to match *sample.com*
+	var pattern = `\*(.*?)\*`
 	r := regexp.MustCompile(pattern)
 	matched := r.FindAllStringSubmatch(str, -1)
 	if len(matched) > 0 {
-		for i, _ := range matched {
-			text := matched[i][1]
-			url := fmt.Sprintf("/q/%s", url.QueryEscape(text))
-			output := fmt.Sprintf(`<a class="item popup" data-content="%s" href="%s"><b>*</b></a>`, text, url)
+		for _, match := range matched {
+			text := match[1]
+			escapedText := url.QueryEscape(text)
+			output := fmt.Sprintf(`<a class="item popup" data-content="%s" href="/q/%s"><b>*</b></a>`, text, escapedText)
 
-			//replace
-			str = strings.Replace(str, matched[i][0], output, len(matched))
+			// replace the matched notation with the HTML anchor tag
+			str = strings.Replace(str, match[0], output, 1)
 		}
 	}
 
+	// convert the final string to lowercase
 	str = strings.ToLower(str)
 
 	return str

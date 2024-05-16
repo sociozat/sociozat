@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 	// Create a socket
-	let socket = new WebSocket('ws://'+window.location.host+'/ws/posts')
+	let socket = new WebSocket('wss://'+window.location.host+'/ws/posts')
 
 	// Display a message
 	let display = function(event) {
