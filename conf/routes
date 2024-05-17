@@ -45,6 +45,11 @@ GET     /favicon.ico                  404
 GET     /public/*filepath                       Static.Serve("public")
 
 
+# Sitemap
+GET     /sitemap.xml                     Sitemap.Index
+GET     /sitemap/topics/:page            Sitemap.Topics
+GET     /sitemap/channels/:page          Sitemap.Channels
+
 #websockets
 WS /ws/posts App.PostsSocket
 

@@ -3,23 +3,22 @@
 <head>
 	<title>{{.title}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous" async></script>
+	<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous" async></script>
 	<link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="/public/css/style.css">
 	{{if config "site.logo" "" }}
 	<link rel="shortcut icon" type="image/png" href='{{config "site.favicon" ""}}'>
 	{{end}}
 
-	<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 
-	<script src="/public/js/semantic.min.js"></script>
-	<script src="/public/js/scripts.js"></script>
+	<script src="/public/js/semantic.min.js" defer></script>
+	<script src="/public/js/scripts.js" defer></script>
 	{{range .moreStyles}}
 	<link rel="stylesheet" type="text/css" href="/public/{{.}}">
 	{{end}}
 	{{range .moreScripts}}
-	<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/{{.}}" type="text/javascript" charset="utf-8" defer></script>
 	{{end}}
 	<script>
 		const BASE_URL = "{{url "App.Index"}}";

@@ -12,7 +12,6 @@ type ChannelModel struct {
 	gorm.Model
 	Name      string
 	Slug      string     `gorm:"index:channel_slug"`
-	CreatedAt *time.Time `gorm:"-" json:"-"`
 	UpdatedAt *time.Time `gorm:"-" json:"-"`
 	DeletedAt *time.Time `gorm:"-" json:"-"`
 }
