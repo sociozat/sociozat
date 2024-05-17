@@ -15,3 +15,16 @@ type SitemapURLSet struct {
     XMLNS   string   `xml:"xmlns,attr"`
     URLs    []SitemapURL    `xml:"url"`
 }
+
+
+type SitemapIndex struct {
+    XMLName xml.Name `xml:"sitemapindex"`
+    XMLNS   string   `xml:"xmlns,attr"`
+    Sitemaps []Sitemap    `xml:"sitemap"`
+}
+
+type Sitemap struct {
+    XMLName    xml.Name `xml:"sitemap"`
+    Loc        string   `xml:"loc"`
+    LastMod    string   `xml:"lastmod,omitempty"`
+}

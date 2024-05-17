@@ -49,6 +49,7 @@ GET     /public/*filepath                       Static.Serve("public")
 GET     /sitemap.xml                     Sitemap.Index
 GET     /sitemap/topics/:page            Sitemap.Topics
 GET     /sitemap/channels/:page          Sitemap.Channels
+GET     /sitemap/users/:page            Sitemap.Users
 
 #websockets
 WS /ws/posts App.PostsSocket
