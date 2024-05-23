@@ -211,6 +211,7 @@ select.ui.dropdown{
 
 .link{
   cursor: pointer;
+  word-break: break-all;
 }
 
 /**

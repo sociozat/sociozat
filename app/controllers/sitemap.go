@@ -163,7 +163,7 @@ func (c Sitemap) Users(page int) revel.Result {
     var urls []models.SitemapURL
     for _, user := range users {
         url := models.SitemapURL{
-            Loc:      revel.Config.StringDefault("app.url", "/") + "/c/" + user.Slug, // Customize URL format as needed
+            Loc:      revel.Config.StringDefault("app.url", "/") + "/u/" + user.Slug, // Customize URL format as needed
             LastMod:  user.CreatedAt.Format(time.RFC3339),           // Use user's creation date as last modification date
             ChangeFreq: "daily",                                       // Customize change frequency
             Priority:   0.8,                                            // Customize priority
