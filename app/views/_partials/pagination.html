@@ -4,6 +4,7 @@
   <div class="ui right floated" style="margin-top: 1rem !important;">
     {{if gt .posts.Page 1 }}
     <a class="ui button tiny"
+       href="{{index .pagination .posts.PrevPage }}"
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.PrevPage }}"
@@ -20,6 +21,7 @@
     </select>
     /
     <a class="ui button tiny"
+       href="{{index .pagination .posts.TotalPage}}"
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.TotalPage}}"
@@ -29,6 +31,7 @@
 
     {{if lt .posts.Page .posts.TotalPage }}
     <a class="ui button tiny"
+       href="{{index .pagination .posts.NextPage }}"
        hx-replace-url="true"
        hx-target="#content"
        hx-get="{{index .pagination .posts.NextPage }}"

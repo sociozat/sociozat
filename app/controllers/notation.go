@@ -21,5 +21,6 @@ func (c Notation) View(name string) revel.Result {
 		return c.Redirect(Topic.View, topic.Slug)
 	}
 
+    c.Response.Status = 404
 	return c.Render(title)
 }

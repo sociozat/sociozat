@@ -1,6 +1,6 @@
 {{ if $rows := trending (session "settings" .) }}
 {{ range $row := $rows }}
-<a class="item" hx-get="/t/{{$row.Slug}}?a=trending" hx-target="#content" hx-replace-url="true">
+<a class="item" href="/t/{{$row.Slug}}?a=trending" hx-get="/t/{{$row.Slug}}?a=trending" hx-target="#content" hx-replace-url="true">
   {{ if gt $row.PostCount 1 }}
   <div class="ui label mini horizontal">
      {{ $row.PostCount }}

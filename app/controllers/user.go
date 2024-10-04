@@ -122,5 +122,6 @@ func (c User) Profile(username string) revel.Result {
 		return c.Redirect(App.Index)
 	}
 
-	return c.Render(user, posts, pagination)
+    canonical := fmt.Sprintf("%s/u/%s",  revel.Config.StringDefault("app.url", ""), c.Params.Route.Get("username"))
+	return c.Render(user, canonical, posts, pagination)
 }

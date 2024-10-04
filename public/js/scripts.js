@@ -251,7 +251,7 @@ $(document).ready(function () {
 		//TODO improve this feature
 		$(".editor-button").off().on("click", function(){
 			var text = $(this).data("content")
-			var $txt = $("textarea#content");
+			var $txt = $("textarea");
 			var caretPos = $txt[0].selectionStart;
 			var textAreaTxt = $txt.val();
 			$txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );

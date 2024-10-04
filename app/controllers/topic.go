@@ -76,7 +76,8 @@ func (c Topic) View(slug string) revel.Result {
 		pagination[i] = pageValue
 	}
 
-	return c.Render(title, topic, posts, pagination, previousPostCount, previousPostsPage)
+    canonical := fmt.Sprintf("%s/t/%s",  revel.Config.StringDefault("app.url", ""), c.Params.Route.Get("slug"))
+	return c.Render(title, topic, canonical, posts, pagination, previousPostCount, previousPostsPage)
 }
 
 //Reply topic with POST method

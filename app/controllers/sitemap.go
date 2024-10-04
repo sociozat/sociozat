@@ -82,13 +82,22 @@ func (c Sitemap) Topics(page int) revel.Result {
         return c.RenderText("Error fetching topics")
     }
 
+    freq := "weekly";
+    if page < 2 {
+        freq = "daily"
+    }
     // Prepare URLs for the sitemap
     var urls []models.SitemapURL
     for _, topic := range topics {
+
+//         if i < 50 {
+//             freq : "hourly"
+//         }
+
         url := models.SitemapURL{
             Loc:      revel.Config.StringDefault("app.url", "/")  + "/t/" + topic.Slug, // Customize URL format as needed
             LastMod:  topic.UpdatedAt.Format(time.RFC3339),        // Use topic's creation date as last modification date
-            ChangeFreq: "weekly",                                  // Customize change frequency
+            ChangeFreq: freq,                                  // Customize change frequency
             Priority:   0.8,                                       // Customize priority
         }
         urls = append(urls, url)
@@ -121,13 +130,17 @@ func (c Sitemap) Channels(page int) revel.Result {
         return c.RenderText("Error fetching channels")
     }
 
+    freq := "weekly";
+    if page < 2 {
+        freq = "daily"
+    }
     // Prepare URLs for the sitemap
     var urls []models.SitemapURL
     for _, channel := range channels {
         url := models.SitemapURL{
             Loc:      revel.Config.StringDefault("app.url", "/") + "/c/" + channel.Slug, // Customize URL format as needed
             LastMod:  channel.CreatedAt.Format(time.RFC3339),           // Use channel's creation date as last modification date
-            ChangeFreq: "weekly",                                       // Customize change frequency
+            ChangeFreq: freq,                                       // Customize change frequency
             Priority:   0.8,                                            // Customize priority
         }
         urls = append(urls, url)
@@ -180,4 +193,10 @@ func (c Sitemap) Users(page int) revel.Result {
     // Render XML response
     c.Response.ContentType = "application/xml"
     return c.RenderXML(urlSet)
+}
+
+func (c Sitemap) RobotsTxt() revel.Result {
+    c.ViewArgs["sitemap"] = revel.Config.StringDefault("app.url", "/") + "/sitemap.xml"
+    c.Response.ContentType = "text/plain"
+    return c.RenderTemplate("Sitemap/RobotsTxt.html")
 }

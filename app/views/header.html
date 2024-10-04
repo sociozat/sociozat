@@ -10,7 +10,6 @@
 	{{if config "site.logo" "" }}
 	<link rel="shortcut icon" type="image/png" href='{{config "site.favicon" ""}}'>
 	{{end}}
-	<meta name="yandex-verification" content="ef9d2e8f13b6762c" />
 
 	<script src="/public/js/semantic.min.js"></script>
 	<script src="/public/js/scripts.js"></script>
@@ -23,6 +22,15 @@
 	<script>
 		const BASE_URL = "{{url "App.Index"}}";
 	</script>
+
+	{{ if .canonical }}
+	<link rel="canonical" href="{{ .canonical }}" />
+	{{ end }}
+
+	{{ if (config "gtag.id" "") }}
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{config "gtag.id" ""}}"></script>
+	{{ end }}
 </head>
 
 <body>
@@ -66,9 +74,9 @@
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
 						<div class="scrollable-wrapper">
-							<div class="item link-group">
+							<div class="item link-group" hx-boost="true">
 							{{ range $channel := $settings.headerChannels }}
-								<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}'>
+								<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
 									{{$channel.name}}
 								</a>
 							{{end}}
@@ -104,9 +112,9 @@
 					{{ $settings := (session "settings" .)}}
 					{{if $settings.headerChannels}}
 					<div class="scrollable-wrapper">
-						<div class="item link-group">
+						<div class="item link-group" hx-boost="true">
 							{{ range $channel := $settings.headerChannels }}
-							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}'>
+							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" href='{{url "Channel.View" $channel.slug}}'>
 							{{$channel.name}}
 							</a>
 							{{end}}

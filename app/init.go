@@ -39,7 +39,7 @@ func InitDB() {
 	dbPort := revel.Config.StringDefault("db.port", "3306")
 	dbSslMode := revel.Config.StringDefault("db.sslmode", "disable")
 	dbDebug := revel.Config.BoolDefault("db.debug", false)
-	dbOptions := revel.Config.StringDefault("db.options", "-")
+	dbOptions := revel.Config.StringDefault("db.options", "")
 
 	var connstring string
 	if dbDriver == "mysql" {
@@ -195,6 +195,7 @@ var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 	c.Response.Out.Header().Add("X-Content-Type-Options", "nosniff")
 	c.Response.Out.Header().Add("Referrer-Policy", "strict-origin-when-cross-origin")
 	c.Response.Out.Header().Add("Strict-Transport-Security", "max-age=16070400; includeSubDomains")
+	c.Response.Out.Header().Add("X-Robots-Tag:", "index")
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }

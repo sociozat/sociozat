@@ -12,7 +12,7 @@
 		<div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
 			<div class="content">
 				<div class="ui header">
-					<h3><a hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .Topic.Slug}}"> {{format  .Topic.Name }}</a></h3>
+					<h3><a href="{{url "Topic.View" .Topic.Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .Topic.Slug}}"> {{format  .Topic.Name }}</a></h3>
 				</div>
 				<div class="description">
 					<p>{{format .Content}}</p>
@@ -29,4 +29,6 @@
 </div> <!-- Eight Grid -->
 {{template "_partials/right.html" .}}
 
+{{if not (session "isHtmx" .)}}
 {{template "footer.html" .}}
+{{ end }}

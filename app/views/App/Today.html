@@ -1,5 +1,5 @@
 {{ range $row := .posts }}
-<a class="item" hx-get="/t/{{$row.Slug}}?a=today" hx-target="#content" hx-replace-url="true">
+<a class="item" href="/t/{{$row.Slug}}?a=today" hx-get="/t/{{$row.Slug}}?a=today" hx-target="#content" hx-replace-url="true">
     {{ if gt $row.PostCount 1 }}
     <div class="ui label mini horizontal">
          {{ $row.PostCount }}
