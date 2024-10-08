@@ -1,9 +1,10 @@
 {{set . "title" .topic.Name}}
+{{set . "metaDesc" .topic.Name}}
 {{if not (session "isHtmx" .)}}
 {{ template "header.html" . }}
 {{ end }}
 
-<div class="one wide column"></div>
+<div class="one wide column computer only"></div>
 <div class="eight wide column">
     {{template "flash.html" .}}
 
@@ -56,8 +57,8 @@
 </div> <!-- Eight Grid -->
 {{template "_partials/right.html" .}}
 
-{{template "footer.html" .}}
-
 <script>
     document.title= "{{.title}}"
 </script>
+
+{{template "footer.html" .}}

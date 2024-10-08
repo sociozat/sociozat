@@ -10,13 +10,14 @@ import (
 	"strings"
 	"strconv"
 	"time"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/mitchellh/mapstructure"
 	"github.com/revel/revel"
 	"github.com/grokify/html-strip-tags-go"
+    "github.com/gosimple/slug"
+
 )
 
 var (
@@ -182,6 +183,16 @@ func init() {
 		a, _ := JSONMarshal(v)
 		return string(a)
 	}
+
+    revel.TemplateFuncs["split"] = func(str, sep string) []string {
+        split:= strings.Split(str, sep)
+        return split
+    }
+
+    revel.TemplateFuncs["slugify"] = func(str string) string {
+        str = slug.Make(str)
+        return str
+    }
 
 	revel.OnAppStart(InitDB)
 }

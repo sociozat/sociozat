@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
 	// Create a socket
 	let socket = new WebSocket('wss://'+window.location.host+'/ws/posts')
 
@@ -81,11 +80,6 @@ $(document).ready(function () {
 		;
 
 
-	function jqUpdateSize() {
-		var width = $(window).width();
-		autoHideSidebar(width);
-	};
-
 	function autoHideSidebar(width) {
 		var sidebar = $('.ui.left.sidebar');
 		if (width <= 768) {
@@ -95,8 +89,6 @@ $(document).ready(function () {
 			$(".pusher").removeClass("dimmed");
 		}
 	}
-
-
 
 	// SEARCH
 	$('.ui.search').search({
@@ -150,10 +142,16 @@ $(document).ready(function () {
 		},
 	});
 
-	htmx.onLoad(function(elt) {
+	//ON LOAD FULL PAGE
+	autoHideSidebar($(window).width());
 
-		autoHideSidebar($(window).width());
-		$(window).resize(jqUpdateSize);
+	htmx.on('htmx:afterOnLoad', function(elt, xhr, target, conf){
+		if(elt.target.nodeName !== 'BUTTON'){
+			autoHideSidebar($(window).width());
+		}
+	});
+
+	htmx.on("htmx:load", function(evt) {
 
 		//
 		// SETTINGS
@@ -256,5 +254,15 @@ $(document).ready(function () {
 			var textAreaTxt = $txt.val();
 			$txt.val(textAreaTxt.substring(0, caretPos) + text + textAreaTxt.substring(caretPos) );
 		});
-	})
+
+		//switch notations on mobile
+		if($(window).width() < 768){
+			$('.item.popup').each(function(){
+				const notation = $(this).attr('data-content');
+				$(this).replaceWith('<sup>' + notation +'</sup>')
+			})
+
+		}
+	});
+	
 });

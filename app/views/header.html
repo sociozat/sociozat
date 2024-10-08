@@ -7,6 +7,11 @@
 	<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="/public/css/style.css">
+
+	{{ if .metaDesc }}
+	<meta name="description" content="{{ .metaDesc }}">
+	{{ end }}
+
 	{{if config "site.logo" "" }}
 	<link rel="shortcut icon" type="image/png" href='{{config "site.favicon" ""}}'>
 	{{end}}
@@ -34,16 +39,28 @@
 </head>
 
 <body>
-	<div class="ui left sidebar mbl vertical menu visible" id="left">
-		{{template "_partials/left.html" .}}
+	<div class="ui left sidebar mbl vertical menu visible">
+		<div class="ui grid mobile only" style="margin-top: 10px; margin-bottom: 5px">
+			<div class="ui buttons">
+				<button class="ui button" hx-target="#left" hx-get='{{url "App.Trending"}}' style="border-radius: 0 !important;">{{msg . "global.menu.trending"}}</button>
+				<button class="ui button" hx-target="#left" hx-get='{{url "App.Today"}}' style="border-radius: 0 !important;">
+					{{msg . "global.menu.today"}}
+				</button>
+			</div>
+		</div>
+		<div id="left">
+			{{template "_partials/left.html" .}}
+		</div>
 	</div>
 
 	<div class="ui right sidebar user vertical menu hidden">
 		{{if (session "user" .)  }}
-			<a class="item" hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}' >{{msg . "user.profile"}}</a>
-			<a class="item" hx-target="#content" hx-get='{{url "Post.New"}}'>{{msg . "global.new.topic"}}</a>
-			<a class="item" hx-target="#content" hx-get='{{url "Settings.View"}}'>{{msg . "user.settings"}}</a>
-			<a class="item" hx-target="#content" hx-get='{{url "User.Logout"}}'>{{msg . "user.form.logout"}}</a>
+			<a class="item" href='{{url "User.Profile" (session "fulluser" .).Slug}}'  hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}' >{{msg . "user.profile"}}</a>
+			<a class="item" href='{{url "Post.New"}}' hx-target="#content" hx-get='{{url "Post.New"}}'>{{msg . "global.new.topic"}}</a>
+			<a class="item" href='{{url "Settings.View"}}' hx-target="#content" hx-get='{{url "Settings.View"}}'>{{msg . "user.settings"}}</a>
+			<a class="item" href='{{url "User.Logout"}}'hx-target="#content" hx-get='{{url "User.Logout"}}'>{{msg . "user.form.logout"}}</a>
+		{{else}}
+			{{template "_partials/login.html" .}}
 		{{end}}
 	</div>
 	<div class="ui top fixed menu grid">
@@ -71,30 +88,41 @@
 						</div>
 					</div>
 
-					{{ $settings := (session "settings" .)}}
-					{{if $settings.headerChannels}}
-						<div class="scrollable-wrapper">
-							<div class="item link-group" hx-boost="true">
-							{{ range $channel := $settings.headerChannels }}
-								<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
-									{{$channel.name}}
-								</a>
+					<div class="scrollable-wrapper">
+						<div class="item link-group">
+							{{ $settings := (session "settings" .)}}
+							{{if $settings.headerChannels}}
+								{{ range $channel := $settings.headerChannels }}
+									<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
+										{{$channel.name}}
+									</a>
+								{{end}}
+							{{else}}
+								{{ $headerChannels := (config "header.channels" "")}}
+								{{if $headerChannels}}
+									{{ $defaultChannels := split $headerChannels "," }} <!-- Split default channels -->
+									{{ range $channel := $defaultChannels }}
+									{{ $channelSlug := slugify $channel  }}
+									<a class="link item p-count cid{{$channel}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channelSlug }}' href='{{url "Channel.View" $channelSlug}}'>
+										{{ $channel }}
+									</a>
+									{{end}}
+								{{end}}
 							{{end}}
-							</div>
 						</div>
-					{{end}}
+					</div>
 
 					{{ if (session "user" . ) }}
 					<div class="right menu">
-						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "Post.New"}}' data-content='{{msg . "global.new.topic"}}' data-position="bottom center">
+						<a class="icon item button popup" href='{{url "Post.New"}}' hx-replace-url="true" hx-target="#content" hx-get='{{url "Post.New"}}' data-content='{{msg . "global.new.topic"}}' data-position="bottom center">
 							<i class="add icon"></i>
 						</a>
 
-						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "Settings.View"}}' data-content='{{msg . "user.settings"}}' data-position="bottom center">
+						<a class="icon item button popup" href='{{url "Settings.View"}}'  hx-replace-url="true" hx-target="#content" hx-get='{{url "Settings.View"}}' data-content='{{msg . "user.settings"}}' data-position="bottom center">
 							<i class="cog icon"></i>
 						</a>
 
-						<a class="icon item button tiny"  hx-replace-url="true" hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}'>
+						<a class="icon item button tiny" href='{{url "User.Profile" (session "fulluser" .).Slug}}' hx-replace-url="true" hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}'>
 							{{ session "user" . }}
 						</a>
 						<a class="icon item button popup" hx-replace-url="true" hx-target="#content" hx-get='{{url "User.Logout"}}' data-content='{{msg . "user.form.logout"}}' data-position="bottom center">
@@ -109,18 +137,29 @@
 			<div class="column">
 				<div class="ui menu fixed">
 					<a id="mobile_item" class="item left"><i class="align left icon"></i></a>
-					{{ $settings := (session "settings" .)}}
-					{{if $settings.headerChannels}}
+
 					<div class="scrollable-wrapper">
-						<div class="item link-group" hx-boost="true">
-							{{ range $channel := $settings.headerChannels }}
-							<a id="cid{{$channel.value}}" class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" href='{{url "Channel.View" $channel.slug}}'>
-							{{$channel.name}}
-							</a>
+						<div class="item link-group">
+							{{if $settings.headerChannels}}
+								{{ range $channel := $settings.headerChannels }}
+								<a class="item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
+									{{$channel.name}}
+								</a>
+								{{end}}
+							{{else}}
+								{{ $headerChannels := (config "header.channels" "")}}
+									{{if $headerChannels}}
+										{{ $defaultChannels := split $headerChannels "," }} <!-- Split default channels -->
+										{{ range $channel := $defaultChannels }}
+										{{ $channelSlug := slugify $channel  }}
+										<a class="item p-count cid{{$channel}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channelSlug }}' href='{{url "Channel.View" $channelSlug}}'>
+											{{ $channel }}
+										</a>
+										{{end}}
+									{{end}}
 							{{end}}
 						</div>
 					</div>
-					{{end}}
 					<a id="user_item" class="item right"><i class="user icon"></i></a>
 				</div>
 			</div>

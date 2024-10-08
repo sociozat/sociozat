@@ -6,7 +6,7 @@
           {{if .post.Content}}
             <textarea name="content">{{.post.Content}}</textarea>
           {{else}}
-            <textarea name="content"placeholder="{{msg . "post.reply" .topic.Name}}"></textarea>
+            <textarea name="content" placeholder="{{msg . "post.reply" .topic.Name}}"></textarea>
           {{end}}  
           </div>
           <button class="ui button" type="submit">{{msg . "post.new.send"}}</button>

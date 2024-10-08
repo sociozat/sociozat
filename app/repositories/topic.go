@@ -32,7 +32,7 @@ func (t TopicRepository) Find(params TopicSearchParams) (models.TopicModel, *pag
 	rows := app.DB.Table("posts").
 		Where("posts.topic_id = ?", topic.ID).
 		Where("posts.created_at >= ?", params.StartDate).
-		Order("posts.id ASC").
+		Order("posts.created_at ASC").
 		Preload("User")
 
 	paginator := pagination.Paging(&pagination.Param{

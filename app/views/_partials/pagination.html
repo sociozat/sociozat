@@ -11,6 +11,7 @@
        hx-swap="show:window:top"
     >&laquo;
     </a>
+    <link rel="prev" href="{{index .pagination .posts.PrevPage }}" />
     {{end}}
 
 
@@ -38,6 +39,8 @@
        hx-swap="show:window:top"
     >&raquo;
     </a>
+    <link rel="next" href="{{index .pagination .posts.NextPage }}" />
+
     {{end}}
   </div>
 {{end}}
