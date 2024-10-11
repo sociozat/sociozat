@@ -1,0 +1,15 @@
+auth.login.required = Devi prima effettuare l'accesso!
+
+user.create.error = Non possiamo creare questo account al momento!
+user.create.validation.username = Il nome utente deve essere tra 4 e 25 caratteri
+user.create.validation.password = La password deve essere tra 5 e 50 caratteri
+
+post.not.found = Post non trovato!
+post.create.validation.name = Il titolo deve essere tra 2 e 120 caratteri
+post.create.validation.content = Sembra che il contenuto non sia sufficiente.
+
+user.login.error = Credenziali errate!
+
+user.not.found = Utente non trovato!
+
+global.no.posts.found = Nessun post trovato

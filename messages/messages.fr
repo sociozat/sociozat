@@ -1,0 +1,80 @@
+global.cancel = Annuler
+global.success = Succès
+global.error = Erreur
+global.ok = D'accord
+global.new = Nouveau
+global.smth = Quelque chose
+global.try = Essayer
+global.new.topic = Nouveau Sujet
+global.reply.topic = Répondre
+global.search = Rechercher ...
+global.search.results = Résultats de recherche
+global.menu.trending = Tendance
+global.menu.today = Aujourd'hui
+global.save = Sauvegarder
+
+editor.refto = (réf)
+editor.refto.pattern = (#)
+editor.notation = *
+editor.notation.pattern = *notation*
+editor.spoiler = spoiler
+editor.spoiler.pattern = -----#spoiler#-----
+editor.url = url
+editor.url.pattern = [Lien](https://site.com)
+
+user.id = Mon identifiant utilisateur unique
+user.login.title = Connexion
+user.form.logout = Déconnexion
+user.form.login = Connexion
+user.form.register = S'inscrire
+user.form.username = Nom d'utilisateur
+user.form.email = Email
+user.form.password = Mot de passe
+user.form.remember = Se souvenir de moi
+user.form.lost.password = Mot de passe oublié
+user.settings = Paramètres
+user.password.change = Changer le mot de passe
+user.profile = Profil
+user.profile.bookmarks = Liste des favoris de chaînes (max 10)
+user.profile.trending.channels = Sujets tendances personnalisés
+user.profile.select.trending.channels = Sélectionnez jusqu'à 5 chaînes
+user.profile.post.perpage = Messages par page
+user.profile.topic.perpage = Sujets par page
+user.setting.night.mode = Mode nuit
+
+similar.topics = Sujets similaires
+
+post.new.title = Nouveau message
+post.new.name = Nom du sujet
+post.new.name.placeholder = Maximum 90 caractères
+post.new.content = Contenu du message
+post.reply = Partagez vos pensées sur %s
+post.new.channels = Chaînes
+post.new.send = Envoyer
+post.single.title = %s a commenté sur %s
+post.edit = Modifier
+post.update = Mettre à jour
+post.update.content = Votre contenu actuel
+post.update.denied = Vous pouvez seulement modifier votre propre message
+post.update.success.message = Votre message a été mis à jour avec succès
+post.report = Signaler
+
+topic.channels = Chaînes
+topic.title = %s
+topic.title.with.page = %s Page : %d
+topic.create.success.message = Merci pour votre contribution. Vous êtes génial !
+topic.trending.total = Il y a %v messages de plus
+
+notation.not.found = Oups. Il semble que nous n'ayons pas de contenu sur <b>%s</b>. <br> Souhaitez-vous partager vos pensées ?
+settings.updated.sucessfully = Paramètres mis à jour avec succès
+settings.updated.error = Un problème est survenu, ne vous inquiétez pas, nous l'avons enregistré. Vous devriez essayer plus tard.
+
+greeting.user = Bienvenue %s
+
+search.all.results = Voir tous les résultats
+
+[GB]
+greeting.user = Bienvenue %s
+
+[US]
+greeting.user = Salut %s

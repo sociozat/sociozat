@@ -1,0 +1,15 @@
+auth.login.required = Sie müssen sich zuerst anmelden!
+
+user.create.error = Wir können dieses Konto momentan nicht erstellen!
+user.create.validation.username = Der Benutzername muss 4-25 Zeichen lang sein
+user.create.validation.password = Das Passwort muss 5-50 Zeichen lang sein
+
+post.not.found = Beitrag nicht gefunden!
+post.create.validation.name = Der Titel muss zwischen 2-120 Zeichen lang sein
+post.create.validation.content = Der Inhalt scheint nicht ausreichend zu sein.
+
+user.login.error = Falsche Anmeldedaten!
+
+user.not.found = Benutzer nicht gefunden!
+
+global.no.posts.found = Keine Beiträge gefunden

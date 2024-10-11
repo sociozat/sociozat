@@ -1,0 +1,80 @@
+global.cancel = Abbrechen
+global.success = Erfolg
+global.error = Fehler
+global.ok = OK
+global.new = Neu
+global.smth = Etwas
+global.try = Versuchen
+global.new.topic = Neues Thema
+global.reply.topic = Antworten
+global.search = Suchen ...
+global.search.results = Suchergebnisse
+global.menu.trending = Im Trend
+global.menu.today = Heute
+global.save = Speichern
+
+editor.refto = (ref)
+editor.refto.pattern = (#)
+editor.notation = *
+editor.notation.pattern = *notation*
+editor.spoiler = Spoiler
+editor.spoiler.pattern = -----#Spoiler#-----
+editor.url = URL
+editor.url.pattern = [Link](https://site.com)
+
+user.id = Meine Einzigartige Benutzer-ID
+user.login.title = Anmeldung
+user.form.logout = Abmelden
+user.form.login = Anmelden
+user.form.register = Registrieren
+user.form.username = Benutzername
+user.form.email = E-Mail
+user.form.password = Passwort
+user.form.remember = Angemeldet bleiben
+user.form.lost.password = Passwort vergessen
+user.settings = Einstellungen
+user.password.change = Passwort ändern
+user.profile = Profil
+user.profile.bookmarks = Lesezeichenliste der Kanäle (max. 10)
+user.profile.trending.channels = Angepasste Trendthemen
+user.profile.select.trending.channels = Wählen Sie bis zu 5 Kanäle aus
+user.profile.post.perpage = Beiträge pro Seite
+user.profile.topic.perpage = Themen pro Seite
+user.setting.night.mode = Nachtmodus
+
+similar.topics = Ähnliche Themen
+
+post.new.title = Neuer Beitrag
+post.new.name = Themenname
+post.new.name.placeholder = Maximal 90 Zeichen
+post.new.content = Beitragsinhalt
+post.reply = Teile deine Gedanken zu %s
+post.new.channels = Kanäle
+post.new.send = Senden
+post.single.title = %s hat %s kommentiert
+post.edit = Bearbeiten
+post.update = Aktualisieren
+post.update.content = Dein aktueller Beitrag
+post.update.denied = Du kannst nur deinen eigenen Beitrag aktualisieren
+post.update.success.message = Dein Beitrag wurde erfolgreich aktualisiert
+post.report = Melden
+
+topic.channels = Kanäle
+topic.title = %s
+topic.title.with.page = %s Seite: %d
+topic.create.success.message = Vielen Dank für deinen Beitrag. Du bist großartig!
+topic.trending.total = Es gibt %v weitere Beiträge
+
+notation.not.found = Oops. Es scheint, wir haben keinen Inhalt über <b>%s</b>. <br> Möchtest du deine Gedanken teilen?
+settings.updated.sucessfully = Einstellungen erfolgreich aktualisiert
+settings.updated.error = Etwas ist schiefgelaufen, keine Sorge, wir haben es protokolliert. Du solltest es später erneut versuchen.
+
+greeting.user = Willkommen %s
+
+search.all.results = Alle Ergebnisse anzeigen
+
+[GB]
+greeting.user = Willkommen %s
+
+[US]
+greeting.user = Hallo %s

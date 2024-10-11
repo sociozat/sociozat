@@ -1,0 +1,74 @@
+global.cancel = İptal
+global.success = Başarılı
+global.error = Hata
+global.ok = Tamam
+global.new = Yeni
+global.smth = Bir şey
+global.try = Dene
+global.new.topic = Yeni Konu
+global.reply.topic = Yanıtla
+global.search = Ara ...
+global.search.results = Arama Sonuçları
+global.menu.trending = gündem
+global.menu.today = bugün
+global.save = Kaydet
+
+editor.refto = (ref)
+editor.refto.pattern = (#)
+editor.notation = *
+editor.notation.pattern = *notasyon*
+editor.spoiler = spoiler
+editor.spoiler.pattern = -----#spoiler#-----
+editor.url = url
+editor.url.pattern = [Bağlantı](https://site.com)
+
+user.id = Benzersiz Kullanıcı Kimliğim
+user.login.title = Giriş Yap
+user.form.logout = Çıkış Yap
+user.form.login = Giriş Yap
+user.form.register = Kayıt Ol
+user.form.username = Kullanıcı Adı
+user.form.email = E-posta
+user.form.password = Şifre
+user.form.remember = Beni Hatırla
+user.form.lost.password = Şifremi Unuttum
+user.settings = Ayarlar
+user.password.change = Şifreyi Değiştir
+user.profile = Profil
+user.profile.bookmarks = Kanal Yer İmleri Listesi (maks. 10)
+user.profile.trending.channels = Özelleştirilmiş Popüler Konular
+user.profile.select.trending.channels = Maksimum 5 kanal seç
+user.profile.post.perpage = Sayfa Başına Gönderi
+user.profile.topic.perpage = Sayfa Başına Konu
+user.setting.night.mode = Gece Modu
+
+similar.topics = Benzer Konular
+
+post.new.title = Yeni Gönderi
+post.new.name = Konu adı
+post.new.name.placeholder = Maksimum 90 karakter
+post.new.content = Gönderi İçeriği
+post.reply = %s hakkındaki düşüncelerini paylaş
+post.new.channels = Kanallar
+post.new.send = Gönder
+post.single.title = %s %s üzerinde yorum yaptı
+post.edit = Düzenle
+post.update = Güncelle
+post.update.content = Mevcut gönderi içeriğin
+post.update.denied = Yalnızca kendi gönderini güncelleyebilirsin
+post.update.success.message = Gönderin başarıyla güncellendi
+post.report = Raporla
+
+topic.channels = Kanallar
+topic.title = %s
+topic.title.with.page = %s Sayfa: %d
+topic.create.success.message = Katkın için teşekkür ederiz. Harikasın!
+topic.trending.total = %v daha fazla gönderi var
+
+notation.not.found = hoppala!. <b>%s</b> hakkında içeriğimiz yok gibi görünüyor. <br> Birşeyler karalamak ister misin?
+settings.updated.sucessfully = Ayarlar Başarıyla Güncellendi
+settings.updated.error = Bir şeyler ters gitti, endişelenme bunu kaydettik. Daha sonra tekrar deneyebilirsin.
+
+greeting.user = Hoş geldin %s
+
+search.all.results = Tüm Sonuçları Görüntüle

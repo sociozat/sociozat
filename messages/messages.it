@@ -1,0 +1,80 @@
+global.cancel = Annulla
+global.success = Successo
+global.error = Errore
+global.ok = Ok
+global.new = Nuovo
+global.smth = Qualcosa
+global.try = Prova
+global.new.topic = Nuovo Argomento
+global.reply.topic = Rispondi
+global.search = Cerca ...
+global.search.results = Risultati della ricerca
+global.menu.trending = Di tendenza
+global.menu.today = Oggi
+global.save = Salva
+
+editor.refto = (ref)
+editor.refto.pattern = (#)
+editor.notation = *
+editor.notation.pattern = *notazione*
+editor.spoiler = spoiler
+editor.spoiler.pattern = -----#spoiler#-----
+editor.url = url
+editor.url.pattern = [Link](https://site.com)
+
+user.id = Il Mio ID Utente Unico
+user.login.title = Accedi
+user.form.logout = Esci
+user.form.login = Accedi
+user.form.register = Registrati
+user.form.username = Nome Utente
+user.form.email = Email
+user.form.password = Password
+user.form.remember = Ricordami
+user.form.lost.password = Password dimenticata
+user.settings = Impostazioni
+user.password.change = Cambia Password
+user.profile = Profilo
+user.profile.bookmarks = Lista dei Canali Preferiti (max 10)
+user.profile.trending.channels = Argomenti di Tendenza Personalizzati
+user.profile.select.trending.channels = Seleziona fino a 5 canali
+user.profile.post.perpage = Post per Pagina
+user.profile.topic.perpage = Argomenti per Pagina
+user.setting.night.mode = Modalità Notturna
+
+similar.topics = Argomenti Simili
+
+post.new.title = Nuovo Post
+post.new.name = Nome dell'Argomento
+post.new.name.placeholder = Massimo 90 caratteri
+post.new.content = Contenuto del Post
+post.reply = Condividi i tuoi pensieri su %s
+post.new.channels = Canali
+post.new.send = Invia
+post.single.title = %s ha commentato su %s
+post.edit = Modifica
+post.update = Aggiorna
+post.update.content = Il contenuto del tuo post attuale
+post.update.denied = Puoi aggiornare solo il tuo post
+post.update.success.message = Il tuo post è stato aggiornato con successo
+post.report = Segnala
+
+topic.channels = Canali
+topic.title = %s
+topic.title.with.page = %s Pagina: %d
+topic.create.success.message = Grazie per il tuo contributo. Sei fantastico!
+topic.trending.total = Ci sono %v post in più
+
+notation.not.found = Oops. Sembra che non abbiamo contenuti su <b>%s</b>. <br> Vorresti condividere i tuoi pensieri?
+settings.updated.sucessfully = Impostazioni aggiornate con successo
+settings.updated.error = Qualcosa è andato storto, non preoccuparti, abbiamo registrato l'errore. Dovresti riprovare più tardi.
+
+greeting.user = Benvenuto %s
+
+search.all.results = Visualizza Tutti i Risultati
+
+[GB]
+greeting.user = Benvenuto %s
+
+[US]
+greeting.user = Ciao %s

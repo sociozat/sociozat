@@ -1,0 +1,15 @@
+auth.login.required = Vous devez d'abord vous connecter !
+
+user.create.error = Nous ne pouvons pas créer ce compte pour le moment !
+user.create.validation.username = Le nom d'utilisateur doit comporter entre 4 et 25 caractères
+user.create.validation.password = Le mot de passe doit comporter entre 5 et 50 caractères
+
+post.not.found = Publication non trouvée !
+post.create.validation.name = Le titre doit être compris entre 2 et 120 caractères
+post.create.validation.content = Le contenu semble insuffisant.
+
+user.login.error = Identifiants incorrects !
+
+user.not.found = Utilisateur non trouvé !
+
+global.no.posts.found = Aucune publication trouvée

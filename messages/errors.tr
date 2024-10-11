@@ -1,0 +1,15 @@
+auth.login.required = Önce giriş yapmanız gerekiyor!
+
+user.create.error= Şu anda bu hesabı oluşturamıyoruz!
+user.create.validation.username= Kullanıcı adı 4-25 karakter arasında olmalı
+user.create.validation.password= Şifre 5-50 karakter arasında olmalı
+
+post.not.found= Gönderi Bulunamadı!
+post.create.validation.name = Başlık 2-120 karakter arasında olmalı
+post.create.validation.content = İçerik yeterli görünmüyor.
+
+user.login.error = Yanlış kimlik bilgileri!
+
+user.not.found = Kullanıcı bulunamadı!
+
+global.no.posts.found = Gönderi Bulunamadı
