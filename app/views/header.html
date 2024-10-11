@@ -94,7 +94,7 @@
 							{{if $settings.headerChannels}}
 								{{ range $channel := $settings.headerChannels }}
 									<a class="link item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
-										{{$channel.name}}
+										{{format $channel.name}}
 									</a>
 								{{end}}
 							{{else}}
@@ -104,7 +104,7 @@
 									{{ range $channel := $defaultChannels }}
 									{{ $channelSlug := slugify $channel  }}
 									<a class="link item p-count cid{{$channel}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channelSlug }}' href='{{url "Channel.View" $channelSlug}}'>
-										{{ $channel }}
+										{{format $channel }}
 									</a>
 									{{end}}
 								{{end}}
@@ -143,7 +143,7 @@
 							{{if $settings.headerChannels}}
 								{{ range $channel := $settings.headerChannels }}
 								<a class="item p-count cid{{$channel.value}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channel.slug}}' href='{{url "Channel.View" $channel.slug}}'>
-									{{$channel.name}}
+									{{format $channel.name}}
 								</a>
 								{{end}}
 							{{else}}
@@ -153,7 +153,7 @@
 										{{ range $channel := $defaultChannels }}
 										{{ $channelSlug := slugify $channel  }}
 										<a class="item p-count cid{{$channel}}" hx-replace-url="true" hx-target="#content" hx-get='{{url "Channel.View" $channelSlug }}' href='{{url "Channel.View" $channelSlug}}'>
-											{{ $channel }}
+											{{format $channel }}
 										</a>
 										{{end}}
 									{{end}}

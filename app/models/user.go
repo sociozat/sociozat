@@ -21,10 +21,10 @@ const (
 type UserModel struct {
 	gorm.Model
 	UserID         string `gorm:"type:char(36)"`
-	Slug           string `gorm:"index:user_slug"`
-	Name           string
-	Username       string `gorm:"unique;not null"`
-	Email          string `gorm:"unique;not null"`
+	Slug           string `gorm:"type:varchar(100);index:user_slug"`
+	Name           string `gorm:"type:varchar(100)"`
+	Username       string `gorm:"type:varchar(100);unique;not null"`
+	Email          string `gorm:"type:varchar(255);unique;not null"`
 	Password       string `gorm:"-"`
 	HashedPassword string `gorm:"type:varchar(255)"`
 	Settings       string `gorm:"type:text`

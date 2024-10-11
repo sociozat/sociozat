@@ -10,6 +10,7 @@ import (
 //todo refactor all funcs with one pattern/output struct
 func FormatContent(str string) string {
 	// str = AutoLink(str)
+	str = strings.Replace(str,"<br>","\n\n",-1)
 	str = ExtractUrl(str)
 	str = Topic(str)
 	str = Notation(str)

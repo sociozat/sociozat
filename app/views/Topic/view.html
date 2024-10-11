@@ -5,21 +5,33 @@
 {{ end }}
 
 <div class="one wide column computer only"></div>
-<div class="eight wide column">
+<div class="eight wide column" itemid="{{url "Topic.View" .topic.Slug }}" itemscope itemtype="https://schema.org/SocialMediaPosting">
     {{template "flash.html" .}}
 
     <div class="ui title">
       <div class="ui segment">
-          <div class="ui grey right ribbon label aligned post-count-label" style="float:left">
-              <i class="icon comment"></i>{{.posts.TotalRecord}}
+          <div class="ui grey right ribbon label aligned post-count-label" style="float:left" itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope>
+              <i class="icon comment" ></i>{{.posts.TotalRecord}}
+              <meta itemprop="interactionType" content="https://schema.org/CommentAction">
+              <meta itemprop="userInteractionCount" content="{{.posts.TotalRecord}}">
           </div>
           <div class="ui aligned">
-              <h1><a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a></h1>
+              <h1 itemprop="headline">
+                  <a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a>
+              </h1>
+              <meta itemprop="url" content="{{url "Topic.View" .topic.Slug }}">
+              <meta itemprop="datePublished" content="{{ .topic.CreatedAt }}">
           </div>
       </div>
     </div>
 
     {{with $dot := .}}
+
+    <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+        <meta itemprop="name" content=" {{ (index .posts.Records 0).User.Username }}">
+        <meta itemprop="url" content=" {{ url "User.Profile" (index .posts.Records 0).User.Slug }}">
+    </div>
+
 
     <div class="segments">
       <!-- entries start -->
@@ -33,19 +45,20 @@
         </div>
         {{end}}
         {{ range $post := .posts.Records}}
-        <div class="ui card fluid" style="border-radius:0 !important;border: none !important;">
+        <div class="ui card fluid" style="border-radius:0 !important;border: none !important;" itemprop="comment" itemtype="https://schema.org/Comment" itemscope>
             <div class="content">
-                <div class="meta">
-                    <a class="left" href="{{url "User.Profile" .User.Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}">
-                        {{format .User.Username}}
+                <div class="meta" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                    <a class="left" href="{{url "User.Profile" .User.Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "User.Profile" .User.Slug}}" itemprop="url">
+                        <span itemprop="name">{{format .User.Username}}</span>
                     </a>
                     <span class="right floated">
                         <a class="right aligned" href="#"><i class="ellipsis vertical icon  light grey"></i></a>
                     </span>
                 </div>
-                <div class="description">
+                <div class="description" itemprop="text">
                     <p>{{format .Content}}</p>
                 </div>
+                <meta itemprop="datePublished" content="{{ .CreatedAt}}">
             </div>
             {{template "_partials/post_footer.html"  $post }}
         </div>

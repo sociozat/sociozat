@@ -12,7 +12,7 @@
         <div class="ui vertical visible list divided selection">
             {{ range .topic.Channels}}
                 <a class="item" href="{{url "Channel.View" .Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" .Slug}}">
-                  {{.Name}}
+                {{format .Name}}
                 </a>
             {{end}}
         </div>
@@ -27,7 +27,7 @@
             <div class="ui vertical visible list divided selection">
                 {{ range .related }}
                 <a class="item" href="{{url "Topic.View" .Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .Slug}}">
-                {{.Name}}
+                {{format .Name}}
                 </a>
                 {{end}}
             </div>
@@ -39,7 +39,7 @@
     <div class="ui section divider"></div>
     <div class="ui horizontal small divided link list"  style="float:left">
         <div class="item">
-            © copyright 2024 {{config "app.name" ""}}
+            © 2024 {{config "app.name" ""}}
         </div>
     </div>
 

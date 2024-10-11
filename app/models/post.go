@@ -8,7 +8,7 @@ import (
 type TopicModel struct {
 	gorm.Model
 	Name      string
-	Slug      string         `gorm:"index:topic_slug"`
+	Slug      string         `gorm:"type:varchar(1255);index:topic_slug"`
 	Channels  []ChannelModel `gorm:"many2many:topic_channels;"`
 	IsLocked  bool           `gorm:"default:'0'"`
 	PostCount int

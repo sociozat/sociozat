@@ -1,5 +1,5 @@
 <div class="extra content">
-    <span class="left floated">
+    <span class="left floated" itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
         <a  class="left aligned "
             href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ .Topic.Name}}"
         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
@@ -15,11 +15,20 @@
             <i class="icon twitter"></i>
         </a>
 
+        <meta itemprop="interactionType" content="https://schema.org/LikeAction">
+        <meta itemprop="userInteractionCount" content="{{.Likes}}">
+
+        <meta itemprop="interactionType" content="https://schema.org/DislikeAction">
+        <meta itemprop="userInteractionCount" content="{{.Dislikes}}">
+
+
         <a class="left aligned post-action" data-post="{{ .ID }}" data-action="like" style="margin-left:10px"><i class="icon thumbs up outline grey"></i> {{.Likes}}</a>
         <a class="left aligned post-action" data-post="{{ .ID }}" data-action="dislike" style="margin-left:10px"><i class="icon thumbs down outline grey"></i> {{.Dislikes}}</a>
 
     </span>
     <span class="right floated">
-        <a class="right aligned" href="{{url "Post.View" .ID}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">{{timeago .CreatedAt}}</a>
+        <a class="right aligned" href="{{url "Post.View" .ID}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Post.View" .ID}}">
+        {{timeago .CreatedAt}}
+        </a>
     </span>
 </div>
