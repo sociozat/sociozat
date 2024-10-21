@@ -1,5 +1,5 @@
 <!-- Right Sidebar Large Screen -->
-<div class="four wide column computer only">
+<div class="four wide column">
     <!-- User View -->
     {{if not (session "fulluser" .)  }}
         {{template "_partials/login.html" .}}
@@ -9,11 +9,14 @@
     <div class="ui sticky computer only row">
     <div class="ui segment">
         <div class="header">{{msg . "topic.channels"}}</div>
-        <div class="ui vertical visible list divided selection">
-            {{ range .topic.Channels}}
-                <a class="item" href="{{url "Channel.View" .Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" .Slug}}">
-                {{format .Name}}
-                </a>
+        <div class="ui vertical visible list divided selection" itemscope itemtype="https://schema.org/BreadcrumbList">
+            {{ range $i, $t := .topic.Channels}}
+                <h5 itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a class="item" itemprop="item" href="{{url "Channel.View" $t.Slug}}" hx-replace-url="true" hx-target="#content" hx-get="{{url "Channel.View" $t.Slug}}">
+                        <span itemprop="name">{{format $t.Name}}</span>
+                    </a>
+                    <meta itemprop="position" content="{{ $i }}" />
+                </h5>
             {{end}}
         </div>
     </div>

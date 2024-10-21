@@ -66,9 +66,28 @@ topic.create.success.message = Gracias por tu contribución. ¡Eres increíble!
 topic.trending.total = Hay %v publicaciones más
 
 notation.not.found = Oops. Parece que no tenemos contenido sobre <b>%s</b>. <br> ¿Te gustaría compartir tus pensamientos?
-settings.updated.sucessfully = Configuraciones Actualizadas Exitosamente
+settings.updated.successfully = Configuraciones Actualizadas Exitosamente
 settings.updated.error = Algo salió mal, no te preocupes, hemos registrado esto. Deberías intentarlo más tarde.
 
 greeting.user = Bienvenido %s
 
 search.all.results = Ver Todos los Resultados
+
+
+## timeago
+about a second = aproximadamente un segundo
+about a minute = aproximadamente un minuto
+about an hour = aproximadamente una hora
+one day = un día
+one month = un mes
+one year = un año
+%d seconds = %d segundos
+%d minutes = %d minutos
+%d hours = %d horas
+%d days = %d días
+%d months = %d meses
+%d years = %d años
+
+ago = hace
+in = en
+about a second = aproximadamente un segundo

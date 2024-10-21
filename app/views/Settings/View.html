@@ -91,23 +91,23 @@
                 <label>{{msg . "user.profile.post.perpage"}}</label>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 5.0}} checked="checked"
+                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 15.0}} checked="checked"
                             {{end}} value="1">
-                        <label>5</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 10.0}} checked="checked"
-                            {{end}} value="2">
                         <label>10</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 25.0}} checked="checked"
-                            {{end}} value="3">
+                            {{end}} value="2">
                         <label>25</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="post-per-page" {{if eq .settings.postPerPage 50.0}} checked="checked"
+                            {{end}} value="3">
+                        <label>50</label>
                     </div>
                 </div>
             </div>
@@ -117,23 +117,23 @@
                 <label>{{msg . "user.profile.topic.perpage"}}</label>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 5.0}} checked="checked"
+                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 10.0}} checked="checked"
                             {{end}} value="1">
-                        <label>5</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 10.0}}
-                            checked="checked" {{end}} value="2">
                         <label>10</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 25.0}}
-                            checked="checked" {{end}} value="3">
+                            checked="checked" {{end}} value="2">
                         <label>25</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="topic-per-page" {{if eq .settings.topicPerPage 50.0}}
+                            checked="checked" {{end}} value="3">
+                        <label>50</label>
                     </div>
                 </div>
             </div>

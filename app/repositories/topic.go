@@ -82,6 +82,7 @@ func (c TopicRepository) Todays(limit int) ([]models.TopicModel, error) {
         Select("count(posts.id) as Post_Count, topics.name as Name, topics.slug as Slug").
         Joins("join posts on posts.topic_id = topics.id").
         Where("posts.created_at >= ?", startDate).
+        Where("posts.deleted_at IS NULL").
         Group("Slug, Name ").
         Order("MAX(posts.created_at) DESC")
 

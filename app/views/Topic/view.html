@@ -20,17 +20,23 @@
                   <a class="link" hx-replace-url="true" hx-target="#content" hx-get="{{url "Topic.View" .topic.Slug }}">{{format .topic.Name}} </a>
               </h1>
               <meta itemprop="url" content="{{url "Topic.View" .topic.Slug }}">
-              <meta itemprop="datePublished" content="{{ .topic.CreatedAt }}">
+              {{ if gt .posts.TotalRecord 0}}
+              <meta itemprop="text" content="{{ (index .posts.Records 0).Content }}">
+              <meta itemprop="datePublished" content="{{datetime (index .posts.Records 0).CreatedAt }}">
+              {{ end }}
+
           </div>
       </div>
     </div>
 
     {{with $dot := .}}
 
+    {{ if gt .posts.TotalRecord 0}}
     <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
         <meta itemprop="name" content=" {{ (index .posts.Records 0).User.Username }}">
         <meta itemprop="url" content=" {{ url "User.Profile" (index .posts.Records 0).User.Slug }}">
     </div>
+    {{ end }}
 
 
     <div class="segments">
@@ -59,6 +65,7 @@
                     <p>{{format .Content}}</p>
                 </div>
                 <meta itemprop="datePublished" content="{{ .CreatedAt}}">
+                <meta itemprop="dateModified" content="{{ .UpdatedAt}}">
             </div>
             {{template "_partials/post_footer.html"  $post }}
         </div>

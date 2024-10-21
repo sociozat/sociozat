@@ -11,6 +11,7 @@ func TrendingTopics(db *gorm.DB, channels []uint, startDate string) []models.Top
 	tx := db.Table("topics").
 		Select("count(p.id) as Post_Count, topics.name as Name, topics.slug as Slug, CASE WHEN SUM(p.likes - p.dislikes) = 0 THEN 0 ELSE LOG(GREATEST(SUM(p.likes - p.dislikes), 1)) + ((EXTRACT(EPOCH FROM NOW()) - EXTRACT(EPOCH FROM topics.created_at)) / 45000) END AS hotness_score").
         Where("p.created_at >= ?", startDate).
+        Where("p.deleted_at is null").
 		Joins("join posts  as p on topics.id = p.topic_id")
 
 	if len(channels) > 0 {

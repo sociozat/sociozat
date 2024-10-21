@@ -46,12 +46,24 @@ func (c ChannelRepository) GetPostsByChannel(params models.SearchParams) (*pagin
 
 	var err error
 
-	tx := app.DB.Table("posts").
-		Joins("join topics on topics.id = posts.topic_id").
-		Joins("join topic_channels on posts.topic_id = topic_channels.topic_model_id").
+    // Subquery to get the latest post ID per topic
+	subQuery := app.DB.Table("posts").
+		Select("MAX(posts.id) as latest_post_id").
+		Joins("JOIN topic_channels ON posts.topic_id = topic_channels.topic_model_id").
 		Where("topic_channels.channel_model_id = ?", channel.ID).
+		Where("posts.deleted_at IS NULL").
+		Group("posts.topic_id").SubQuery()
+
+	// Main query to fetch posts by joining with the subquery
+	tx := app.DB.Table("posts").
+		Joins("JOIN (?) AS lp ON posts.id = lp.latest_post_id", subQuery).
+		Joins("JOIN topics ON topics.id = posts.topic_id").
 		Preload("Topic").
-		Preload("User")
+		Preload("User").
+		Where("posts.deleted_at IS NULL").
+		Order("posts.id DESC")
+
+
 
 	paginator := pagination.Paging(&pagination.Param{
 		DB:      tx,

@@ -37,7 +37,7 @@ func (c Settings) SettingsPost() revel.Result {
 	} else {
 		//override session values
 		c.Session.Set("settings", settings)
-		c.Flash.Success(c.Message("settings.updated.sucessfully"))
+		c.Flash.Success(c.Message("settings.updated.successfully"))
 	}
 
 	return c.Redirect(Settings.View)

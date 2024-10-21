@@ -66,7 +66,7 @@ topic.create.success.message = Thanks for contributing. You are awesome!
 topic.trending.total = There are %v more posts
 
 notation.not.found = Oops. Seems we have no content about <b>%s</b>. <br> Would you like to share your thoughts?
-settings.updated.sucessfully = Settings Updated Successfully
+settings.updated.successfully = Settings Updated Successfully
 settings.updated.error = Something went wrong, no worries we logged this. You should try later.
 
 greeting.user = Welcome %s
@@ -78,3 +78,22 @@ greeting.user = Welcome %s
   
 [US]
 greeting.user = Howdy %s
+
+
+## timeago
+about a second = about a second
+about a minute = about a minute
+about an hour = about an hour
+one day = one day
+one month = one month
+one year = one year
+%d seconds = %d seconds
+%d minutes = %d minutes
+%d hours = %d hours
+%d days = %d days
+%d months = %d months
+%d years = %d years
+
+ago = ago
+in = in
+about a second = about a second

@@ -29,7 +29,7 @@ func ExtractUrl(str string) string {
             linkText := match[1][1:len(match[1])-1] // strip the square brackets
             url := match[2] // capture group for the URL
             // format the HTML anchor tag
-            text := fmt.Sprintf(`<a class="item" href="%s" target="_blank">%s <i class="icon external alternate"></i></a>`, url, linkText)
+            text := fmt.Sprintf(`<a class="item" href="%s" target="_blank" rel="nofollow external">%s <i class="icon external alternate"></i></a>`, url, linkText)
             // replace the Markdown link with the HTML anchor tag in the original string
             str = strings.Replace(str, match[0], text, 1)
         }

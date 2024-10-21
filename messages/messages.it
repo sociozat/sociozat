@@ -66,7 +66,7 @@ topic.create.success.message = Grazie per il tuo contributo. Sei fantastico!
 topic.trending.total = Ci sono %v post in più
 
 notation.not.found = Oops. Sembra che non abbiamo contenuti su <b>%s</b>. <br> Vorresti condividere i tuoi pensieri?
-settings.updated.sucessfully = Impostazioni aggiornate con successo
+settings.updated.successfully = Impostazioni aggiornate con successo
 settings.updated.error = Qualcosa è andato storto, non preoccuparti, abbiamo registrato l'errore. Dovresti riprovare più tardi.
 
 greeting.user = Benvenuto %s
@@ -78,3 +78,22 @@ greeting.user = Benvenuto %s
 
 [US]
 greeting.user = Ciao %s
+
+
+## timeago
+about a second = circa un secondo
+about a minute = circa un minuto
+about an hour = circa un'ora
+one day = un giorno
+one month = un mese
+one year = un anno
+%d seconds = %d secondi
+%d minutes = %d minuti
+%d hours = %d ore
+%d days = %d giorni
+%d months = %d mesi
+%d years = %d anni
+
+ago = fa
+in = in
+about a second = circa un secondo

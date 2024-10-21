@@ -12,9 +12,9 @@ import (
 )
 
 var perPage = map[string]int{
-	"1": 5,
-	"2": 10,
-	"3": 25,
+	"1": 10,
+	"2": 25,
+	"3": 50,
 }
 
 type SettingsService struct {

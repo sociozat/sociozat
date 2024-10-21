@@ -35,8 +35,8 @@ user.form.lost.password = Şifremi Unuttum
 user.settings = Ayarlar
 user.password.change = Şifreyi Değiştir
 user.profile = Profil
-user.profile.bookmarks = Kanal Yer İmleri Listesi (maks. 10)
-user.profile.trending.channels = Özelleştirilmiş Popüler Konular
+user.profile.bookmarks = Özelleştirilmiş yer imleri (maks. 10)
+user.profile.trending.channels = Özelleştirilmiş gündem
 user.profile.select.trending.channels = Maksimum 5 kanal seç
 user.profile.post.perpage = Sayfa Başına Gönderi
 user.profile.topic.perpage = Sayfa Başına Konu
@@ -63,12 +63,30 @@ topic.channels = Kanallar
 topic.title = %s
 topic.title.with.page = %s Sayfa: %d
 topic.create.success.message = Katkın için teşekkür ederiz. Harikasın!
-topic.trending.total = %v daha fazla gönderi var
+topic.trending.total = %v gönderi daha
 
 notation.not.found = hoppala!. <b>%s</b> hakkında içeriğimiz yok gibi görünüyor. <br> Birşeyler karalamak ister misin?
-settings.updated.sucessfully = Ayarlar Başarıyla Güncellendi
+settings.updated.successfully = Ayarlar Başarıyla Güncellendi
 settings.updated.error = Bir şeyler ters gitti, endişelenme bunu kaydettik. Daha sonra tekrar deneyebilirsin.
 
 greeting.user = Hoş geldin %s
 
 search.all.results = Tüm Sonuçları Görüntüle
+
+## timeago
+about a second = yaklaşık bir saniye
+about a minute = yaklaşık bir dakika
+about an hour = yaklaşık bir saat
+one day = bir gün
+one month = bir ay
+one year = bir yıl
+%d seconds = %d saniye
+%d minutes = %d dakika
+%d hours = %d saat
+%d days = %d gün
+%d months = %d ay
+%d years = %d yıl
+
+ago = önce
+in = içinde
+about a second = yaklaşık bir saniye

@@ -17,8 +17,8 @@
                   {{format .channel.Name}}
                   </a>
                   <meta itemprop="url" content="{{url "Channel.View" .channel.Slug }}">
-                  <meta itemprop="text" content="(index .posts.Records 0).Content }}">
-                  <meta itemprop="datePublished" content="{{ .channel.CreatedAt }}">
+                  <meta itemprop="text" content="{{ (index .posts.Records 0).Content }}">
+                  <meta itemprop="datePublished" content="{{datetime .channel.CreatedAt }}">
               </h1>
           </div>
       </div>

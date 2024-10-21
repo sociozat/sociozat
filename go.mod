@@ -32,6 +32,7 @@ require (
 	github.com/revel/log15 v2.11.20+incompatible // indirect
 	github.com/revel/pathtree v0.0.0-20140121041023-41257a1839e9 // indirect
 	github.com/xeonx/timeago v1.0.0-rc5 // indirect
+	github.com/yassinebenaid/godump v0.10.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect

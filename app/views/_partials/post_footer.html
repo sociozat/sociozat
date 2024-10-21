@@ -1,5 +1,5 @@
 <div class="extra content">
-    <span class="left floated" itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+    <span class="left floated">
         <a  class="left aligned "
             href="https://www.facebook.com/sharer/sharer.php?u={{config "app.url" "" }}{{url "Post.View" .ID}}&t={{ .Topic.Name}}"
         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
@@ -7,20 +7,13 @@
             <i class="icon facebook"></i>
         </a>
 
-        <a class="left aligned "
+        <a class="left aligned"
            href="https://x.com/share?url={{config "app.url" "" }}{{url "Post.View" .ID}}&text={{ .Topic.Name}}"
         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
         target="_blank" title="Share on Twitter"
         style="margin-left:10px">
             <i class="icon twitter"></i>
         </a>
-
-        <meta itemprop="interactionType" content="https://schema.org/LikeAction">
-        <meta itemprop="userInteractionCount" content="{{.Likes}}">
-
-        <meta itemprop="interactionType" content="https://schema.org/DislikeAction">
-        <meta itemprop="userInteractionCount" content="{{.Dislikes}}">
-
 
         <a class="left aligned post-action" data-post="{{ .ID }}" data-action="like" style="margin-left:10px"><i class="icon thumbs up outline grey"></i> {{.Likes}}</a>
         <a class="left aligned post-action" data-post="{{ .ID }}" data-action="dislike" style="margin-left:10px"><i class="icon thumbs down outline grey"></i> {{.Dislikes}}</a>
@@ -32,3 +25,14 @@
         </a>
     </span>
 </div>
+
+<div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+    <meta itemprop="interactionType" content="https://schema.org/LikeAction">
+    <meta itemprop="userInteractionCount" content="{{.Likes}}">
+</div>
+
+<div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+    <meta itemprop="interactionType" content="https://schema.org/DislikeAction">
+    <meta itemprop="userInteractionCount" content="{{.Dislikes}}">
+</div>
+

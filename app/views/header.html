@@ -43,7 +43,7 @@
 		<div class="ui grid mobile only" style="margin-top: 10px; margin-bottom: 5px">
 			<div class="ui buttons">
 				<button class="ui button" hx-target="#left" hx-get='{{url "App.Trending"}}' style="border-radius: 0 !important;">{{msg . "global.menu.trending"}}</button>
-				<button class="ui button" hx-target="#left" hx-get='{{url "App.Today"}}' style="border-radius: 0 !important;">
+				<button class="ui button p-count cid0" hx-target="#left" hx-get='{{url "App.Today"}}' style="border-radius: 0 !important;">
 					{{msg . "global.menu.today"}}
 				</button>
 			</div>
@@ -58,7 +58,7 @@
 			<a class="item" href='{{url "User.Profile" (session "fulluser" .).Slug}}'  hx-target="#content" hx-get='{{url "User.Profile" (session "fulluser" .).Slug}}' >{{msg . "user.profile"}}</a>
 			<a class="item" href='{{url "Post.New"}}' hx-target="#content" hx-get='{{url "Post.New"}}'>{{msg . "global.new.topic"}}</a>
 			<a class="item" href='{{url "Settings.View"}}' hx-target="#content" hx-get='{{url "Settings.View"}}'>{{msg . "user.settings"}}</a>
-			<a class="item" href='{{url "User.Logout"}}'hx-target="#content" hx-get='{{url "User.Logout"}}'>{{msg . "user.form.logout"}}</a>
+			<a class="item" href='{{url "User.Logout"}}' hx-target="#content" hx-get='{{url "User.Logout"}}'>{{msg . "user.form.logout"}}</a>
 		{{else}}
 			{{template "_partials/login.html" .}}
 		{{end}}
@@ -79,9 +79,11 @@
 					</a>
 
 					<div class="menu">
-						<div class="ui right aligned category search item">
-							<div class="ui transparent icon input">
-								<input class="prompt" type="text" placeholder='{{msg . "global.search"}}'>
+						<div class="ui right aligned category search item" itemscope itemtype="https://schema.org/WebSite">
+							<meta itemprop="url" content="/"/>
+							<div class="ui transparent icon input" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+								<meta itemprop="target" content="/q/{search_term_string}"/>
+								<input class="prompt" itemprop="query-input" type="text" name="search_term_string" placeholder='{{msg . "global.search"}}'>
 								<i class="search link icon"></i>
 							</div>
 							<div class="results"></div>
